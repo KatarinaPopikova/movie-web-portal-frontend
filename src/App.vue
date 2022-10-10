@@ -1,8 +1,6 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <nav><router-link to="/">Home</router-link> |</nav>
+
   <router-view />
 </template>
 
@@ -14,17 +12,21 @@
   text-align: center;
   color: #2c3e50;
 }
+.poster {
+  height: 250px;
+  @apply p-1;
+}
+.posters {
+  display: flex;
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 </style>
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  components: {},
+});
+</script>
