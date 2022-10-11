@@ -1,10 +1,9 @@
 <template>
   <div class="poster mx-4 mt-6 w-2/5">
-    <router-link :to="`/movie/${this.movieId}`">
+    <router-link :to="`/movie/${movieId}`">
       <img
         class="poster rounded-lg w-2/5"
-        src="https://image.tmdb.org/t/p/original/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg"
-        alt="Poster"
+        :src="`${imageUrl}`"
         height="150px"
       />
     </router-link>
@@ -19,6 +18,12 @@ export default defineComponent({
   props: {
     movieId: {
       type: Number,
+    },
+    imageUrl: {
+      type: String,
+    },
+    movie: {
+      type: Object,
     },
   },
 });
