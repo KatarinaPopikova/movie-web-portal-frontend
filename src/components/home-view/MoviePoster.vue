@@ -5,7 +5,7 @@
         class="rounded-lg"
         :src="`${imageUrl}`"
         height="150px"
-        alt="poster"
+        :alt="`poster_${movieId}`"
       />
     </router-link>
   </div>

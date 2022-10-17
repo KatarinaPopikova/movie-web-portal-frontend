@@ -8,6 +8,7 @@
       class="poster rounded-lg w-2/5"
       :src="`${imageUrl}${image.file_path}`"
       height="150px"
+      :alt="`poster_${index}`"
     />
   </div>
 </template>
