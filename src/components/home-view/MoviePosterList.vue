@@ -1,13 +1,13 @@
 <template>
   <div
-    class="posters container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-6 gap-8"
-    v-for="movie in movies"
-    :key="movie.id"
+    class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6 gap-8"
   >
-    <movie-poster
-      :movie-id="movie.id"
-      :image-url="`${imageUrl}${movie.poster_path}`"
-    />
+    <div v-for="movie in movies" :key="movie.id">
+      <movie-poster
+        :movie-id="movie.id"
+        :image-url="`${imageUrl}${movie.poster_path}`"
+      />
+    </div>
   </div>
 </template>
 
@@ -27,12 +27,14 @@ export default defineComponent({
     };
   },
   mounted() {
+    Movie.searchTitle("car").then((response) => {
+      this.movies = response.data.credentials.results;
+    });
+
     window.eventBus.on("search-movies", (query) => {
       if (query !== "") {
-        console.log(query);
         Movie.searchTitle(query).then((response) => {
           this.movies = response.data.credentials.results;
-          console.log(response.data.credentials.results);
         });
       } else {
         this.movies = null;

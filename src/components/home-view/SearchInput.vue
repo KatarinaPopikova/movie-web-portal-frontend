@@ -26,7 +26,7 @@ export default defineComponent({
   },
   methods: {
     search() {
-      window.eventBus.emit("search-movies", this.query);
+      window.eventBus.emit("search-movies", this.query); //this.query
     },
   },
 });

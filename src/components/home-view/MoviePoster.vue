@@ -1,10 +1,11 @@
 <template>
-  <div class="poster mx-4 mt-6 w-2/5">
+  <div class="mx-auto mt-6 w-52">
     <router-link :to="`/movie/${movieId}`">
       <img
-        class="poster rounded-lg w-2/5"
+        class="rounded-lg"
         :src="`${imageUrl}`"
         height="150px"
+        alt="poster"
       />
     </router-link>
   </div>

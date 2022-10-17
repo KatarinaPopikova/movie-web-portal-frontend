@@ -7,8 +7,8 @@
 
 <script>
 import { defineComponent } from "vue";
-import MovieImages from "@/components/MovieDetailView/MovieImages";
-import MovieDetailInfo from "@/components/MovieDetailView/MovieDetailInfo";
+import MovieImages from "@/components/movie-detail-view/MovieImages";
+import MovieDetailInfo from "@/components/movie-detail-view/MovieDetailInfo";
 
 export default defineComponent({
   name: "MovieDetail",
