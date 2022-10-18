@@ -10,10 +10,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faChevronDown,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faMagnifyingGlass);
+library.add(faMagnifyingGlass, faChevronDown, faCheck);
 
 declare global {
   interface Window {

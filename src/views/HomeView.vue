@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SearchInput from "@/components/home-view/SearchInput.vue";
+import SearchInput from "@/components/home-view/multi-search-input/SearchInput.vue";
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
 
 export default defineComponent({

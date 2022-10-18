@@ -2,7 +2,7 @@
   <div class="mx-auto mt-6 w-52">
     <router-link :to="`/movie/${movieId}`">
       <img
-        class="rounded-lg"
+        class="rounded-lg shadow-lg"
         :src="`${imageUrl}`"
         height="150px"
         :alt="`poster_${movieId}`"
