@@ -15,6 +15,7 @@
 import { defineComponent } from "vue";
 import MoviePoster from "@/components/home-view/MoviePoster.vue";
 import Movie from "@/api/tmdb-movie";
+import { csfd } from "node-csfd-api";
 
 export default defineComponent({
   name: "MoviePosterList",
@@ -36,6 +37,11 @@ export default defineComponent({
         Movie.searchTitle(query).then((response) => {
           this.movies = response.data.credentials.results;
         });
+
+        // csfd.search(query).then((search) => {
+        //   console.log("CSFD");
+        //   console.log(search);
+        // });
       } else {
         this.movies = null;
       }
