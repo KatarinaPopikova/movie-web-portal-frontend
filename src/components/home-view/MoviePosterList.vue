@@ -14,7 +14,7 @@
 <script>
 import { defineComponent } from "vue";
 import MoviePoster from "@/components/home-view/MoviePoster.vue";
-import Movie from "@/api/movie";
+import Movie from "@/api/tmdb-movie";
 
 export default defineComponent({
   name: "MoviePosterList",

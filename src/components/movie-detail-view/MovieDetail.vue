@@ -2,7 +2,7 @@
   <div class="flex lg:flex-row flex-col">
     <div class="w-full">
       <img
-        class="rounded-lg p-5"
+        class="rounded-lg m-5 shadow-lg"
         :src="`${imageUrl}${movieInfo.backdrop_path}`"
         height="150px"
         alt="backdrop_path"
@@ -38,7 +38,8 @@
 
 <script>
 import { defineComponent } from "vue";
-import Movie from "@/api/movie";
+import MovieTmdb from "@/api/tmdb-movie";
+import MovieImdb from "@/api/imdb-movie";
 
 export default defineComponent({
   name: "MovieDetail",
@@ -57,9 +58,17 @@ export default defineComponent({
   },
 
   mounted() {
-    Movie.detail(this.movieId).then((response) => {
+    MovieTmdb.detail(this.movieId).then((response) => {
       this.movieInfo = response.data.credentials;
+      console.log("TMBD detail:");
       console.log(response.data.credentials);
+      const imdb_id = response.data.credentials.imdb_id;
+      MovieImdb.detail(imdb_id).then((responseImdb) => {
+        console.log("IMBD detail:");
+        console.log(responseImdb.data.credentials);
+
+        window.eventBus.emit("load-imdb-images", imdb_id); //this.query
+      });
     });
   },
 });

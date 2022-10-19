@@ -1,6 +1,6 @@
 import { Api } from "./axios";
 
-const END_POINT = "movies";
+const END_POINT = "tmdb/movies";
 
 export default {
   all() {
