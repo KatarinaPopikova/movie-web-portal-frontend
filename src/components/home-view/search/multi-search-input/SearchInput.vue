@@ -4,6 +4,7 @@
       class="max-w-lg bg-white rounded-2xl h-12 relative flex items-center mx-8"
     >
       <drop-down />
+
       <input
         type="text"
         v-model="query"
@@ -20,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DropDown from "@/components/home-view/multi-search-input/DropDown.vue";
+import DropDown from "@/components/home-view/search/multi-search-input/DropDown.vue";
 
 export default defineComponent({
   name: "SearchInput",

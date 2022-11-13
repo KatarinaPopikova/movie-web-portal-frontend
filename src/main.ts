@@ -1,8 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import "./index.css";
+import "./index.scss";
 import mitt, { Emitter } from "mitt";
+
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -30,5 +32,6 @@ window.eventBus = mitt();
 
 createApp(App)
   .use(router)
+  .use(VueTailwindDatepicker as never)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
