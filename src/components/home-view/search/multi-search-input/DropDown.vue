@@ -1,5 +1,5 @@
 <template>
-  <Listbox as="div" v-model="selected">
+  <Listbox as="div" v-model="selected" @update:modelValue="selectSearchType">
     <div class="relative">
       <ListboxButton
         class="relative bg-white py-2 pl-3 pr-10 hover:cursor-pointer focus:outline-none ml-3 border-r-2"
@@ -78,6 +78,11 @@ export default defineComponent({
       searchTypes: ["Title", "Poster", "Trailer", "Popular"],
       selected: "Title",
     };
+  },
+  methods: {
+    selectSearchType() {
+      this.$emit("update-search-type", this.selected);
+    },
   },
 });
 </script>

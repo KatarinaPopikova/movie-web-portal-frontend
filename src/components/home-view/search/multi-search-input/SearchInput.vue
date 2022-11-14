@@ -3,7 +3,7 @@
     <div
       class="max-w-lg bg-white rounded-2xl h-12 relative flex items-center mx-8"
     >
-      <drop-down />
+      <drop-down @update-search-type="updateSearchType" />
 
       <input
         type="text"
@@ -31,11 +31,15 @@ export default defineComponent({
   data() {
     return {
       query: "" as string,
+      searchType: "" as string,
     };
   },
   methods: {
     search() {
-      window.eventBus.emit("search-movies", this.query); //this.query
+      this.$emit("search-movies", this.searchType.toLowerCase(), this.query);
+    },
+    updateSearchType(searchType: string) {
+      this.searchType = searchType;
     },
   },
 });

@@ -3,7 +3,7 @@
     as="div"
     v-model="selectedGenres"
     multiple
-    @timeupdate="updateGenres"
+    @update:modelValue="updateGenres"
   >
     <div class="relative">
       <ListboxButton
@@ -37,7 +37,6 @@
             v-slot="{ active, selected }"
           >
             <li
-              @@timeupdate="updateGenres()"
               :class="[
                 active ? 'text-white bg-indigo-600' : 'text-gray-900',
                 'relative py-2 pl-3 pr-9',
@@ -128,11 +127,6 @@ export default defineComponent({
   methods: {
     updateGenres() {
       this.$emit("update-genres", this.selectedGenres);
-    },
-  },
-  watch: {
-    selectedGenres: function () {
-      this.updateGenres();
     },
   },
 });

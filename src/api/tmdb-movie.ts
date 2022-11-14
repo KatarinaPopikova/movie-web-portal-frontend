@@ -15,7 +15,7 @@ export default {
     return Api.get(`${END_POINT}/images/${id}`);
   },
 
-  searchTitle(query: string) {
-    return Api.get(`${END_POINT}/searchTitle/${query}`);
+  searchTitle(searchType: string, query: string) {
+    return Api.get(`${END_POINT}/searchTitle/${searchType}/${query}`);
   },
 };
