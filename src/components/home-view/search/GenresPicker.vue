@@ -126,7 +126,8 @@ export default defineComponent({
 
   methods: {
     updateGenres() {
-      this.$emit("update-genres", this.selectedGenres);
+      const selectedGenresId = this.selectedGenres.map((genre) => genre["id"]);
+      this.$emit("update-genres", selectedGenresId);
     },
   },
 });

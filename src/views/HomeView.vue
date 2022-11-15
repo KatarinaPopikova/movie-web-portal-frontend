@@ -41,7 +41,7 @@ export default defineComponent({
   },
 
   mounted() {
-    Movie.searchTitle("title", "car").then((response) => {
+    Movie.search("title", "car", "", "", "").then((response) => {
       this.movies = response.data.credentials.results;
     });
   },
@@ -58,7 +58,13 @@ export default defineComponent({
     },
     searchMovies(searchType: string, query: string) {
       if (query !== "") {
-        Movie.searchTitle(searchType, query).then((response) => {
+        Movie.search(
+          searchType,
+          query,
+          this.genres.join(","),
+          this.date_from,
+          this.date_to
+        ).then((response) => {
           this.movies = response.data.credentials.results;
         });
 

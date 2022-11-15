@@ -31,7 +31,7 @@ export default defineComponent({
   data() {
     return {
       query: "" as string,
-      searchType: "" as string,
+      searchType: "title" as string,
     };
   },
   methods: {
