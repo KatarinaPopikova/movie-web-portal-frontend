@@ -8,7 +8,7 @@
       <h2 class="pl-8 text-xl font-bold">TMDB</h2>
     </header>
     <div
-      class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6 gap-8"
+      class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
     >
       <!--    TMDB posters-->
       <div
@@ -31,7 +31,7 @@
       <h2 class="pl-8 text-xl font-bold">IMDB</h2>
     </header>
     <div
-      class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6 gap-8"
+      class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
     >
       <div
         v-for="(image, index) in imagesImdb"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6 gap-8"
+    class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
   >
     <div v-for="movie in movies" :key="movie.id">
       <movie-poster
@@ -38,10 +38,10 @@ export default defineComponent({
           this.movies = response.data.credentials.results;
         });
 
-        // csfd.search(query).then((search) => {
-        //   console.log("CSFD");
-        //   console.log(search);
-        // });
+        csfd.search(query).then((search) => {
+          console.log("CSFD");
+          console.log(search);
+        });
       } else {
         this.movies = null;
       }
