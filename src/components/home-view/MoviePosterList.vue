@@ -11,41 +11,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import MoviePoster from "@/components/home-view/MoviePoster.vue";
-import Movie from "@/api/tmdb-movie";
-import { csfd } from "node-csfd-api";
 
 export default defineComponent({
   name: "MoviePosterList",
   components: { MoviePoster },
+  props: {
+    movies: {
+      type: Array,
+    },
+  },
   data() {
     return {
-      movies: [],
       // eslint-disable-next-line no-undef
       imageUrl: "https://image.tmdb.org/t/p/original",
     };
-  },
-  mounted() {
-    Movie.searchTitle("car").then((response) => {
-      this.movies = response.data.credentials.results;
-    });
-
-    window.eventBus.on("search-movies", (query) => {
-      if (query !== "") {
-        Movie.searchTitle(query).then((response) => {
-          this.movies = response.data.credentials.results;
-        });
-
-        csfd.search(query).then((search) => {
-          console.log("CSFD");
-          console.log(search);
-        });
-      } else {
-        this.movies = null;
-      }
-    });
   },
 });
 </script>

@@ -62,13 +62,13 @@ export default defineComponent({
       this.movieInfo = response.data.credentials;
       console.log("TMBD detail:");
       console.log(response.data.credentials);
-      const imdb_id = response.data.credentials.imdb_id;
-      MovieImdb.detail(imdb_id).then((responseImdb) => {
-        console.log("IMBD detail:");
-        console.log(responseImdb.data.credentials);
-
-        window.eventBus.emit("load-imdb-images", imdb_id); //this.query
-      });
+      // const imdb_id = response.data.credentials.imdb_id;
+      // MovieImdb.detail(imdb_id).then((responseImdb) => {
+      //   console.log("IMBD detail:");
+      //   console.log(responseImdb.data.credentials);
+      //
+      //   window.eventBus.emit("load-imdb-images", imdb_id); //this.query
+      // });
     });
   },
 });

@@ -20,7 +20,8 @@
     "vue": "^3.2.13",
     "vue-emitter": "^1.0.3",
     "vue-flag-icon": "^2.1.0",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vue-tailwind-datepicker": "^1.1.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
