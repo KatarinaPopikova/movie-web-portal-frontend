@@ -1,5 +1,8 @@
 <template>
-  <nav><router-link to="/">Home</router-link> |</nav>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/detect">Detect</router-link> |
+  </nav>
 
   <router-view />
 </template>
