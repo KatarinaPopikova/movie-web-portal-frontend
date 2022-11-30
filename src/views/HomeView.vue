@@ -65,6 +65,7 @@ export default defineComponent({
           this.date_from,
           this.date_to
         ).then((response) => {
+          console.log(response);
           this.movies = response.data.credentials.results;
         });
 
