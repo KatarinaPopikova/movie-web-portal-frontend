@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto mt-6 w-52">
-    <router-link :to="`/movie/${movieId}`">
+    <router-link :to="`/movie/${movieId}`" @click="save_movie_det">
       <img
         class="rounded-lg shadow-lg"
         :src="`${imageUrl}`"
@@ -13,6 +13,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "MoviePoster",
@@ -23,8 +24,18 @@ export default defineComponent({
     imageUrl: {
       type: String,
     },
-    movie: {
-      type: Object,
+    detection: {
+      type: Array,
+    },
+  },
+
+  methods: {
+    ...mapActions("movie", ["getMovie"]),
+    save_movie_det() {
+      console.log(this.movieId);
+      console.log(this.detection);
+      console.log("a");
+      this.getMovie(this.detection);
     },
   },
 });

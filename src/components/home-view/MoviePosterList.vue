@@ -6,6 +6,7 @@
       <movie-poster
         :movie-id="movie.id"
         :image-url="`${imageUrl}${movie.poster_path}`"
+        :detection="movie.det"
       />
     </div>
   </div>

@@ -25,7 +25,6 @@ export default {
     if (searchType === "title") {
       return this.searchTitle(query);
     } /*if (searchType === "poster")*/ else {
-      console.log(this.searchPoster(query, genres, date_from, date_to));
       return this.searchPoster(query, genres, date_from, date_to);
     }
   },

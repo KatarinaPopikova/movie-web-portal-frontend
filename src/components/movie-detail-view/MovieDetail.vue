@@ -40,6 +40,7 @@
 import { defineComponent } from "vue";
 import MovieTmdb from "@/api/tmdb-movie";
 import MovieImdb from "@/api/imdb-movie";
+import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
   name: "MovieDetail",
@@ -57,11 +58,18 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    ...mapState("movie", ["movie"]),
+  },
+  methods: {
+    ...mapActions("movie", ["getMovieInfo"]),
+  },
   mounted() {
+    console.log(this.movie.detection);
     MovieTmdb.detail(this.movieId).then((response) => {
       this.movieInfo = response.data.credentials;
-      console.log("TMBD detail:");
-      console.log(response.data.credentials);
+      // console.log("TMBD detail:");
+      // console.log(response.data.credentials);
       // const imdb_id = response.data.credentials.imdb_id;
       // MovieImdb.detail(imdb_id).then((responseImdb) => {
       //   console.log("IMBD detail:");

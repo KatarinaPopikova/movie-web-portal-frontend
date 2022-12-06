@@ -10,7 +10,7 @@
         <DatePicker @update-date="updateDateTo" />
       </div>
     </div>
-    <movie-poster-list :movies="movies" />
+    <movie-poster-list :movies="movies2" />
   </div>
 </template>
 
@@ -22,6 +22,7 @@ import DatePicker from "@/components/home-view/search/multi-search-input/DatePic
 import GenresPicker from "@/components/home-view/search/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
+import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
   name: "HomeView",
@@ -33,20 +34,27 @@ export default defineComponent({
   },
   data() {
     return {
-      movies: [] as unknown,
+      movies2: [] as unknown,
       genres: [],
       date_from: "" as string,
       date_to: "" as string,
     };
   },
-
+  computed: {
+    ...mapState("movie", ["movies"]),
+  },
   mounted() {
-    Movie.search("title", "car", "", "", "").then((response) => {
-      this.movies = response.data.credentials.results;
-    });
+    if (this.movies.length > 0) {
+      this.movies2 = this.movies;
+    } else {
+      Movie.search("title", "car", "", "", "").then((response) => {
+        this.movies2 = response.data.credentials.results;
+      });
+    }
   },
 
   methods: {
+    ...mapActions("movie", ["getMovies"]),
     selectedGenres(genres: []) {
       this.genres = genres;
     },
@@ -67,6 +75,7 @@ export default defineComponent({
         ).then((response) => {
           console.log(response);
           this.movies = response.data.credentials.results;
+          this.getMovies(this.movies);
         });
 
         // csfd.search(query).then((search) => {
