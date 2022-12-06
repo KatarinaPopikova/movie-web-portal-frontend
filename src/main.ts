@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import store from "./store";
 import router from "./router";
 import "./index.scss";
 import mitt, { Emitter } from "mitt";
@@ -31,6 +32,7 @@ declare global {
 window.eventBus = mitt();
 
 createApp(App)
+  .use(store)
   .use(router)
   .use(VueTailwindDatepicker as never)
   .component("font-awesome-icon", FontAwesomeIcon)
