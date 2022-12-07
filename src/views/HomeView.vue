@@ -74,8 +74,8 @@ export default defineComponent({
           this.date_to
         ).then((response) => {
           console.log(response);
-          this.movies = response.data.credentials.results;
-          this.getMovies(this.movies);
+          this.movies2 = response.data.credentials.results;
+          this.getMovies(this.movies2);
         });
 
         // csfd.search(query).then((search) => {
@@ -83,7 +83,7 @@ export default defineComponent({
         //   console.log(search);
         // });
       } else {
-        this.movies = null;
+        this.movies2 = null;
       }
     },
   },

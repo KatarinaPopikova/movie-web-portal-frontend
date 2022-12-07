@@ -32,9 +32,6 @@ export default defineComponent({
   methods: {
     ...mapActions("movie", ["getMovie"]),
     save_movie_det() {
-      console.log(this.movieId);
-      console.log(this.detection);
-      console.log("a");
       this.getMovie(this.detection);
     },
   },
