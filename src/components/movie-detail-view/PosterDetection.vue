@@ -28,7 +28,6 @@ export default defineComponent({
   computed: {
     ...mapState("movie", ["movie"]),
   },
-
   methods: {
     detect() {
       let canvas = this.$refs["myCanvas"] as HTMLCanvasElement;
