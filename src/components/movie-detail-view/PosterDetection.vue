@@ -11,7 +11,6 @@
     <button @click="detect">show detection</button>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
