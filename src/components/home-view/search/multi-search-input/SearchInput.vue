@@ -8,11 +8,11 @@
       <input
         type="text"
         v-model="query"
-        @input="search"
+        @change="search"
         placeholder="Search..."
         class="w-full box-border pl-3 outline-none placeholder-gray-400 h-12 sm:w-96"
       />
-      <div>
+      <div @click="search" class="hover:cursor-pointer">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="pr-4" />
       </div>
     </div>
