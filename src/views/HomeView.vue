@@ -3,6 +3,7 @@
     <search-input @search-movies="searchMovies" />
     <div class="flex justify-evenly pt-4">
       <GenresPicker @update-genres="selectedGenres" />
+      <CategoriesPicker @update-genres="console.log('yes')" />
       <div class="w-80">
         <DatePicker @update-date="updateDateFrom" />
       </div>
@@ -23,10 +24,12 @@ import GenresPicker from "@/components/home-view/search/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
+import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    CategoriesPicker,
     DatePicker,
     GenresPicker,
     SearchInput,
