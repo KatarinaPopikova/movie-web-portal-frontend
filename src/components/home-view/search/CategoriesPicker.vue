@@ -144,6 +144,7 @@ export default defineComponent({
       this.selectedCategories = this.selectedCategories.filter(
         (value) => value !== category
       );
+      this.updateCategories();
     },
 
     updateSearchType(searchType: string) {

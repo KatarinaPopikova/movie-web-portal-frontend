@@ -12,7 +12,7 @@
     </div>
     <div class="flex justify-evenly pt-4 items-center">
       <GenresPicker @update-genres="selectedGenres" />
-      <search-input @search-movies="searchMovies" />
+      <search-input @search-movies="saveQuery" />
       <div class="w-80 flex items-center">
         <div class="pr-3 font-semibold">From:</div>
         <DatePicker @update-date="updateDateFrom" />
@@ -53,6 +53,7 @@ export default defineComponent({
       date_from: "" as string,
       date_to: "" as string,
       selectedCategories: [],
+      query: "" as string,
     };
   },
   computed: {
@@ -79,14 +80,18 @@ export default defineComponent({
     updateDateTo(date: string) {
       this.date_to = date;
     },
+    saveQuery(searchType, query) {
+      this.query = query;
+    },
     saveSelectedCategories(selectedCategories: []) {
       this.selectedCategories = selectedCategories;
+
+      console.log(this.selectedCategories);
     },
-    searchMovies(searchType: string, query: string) {
-      if (query !== "") {
+    searchMovies(query: string) {
+      if (query !== "" || this.categories.length > 0) {
         Movie.search(
-          searchType,
-          query,
+          this.query,
           this.genres.join(","),
           this.selectedCategories.join(","),
           this.date_from,

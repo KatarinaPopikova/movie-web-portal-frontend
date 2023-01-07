@@ -20,16 +20,15 @@ export default {
   },
 
   search(
-    searchType: string,
     query: string,
     genres: string,
     categories: string,
     date_from: string,
     date_to: string
   ) {
-    if (searchType === "title") {
+    if (categories === "") {
       return this.searchTitle(query);
-    } /*if (searchType === "poster")*/ else {
+    } else {
       return this.searchPoster(query, genres, categories, date_from, date_to);
     }
   },
