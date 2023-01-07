@@ -1,6 +1,6 @@
 <template>
   <div class="flex lg:flex-row flex-col">
-    <div class="w-full">
+    <div class="w-[900px]">
       <img
         class="rounded-lg m-5 shadow-lg"
         :src="`${imageUrl}${movieInfo.backdrop_path}`"
