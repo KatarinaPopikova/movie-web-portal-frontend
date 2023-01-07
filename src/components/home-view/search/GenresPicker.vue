@@ -7,13 +7,19 @@
   >
     <div class="relative">
       <ListboxButton
-        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white py-2 pl-3 pr-10 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
+        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white h-11 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
       >
-        <span class="flex items-center">
-          <span v-if="selectedGenres.length === 0" class="text-gray-400"
-            >Choose genres</span
+        <span
+          class="absolute left-3 top-0 h-11 border-r-2 pr-2 font-semibold text-[15.5px] flex items-center"
+          ><span>Genre</span></span
+        >
+        <span class="ml-14 flex items-center">
+          <span
+            v-if="selectedGenres.length === 0"
+            class="text-gray-400 ml-5 text-[15.5px]"
+            >Choose</span
           >
-          <span class="ml-3 block truncate font-semibold">
+          <span class="block truncate font-semibold ml-1">
             {{ selectedGenres.map((genre) => genre.name).join(", ") }}
           </span>
         </span>
@@ -27,7 +33,7 @@
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="absolute z-20 mt-1 rounded-md bg-white overflow-auto py-1 shadow-lg ring-1 ring-black ring-opacity-5 ml-2"
+          class="absolute z-20 mt-1 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 ml-2 overflow-y-scroll max-h-96"
         >
           <ListboxOption
             as="template"

@@ -1,17 +1,28 @@
 <template>
   <div class="home">
-    <search-input @search-movies="searchMovies" />
-    <div class="flex justify-evenly pt-4">
+    <div class="flex items-center w-[500px] justify-between m-auto">
+      <CategoriesPicker @selected-categories="saveSelectedCategories" />
+
+      <div @click="searchMovies" class="hover:cursor-pointer">
+        <font-awesome-icon
+          icon="fa-solid fa-magnifying-glass"
+          class="pr-4 h-8 w-8 text-sky-500"
+        />
+      </div>
+    </div>
+    <div class="flex justify-evenly pt-4 items-center">
       <GenresPicker @update-genres="selectedGenres" />
-      <CategoriesPicker @update-genres="console.log('yes')" />
-      <div class="w-80">
+      <search-input @search-movies="searchMovies" />
+      <div class="w-80 flex items-center">
+        <div class="pr-3 font-semibold">From:</div>
         <DatePicker @update-date="updateDateFrom" />
       </div>
-      <div class="w-80">
+      <div class="w-80 flex items-center">
+        <div class="pr-3 font-semibold">To:</div>
         <DatePicker @update-date="updateDateTo" />
       </div>
     </div>
-    <movie-poster-list :movies="movies2" />
+    <movie-poster-list :movies="shownMovies" />
   </div>
 </template>
 
@@ -37,10 +48,11 @@ export default defineComponent({
   },
   data() {
     return {
-      movies2: [] as unknown,
+      shownMovies: [] as unknown,
       genres: [],
       date_from: "" as string,
       date_to: "" as string,
+      selectedCategories: [],
     };
   },
   computed: {
@@ -48,10 +60,10 @@ export default defineComponent({
   },
   mounted() {
     if (this.movies.length > 0) {
-      this.movies2 = this.movies;
+      this.shownMovies = this.movies;
     } else {
-      Movie.search("title", "car", "", "", "").then((response) => {
-        this.movies2 = response.data.credentials.results;
+      Movie.popular().then((response) => {
+        this.shownMovies = response.data.credentials.results;
       });
     }
   },
@@ -67,18 +79,22 @@ export default defineComponent({
     updateDateTo(date: string) {
       this.date_to = date;
     },
+    saveSelectedCategories(selectedCategories: []) {
+      this.selectedCategories = selectedCategories;
+    },
     searchMovies(searchType: string, query: string) {
       if (query !== "") {
         Movie.search(
           searchType,
           query,
           this.genres.join(","),
+          this.selectedCategories.join(","),
           this.date_from,
           this.date_to
         ).then((response) => {
           console.log(response);
-          this.movies2 = response.data.credentials.results;
-          this.getMovies(this.movies2);
+          this.shownMovies = response.data.credentials.results;
+          this.getMovies(this.shownMovies);
         });
 
         // csfd.search(query).then((search) => {
@@ -86,7 +102,9 @@ export default defineComponent({
         //   console.log(search);
         // });
       } else {
-        this.movies2 = null;
+        Movie.popular().then((response) => {
+          this.shownMovies = response.data.credentials.results;
+        });
       }
     },
   },

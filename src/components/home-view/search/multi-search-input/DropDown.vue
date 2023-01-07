@@ -1,6 +1,11 @@
 <template>
-  <Listbox as="div" v-model="selected" @update:modelValue="selectSearchType">
-    <div class="relative">
+  <Listbox
+    as="div"
+    class="flex"
+    v-model="selected"
+    @update:modelValue="selectSearchType"
+  >
+    <div class="flex">
       <ListboxButton
         class="relative bg-white py-2 pl-3 pr-10 hover:cursor-pointer focus:outline-none ml-3 border-r-2"
       >
@@ -75,8 +80,8 @@ export default defineComponent({
   },
   data() {
     return {
-      searchTypes: ["Title", "Poster", "Trailer", "Popular"],
-      selected: "Title",
+      searchTypes: ["Poster", "Trailer"],
+      selected: "Poster",
     };
   },
   methods: {

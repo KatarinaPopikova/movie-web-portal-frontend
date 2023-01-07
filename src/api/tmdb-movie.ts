@@ -15,17 +15,22 @@ export default {
     return Api.get(`${END_POINT}/images/${id}`);
   },
 
+  popular() {
+    return Api.get(`${END_POINT}/popular`);
+  },
+
   search(
     searchType: string,
     query: string,
     genres: string,
+    categories: string,
     date_from: string,
     date_to: string
   ) {
     if (searchType === "title") {
       return this.searchTitle(query);
     } /*if (searchType === "poster")*/ else {
-      return this.searchPoster(query, genres, date_from, date_to);
+      return this.searchPoster(query, genres, categories, date_from, date_to);
     }
   },
 
@@ -36,11 +41,12 @@ export default {
   searchPoster(
     query: string,
     genres: string,
+    categories: string,
     date_from: string,
     date_to: string
   ) {
     return Api.get(
-      `${END_POINT}/searchPoster?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}`
+      `${END_POINT}/searchPoster?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}`
     );
   },
 };

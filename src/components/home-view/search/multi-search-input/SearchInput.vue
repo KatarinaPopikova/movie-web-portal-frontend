@@ -1,33 +1,26 @@
 <template>
   <div class="flex justify-center">
     <div
-      class="max-w-lg bg-white rounded-2xl h-12 relative flex items-center mx-8"
+      class="max-w-lg bg-white rounded-lg h-11 relative flex items-center mx-8 border border-vtd-secondary-300"
     >
-      <drop-down @update-search-type="updateSearchType" />
-
+      <div class="p-3 border-r-2 font-semibold text-md">Title</div>
       <input
         type="text"
         v-model="query"
         @change="search"
         placeholder="Search..."
-        class="w-full box-border pl-3 outline-none placeholder-gray-400 h-12 sm:w-96"
+        class="w-full box-border m-3 my-1 p-3 outline-none placeholder-gray-400 h-9 sm:w-72"
       />
-      <div @click="search" class="hover:cursor-pointer">
-        <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="pr-4" />
-      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DropDown from "@/components/home-view/search/multi-search-input/DropDown.vue";
 
 export default defineComponent({
   name: "SearchInput",
-  components: {
-    DropDown,
-  },
+  components: {},
   data() {
     return {
       query: "" as string,
