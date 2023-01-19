@@ -31,6 +31,7 @@
             | {{ genre.name }}
           </p>
         </div>
+        <movieCast v-if="cast" :poster-path="imageUrl" :cast="cast" />
       </div>
     </div>
   </div>
@@ -41,9 +42,11 @@ import { defineComponent } from "vue";
 import MovieTmdb from "@/api/tmdb-movie";
 import MovieImdb from "@/api/imdb-movie";
 import { mapActions, mapState } from "vuex";
+import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
 
 export default defineComponent({
   name: "MovieDetail",
+  components: { MovieCast },
   props: {
     movieId: {
       type: Number,
@@ -55,6 +58,7 @@ export default defineComponent({
       movieInfo: Object,
       imageUrl: "https://image.tmdb.org/t/p/original",
       imdbUrl: "https://www.imdb.com/title",
+      cast: Object,
     };
   },
 
@@ -65,9 +69,9 @@ export default defineComponent({
     ...mapActions("movie", ["getMovieInfo"]),
   },
   mounted() {
-    console.log(this.movie.detection);
     MovieTmdb.detail(this.movieId).then((response) => {
       this.movieInfo = response.data.credentials;
+      this.cast = this.movieInfo.credits.cast.slice(0, 5);
       // console.log("TMBD detail:");
       // console.log(response.data.credentials);
       // const imdb_id = response.data.credentials.imdb_id;

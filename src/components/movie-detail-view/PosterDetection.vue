@@ -10,7 +10,7 @@
       height="150px"
     />
     <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
-    <div class="flex justify-center">
+    <div v-if="this.movie.detection.length > 0" class="flex justify-center">
       <div
         @click="detect"
         class="font-semibold bg-green-600 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-green-700"
