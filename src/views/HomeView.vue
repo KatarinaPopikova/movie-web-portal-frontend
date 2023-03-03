@@ -60,6 +60,10 @@ export default defineComponent({
     ...mapState("movie", ["movies"]),
   },
   mounted() {
+    Movie.searchTrailer("", "", "", "", "").then((response) => {
+      console.log(response);
+    });
+    console.log("search");
     if (this.movies.length > 0) {
       this.shownMovies = this.movies;
     } else {
