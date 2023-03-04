@@ -27,7 +27,7 @@ export default defineComponent({
   data() {
     return {
       // eslint-disable-next-line no-undef
-      imageUrl: "https://image.tmdb.org/t/p/w342",
+      imageUrl: "https://image.tmdb.org/t/p/w300",
     };
   },
 });

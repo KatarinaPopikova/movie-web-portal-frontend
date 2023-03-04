@@ -26,12 +26,7 @@ export default {
     date_from: string,
     date_to: string
   ) {
-    if (
-      genres === "" &&
-      categories === "" &&
-      date_from === "" &&
-      date_to === ""
-    ) {
+    if (categories === "") {
       return this.searchTitle(query);
     } else {
       return this.searchPoster(query, genres, categories, date_from, date_to);
