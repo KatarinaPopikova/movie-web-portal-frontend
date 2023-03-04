@@ -63,7 +63,6 @@ export default defineComponent({
     Movie.searchTrailer("", "", "", "", "").then((response) => {
       console.log(response);
     });
-    console.log("search");
     if (this.movies.length > 0) {
       this.shownMovies = this.movies;
     } else {
@@ -89,8 +88,6 @@ export default defineComponent({
     },
     saveSelectedCategories(selectedCategories: []) {
       this.selectedCategories = selectedCategories;
-
-      console.log(this.selectedCategories);
     },
     searchMovies(query: string) {
       if (query !== "" || this.categories.length > 0) {
