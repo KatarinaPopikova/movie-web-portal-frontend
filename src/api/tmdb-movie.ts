@@ -27,14 +27,27 @@ export default {
     date_to: string
   ) {
     if (categories === "") {
-      return this.searchTitle(query);
+      if (date_to === "" && date_from === "" && genres === "")
+        return this.searchMoviesWithTitle(query);
+      else return this.searchMovies(query, genres, date_from, date_to);
     } else {
       return this.searchPoster(query, genres, categories, date_from, date_to);
     }
   },
 
-  searchTitle(query: string) {
-    return Api.get(`${END_POINT}/searchTitle?query=${query}`);
+  searchMoviesWithTitle(query: string) {
+    return Api.get(`${END_POINT}/searchMoviesWithTitle?query=${query}`);
+  },
+
+  searchMovies(
+    query: string,
+    genres: string,
+    date_from: string,
+    date_to: string
+  ) {
+    return Api.get(
+      `${END_POINT}/searchMovies?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}`
+    );
   },
 
   searchPoster(
