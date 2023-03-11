@@ -10,6 +10,24 @@
         />
       </div>
     </div>
+    <div class="flex justify-evenly">
+      <div class="p-2 w-80 mt-4 flex flex-col items-center">
+        <vue3-slider
+          v-model="confidence"
+          color="rgb(14 165 233)"
+          track-color="#FEFEFE"
+          tooltipText="%v%"
+          :tooltip="true"
+          :alwaysShowHandle="true"
+          :height="12"
+        />
+        <span class="pt-2 font-bold">
+          Confidence:
+          <span class="text-sky-500 pl-1">{{ confidence }}%</span>
+        </span>
+      </div>
+      <ToggleDatabase />
+    </div>
     <div class="flex justify-evenly pt-4 items-center">
       <GenresPicker @update-genres="selectedGenres" />
       <search-input @search-movies="saveQuery" />
@@ -36,15 +54,19 @@ import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
+import slider from "vue3-slider";
+import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    ToggleDatabase,
     CategoriesPicker,
     DatePicker,
     GenresPicker,
     SearchInput,
     MoviePosterList,
+    "vue3-slider": slider,
   },
   data() {
     return {
@@ -54,6 +76,7 @@ export default defineComponent({
       date_to: "" as string,
       selectedCategories: [],
       query: "" as string,
+      confidence: 23,
     };
   },
   computed: {
@@ -95,6 +118,7 @@ export default defineComponent({
           this.query,
           this.genres.join(","),
           this.selectedCategories.join(","),
+          this.confidence.toString(),
           this.date_from,
           this.date_to
         ).then((response) => {

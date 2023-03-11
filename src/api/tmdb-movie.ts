@@ -23,6 +23,7 @@ export default {
     query: string,
     genres: string,
     categories: string,
+    confidence: string,
     date_from: string,
     date_to: string
   ) {
@@ -31,7 +32,14 @@ export default {
         return this.searchMoviesWithTitle(query);
       else return this.searchMovies(query, genres, date_from, date_to);
     } else {
-      return this.searchPoster(query, genres, categories, date_from, date_to);
+      return this.searchPoster(
+        query,
+        genres,
+        categories,
+        confidence,
+        date_from,
+        date_to
+      );
     }
   },
 
@@ -54,11 +62,12 @@ export default {
     query: string,
     genres: string,
     categories: string,
+    confidence: string,
     date_from: string,
     date_to: string
   ) {
     return Api.get(
-      `${END_POINT}/searchPoster?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}`
+      `${END_POINT}/searchPoster?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}&confidence=${confidence}`
     );
   },
 
