@@ -11,10 +11,6 @@ export default {
     return Api.get(`${END_POINT}/${id}`);
   },
 
-  images(id: number) {
-    return Api.get(`${END_POINT}/images/${id}`);
-  },
-
   popular() {
     return Api.get(`${END_POINT}/popular`);
   },
@@ -81,5 +77,13 @@ export default {
     return Api.get(
       `${END_POINT}/searchTrailer?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}`
     );
+  },
+
+  images(movie_id: number) {
+    return Api.get(`${END_POINT}/images/${movie_id}`);
+  },
+
+  reviews(movie_id: number, page: number) {
+    return Api.get(`${END_POINT}/reviews/${movie_id}?page=${page}`);
   },
 };
