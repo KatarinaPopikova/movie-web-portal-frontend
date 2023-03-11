@@ -2,6 +2,7 @@
   <div>
     <movie-detail :movie-id="this.movieId" />
     <poster-detection />
+    <movie-reviews :movie-id="this.movieId" />
     <movie-images :movie-id="this.movieId" />
   </div>
 </template>
@@ -13,10 +14,11 @@ import MovieDetail from "@/components/movie-detail-view/MovieDetail.vue";
 import PosterDetection from "@/components/movie-detail-view/PosterDetection.vue";
 import { mapActions } from "vuex";
 import MovieTmdb from "@/api/tmdb-movie";
+import MovieReviews from "@/components/movie-detail-view/MovieReviews.vue";
 
 export default defineComponent({
   name: "MovieDetailView",
-  components: { PosterDetection, MovieImages, MovieDetail },
+  components: { MovieReviews, PosterDetection, MovieImages, MovieDetail },
 
   data() {
     return {

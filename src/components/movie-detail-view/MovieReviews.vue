@@ -1,0 +1,35 @@
+<template>
+  <div v-for="(review, index) in reviews" :key="index">
+    <TheReview :review="review" />
+  </div>
+</template>
+
+<script>
+import MovieTmdb from "@/api/tmdb-movie";
+import { defineComponent } from "vue";
+import TheReview from "@/components/movie-detail-view/TheReview.vue";
+
+export default defineComponent({
+  name: "MovieReviews",
+  components: { TheReview },
+  props: {
+    movieId: {
+      type: Number,
+    },
+  },
+
+  data() {
+    return {
+      reviews: Object,
+    };
+  },
+
+  mounted() {
+    MovieTmdb.reviews(this.movieId, 1).then((response) => {
+      this.reviews = response.data.credentials["results"];
+    });
+  },
+});
+</script>
+
+<style scoped></style>
