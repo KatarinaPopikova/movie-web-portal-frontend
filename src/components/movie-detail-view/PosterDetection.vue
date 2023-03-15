@@ -1,18 +1,33 @@
 <template>
-  <div class="canvas-wrapper w-96">
+  <div>
     <div class="text-3xl font-bold mb-10 ml-10">Poster</div>
-    <img
-      id="scream"
-      ref="myScream"
-      class="m-auto"
-      :src="imageUrl + this.movie.info.poster_path"
-      alt="The Scream"
-      height="150px"
-    />
-    <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
+    <div class="flex">
+      <div class="canvas-wrapper w-96">
+        <img
+          id="scream"
+          ref="myScream"
+          class="m-auto"
+          :src="imageUrl + this.movie.info.poster_path"
+          alt="The Scream"
+          height="150px"
+        />
+        <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
+      </div>
+      <div class="canvas-wrapper w-96">
+        <img
+          id="scream"
+          ref="myScream2"
+          class="m-auto"
+          :src="imageUrl + this.movie.info.poster_path"
+          alt="The Scream"
+          height="150px"
+        />
+        <canvas ref="myCanvas2" class="canvas-overlay m-auto"></canvas>
+      </div>
+    </div>
     <div v-if="this.movie.detection.length > 0" class="flex justify-center">
       <div
-        @click="detect"
+        @click="detectAll"
         class="font-semibold bg-green-600 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-green-700"
       >
         Show detection
@@ -37,12 +52,25 @@ export default defineComponent({
     ...mapState("movie", ["movie"]),
   },
   methods: {
-    detect() {
-      let canvas = this.$refs["myCanvas"] as HTMLCanvasElement;
+    detectAll() {
+      this.detect(
+        this.$refs["myCanvas"] as HTMLCanvasElement,
+        this.$refs["myScream"] as HTMLImageElement,
+        this.movie.detection
+      );
+      console.log(this.movie.detection);
+      this.detect(
+        this.$refs["myCanvas2"] as HTMLCanvasElement,
+        this.$refs["myScream2"] as HTMLImageElement,
+        this.movie.yolov8
+      );
+      console.log(this.movie.yolov8);
+    },
+    detect(canvas, img, detections) {
       const ctx = canvas.getContext("2d");
-      let img = this.$refs["myScream"] as HTMLImageElement;
       canvas.width = img.width;
       canvas.height = img.height;
+
       // get the scale
       let scale = Math.max(
         canvas.width / img.width,
@@ -53,18 +81,13 @@ export default defineComponent({
       let y = canvas.height / 2 - (img.height / 2) * scale;
 
       ctx?.drawImage(img, x, y, img.width * scale, img.height * scale);
-      console.log(this.movie.detection);
-      for (let det in this.movie.detection) {
+      for (let det of detections) {
         let label_conf =
-          this.movie.detection[det]["label"] +
-          "(" +
-          (this.movie.detection[det]["conf"] * 100).toFixed(2) +
-          ")";
-        this.bboxRatioDraw(label_conf, this.movie.detection[det]["box"]);
+          det["label"] + "(" + (det["conf"] * 100).toFixed(2) + ")";
+        this.bboxRatioDraw(label_conf, det["box"], canvas);
       }
     },
-    bboxRatioDraw(label, box) {
-      let canvas = this.$refs["myCanvas"] as HTMLCanvasElement;
+    bboxRatioDraw(label, box, canvas) {
       const ctx = canvas.getContext("2d");
 
       // Use percent to correctly adapt the coordinate to the scaled image

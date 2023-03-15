@@ -7,6 +7,7 @@
         :movie-id="movie.id"
         :image-url="`${imageUrl}${movie.poster_path}`"
         :detection="movie.det"
+        :yolov8="movie.yolov8"
       />
     </div>
   </div>

@@ -16,6 +16,7 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions } from "vuex";
+import { getMovieV8 } from "@/store/modules/movie/actions";
 
 export default defineComponent({
   name: "MoviePoster",
@@ -29,12 +30,16 @@ export default defineComponent({
     detection: {
       type: Array,
     },
+    yolov8: {
+      type: Array,
+    },
   },
 
   methods: {
-    ...mapActions("movie", ["getMovie"]),
+    ...mapActions("movie", ["getMovie", "getMovieV8"]),
     save_movie_det() {
       this.getMovie(this.detection);
+      this.getMovieV8(this.yolov8);
     },
   },
 });

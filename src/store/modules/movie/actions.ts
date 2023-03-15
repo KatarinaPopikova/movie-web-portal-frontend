@@ -10,6 +10,9 @@ export const getMovies = ({ commit }, movies) => {
 export const getMovie = ({ commit }, movieDetection) => {
   commit("SET_MOVIE_DETECTION", movieDetection);
 };
+export const getMovieV8 = ({ commit }, movieDetection) => {
+  commit("SET_MOVIE_DETECTION_V8", movieDetection);
+};
 export const getMovieInfo = ({ commit }, movieInfo) => {
   commit("SET_MOVIE_INFO", movieInfo);
 };
