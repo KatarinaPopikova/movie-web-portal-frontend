@@ -124,9 +124,9 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState("categories", ["categories"]),
+    ...mapState("search", ["allCategories"]),
     filteredCategories() {
-      return this.categories.filter((category) => {
+      return this.allCategories.filter((category) => {
         return category.toLowerCase().includes(this.query.toLowerCase());
       });
     },
@@ -135,10 +135,10 @@ export default defineComponent({
     this.getCategories();
   },
   methods: {
-    ...mapActions("categories", ["getCategories"]),
+    ...mapActions("search", ["getCategories"]),
     updateCategories() {
       this.selectedCategories.reverse();
-      this.$emit("selected-categories", this.selectedCategories);
+      this.$emit("selected-search", this.selectedCategories);
     },
     removeFromSelectedCategories(category: string) {
       this.selectedCategories = this.selectedCategories.filter(

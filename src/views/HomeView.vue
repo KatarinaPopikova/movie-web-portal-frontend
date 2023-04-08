@@ -81,11 +81,12 @@ export default defineComponent({
   },
   computed: {
     ...mapState("movie", ["movies"]),
+    ...mapState("search", ["searchFilter"]),
   },
   mounted() {
-    Movie.searchTrailer("", "", "", "", "").then((response) => {
-      console.log(response);
-    });
+    // Movie.searchTrailer("", "", "", "", "").then((response) => {
+    //   console.log(response);
+    // });
     if (this.movies.length > 0) {
       this.shownMovies = this.movies;
     } else {

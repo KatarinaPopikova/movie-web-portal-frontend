@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import movie from "./modules/movie";
-import categories from "./modules/categories";
+import search from "./modules/search";
 
 export default createStore({
   state: {
@@ -19,6 +19,6 @@ export default createStore({
 
   modules: {
     movie,
-    categories,
+    search,
   },
 });
