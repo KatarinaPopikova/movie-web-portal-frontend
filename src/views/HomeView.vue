@@ -31,14 +31,7 @@
     <div class="flex justify-evenly pt-4 items-center">
       <GenresPicker @update-genres="selectedGenres" />
       <search-input @search-movies="saveQuery" />
-      <div class="w-80 flex items-center">
-        <div class="pr-3 font-semibold">From:</div>
-        <DatePicker @update-date="updateDateFrom" />
-      </div>
-      <div class="w-80 flex items-center">
-        <div class="pr-3 font-semibold">To:</div>
-        <DatePicker @update-date="updateDateTo" />
-      </div>
+      <DateFromToPickers />
     </div>
     <movie-poster-list :movies="shownMovies" />
   </div>
@@ -48,7 +41,6 @@
 import { defineComponent } from "vue";
 import SearchInput from "@/components/home-view/search/multi-search-input/SearchInput.vue";
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
-import DatePicker from "@/components/home-view/search/multi-search-input/DatePicker.vue";
 import GenresPicker from "@/components/home-view/search/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
@@ -56,13 +48,14 @@ import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
 import slider from "vue3-slider";
 import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
+import DateFromToPickers from "@/components/home-view/search/multi-search-input/DateFromToPickers.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    DateFromToPickers,
     ToggleDatabase,
     CategoriesPicker,
-    DatePicker,
     GenresPicker,
     SearchInput,
     MoviePosterList,
@@ -72,8 +65,6 @@ export default defineComponent({
     return {
       shownMovies: [] as unknown,
       genres: [],
-      dateFrom: "" as string,
-      dateTo: "" as string,
       selectedCategories: [],
       query: "" as string,
       confidence: 23,
@@ -100,12 +91,6 @@ export default defineComponent({
     ...mapActions("movie", ["getMovies"]),
     selectedGenres(genres: []) {
       this.genres = genres;
-    },
-    updateDateFrom(date: string) {
-      this.date_from = date;
-    },
-    updateDateTo(date: string) {
-      this.date_to = date;
     },
     saveQuery(searchType, query) {
       this.query = query;
