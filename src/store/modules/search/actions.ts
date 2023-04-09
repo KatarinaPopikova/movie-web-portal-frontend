@@ -13,3 +13,18 @@ export const getAllCategories = async ({ commit }) => {
     // commit("setLoading", false);
   }
 };
+
+export const getAllGenres = async ({ commit }) => {
+  try {
+    //commit("SET_LOADING", true);
+    const { data } = await Categories.allGenres();
+    console.log(data);
+    commit("SET_ALL_GENRES", data);
+  } catch (error) {
+    //commit("SET_ERROR", error);
+    console.log(error);
+    throw error;
+  } finally {
+    // commit("setLoading", false);
+  }
+};

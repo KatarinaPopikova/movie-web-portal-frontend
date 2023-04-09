@@ -20,7 +20,7 @@
             >Choose</span
           >
           <span class="block truncate font-semibold ml-1">
-            {{ selectedGenres.map((genre) => genre.name).join(", ") }}
+            {{ selectedGenres.map((genre) => genre).join(", ") }}
           </span>
         </span>
         <span class="absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -37,8 +37,8 @@
         >
           <ListboxOption
             as="template"
-            v-for="genre in genres"
-            :key="genre.id"
+            v-for="(genre, index) in allGenres"
+            :key="index"
             :value="genre"
             v-slot="{ active, selected }"
           >
@@ -50,7 +50,7 @@
             >
               <div class="flex items-center">
                 <span :class="[selected ? 'font-semibold' : 'font-normal']">
-                  {{ genre.name }}
+                  {{ genre }}
                 </span>
               </div>
 
@@ -79,6 +79,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/vue";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 export default defineComponent({
   name: "GenresPicker",
@@ -88,49 +89,27 @@ export default defineComponent({
     ListboxOption,
     ListboxOptions,
   },
-  data() {
-    return {
-      genres: [
-        { id: 28, name: "Action" },
-        { id: 12, name: "Adventure" },
-        { id: 16, name: "Animation" },
-        {
-          id: 35,
-          name: "Comedy",
-        },
-        { id: 80, name: "Crime" },
-        { id: 99, name: "Documentary" },
-        { id: 18, name: "Drama" },
-        {
-          id: 10751,
-          name: "Family",
-        },
-        { id: 14, name: "Fantasy" },
-        { id: 36, name: "History" },
-        { id: 27, name: "Horror" },
-        {
-          id: 10402,
-          name: "Music",
-        },
-        { id: 9648, name: "Mystery" },
-        { id: 10749, name: "Romance" },
-        {
-          id: 878,
-          name: "Science Fiction",
-        },
-        { id: 10770, name: "TV Movie" },
-        { id: 53, name: "Thriller" },
-        { id: 10752, name: "War" },
-        {
-          id: 37,
-          name: "Western",
-        },
-      ],
-      selectedGenres: [],
-    };
+  computed: {
+    ...mapState("search", ["allGenres"]),
+    ...mapGetters("search", ["genres"]),
+
+    selectedGenres: {
+      get() {
+        return this.genres;
+      },
+      set(value) {
+        this.SET_GENRES(value);
+      },
+    },
   },
 
+  mounted() {
+    this.getAllGenres();
+  },
   methods: {
+    ...mapMutations("search", ["SET_GENRES"]),
+    ...mapActions("search", ["getAllGenres"]),
+
     updateGenres() {
       const selectedGenresId = this.selectedGenres.map((genre) => genre["id"]);
       this.$emit("update-genres", selectedGenresId);
