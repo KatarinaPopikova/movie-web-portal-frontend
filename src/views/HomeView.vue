@@ -11,21 +11,7 @@
       </div>
     </div>
     <div class="flex justify-evenly">
-      <div class="p-2 w-80 mt-4 flex flex-col items-center">
-        <vue3-slider
-          v-model="confidence"
-          color="rgb(14 165 233)"
-          track-color="#FEFEFE"
-          tooltipText="%v%"
-          :tooltip="true"
-          :alwaysShowHandle="true"
-          :height="12"
-        />
-        <span class="pt-2 font-bold">
-          Confidence:
-          <span class="text-sky-500 pl-1">{{ confidence }}%</span>
-        </span>
-      </div>
+      <ConfidenceSlider />
       <ToggleDatabase />
     </div>
     <div class="flex justify-evenly pt-4 items-center">
@@ -46,20 +32,20 @@ import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
-import slider from "vue3-slider";
 import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
 import DateFromToPickers from "@/components/home-view/search/multi-search-input/DateFromToPickers.vue";
+import ConfidenceSlider from "@/components/home-view/search/ConfidenceSlider.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    ConfidenceSlider,
     DateFromToPickers,
     ToggleDatabase,
     CategoriesPicker,
     GenresPicker,
     SearchInput,
     MoviePosterList,
-    "vue3-slider": slider,
   },
   data() {
     return {
@@ -67,7 +53,6 @@ export default defineComponent({
       genres: [],
       selectedCategories: [],
       query: "" as string,
-      confidence: 23,
     };
   },
   computed: {

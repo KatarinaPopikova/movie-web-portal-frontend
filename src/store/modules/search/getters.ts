@@ -10,6 +10,14 @@ import {
 export const categories = (state: SearchState): string[] =>
   state.searchFilter.categories;
 
+export const database = (state: SearchState): DatabaseEnum =>
+  state.searchFilter.database ? DatabaseEnum.online : DatabaseEnum.db;
+
+export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
+
+export const confidence = (state: SearchState): number =>
+  state.searchFilter.confidence;
+
 export const genres = (state: SearchState): string[] =>
   state.searchFilter.genres;
 
@@ -19,11 +27,6 @@ export const dateTo = (state: SearchState): string => state.searchFilter.dateTo;
 
 export const detectType = (state: SearchState): DetectTypeEnum =>
   state.searchFilter.detectType;
-
-export const database = (state: SearchState): DatabaseEnum =>
-  state.searchFilter.database ? DatabaseEnum.online : DatabaseEnum.db;
-
-export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
 
 export const filteredCategories =
   (state: SearchState): ((query: string) => string[]) =>
@@ -41,6 +44,7 @@ const getters: GetterTree<SearchState, RootState> = {
   database,
   yolo,
   filteredCategories,
+  confidence,
 };
 
 export default getters;

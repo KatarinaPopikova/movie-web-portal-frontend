@@ -5,7 +5,7 @@ const state: SearchState = {
     categories: [],
     database: true,
     yolo: YoloEnum.v7,
-    conf: 23,
+    confidence: 23,
     movieDatabase: "tmdb",
     genres: [],
     query: "",

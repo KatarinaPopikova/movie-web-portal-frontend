@@ -3,7 +3,7 @@ export interface SearchFilter {
   categories: string[];
   database: boolean;
   yolo: YoloEnum;
-  conf: number;
+  confidence: number;
   movieDatabase: string;
   genres: string[];
   query: string;
