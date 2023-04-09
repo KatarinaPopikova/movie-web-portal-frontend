@@ -30,6 +30,9 @@ export const dateTo = (state: SearchState): string => state.searchFilter.dateTo;
 export const detectType = (state: SearchState): DetectTypeEnum =>
   state.searchFilter.detectType;
 
+export const maxPages = (state: SearchState): number =>
+  state.searchFilter.maxPages;
+
 export const filteredCategories =
   (state: SearchState): ((query: string) => string[]) =>
   (query: string) =>
@@ -41,13 +44,14 @@ const getters: GetterTree<SearchState, RootState> = {
   categories,
   database,
   yolo,
-  filteredCategories,
   confidence,
   genres,
   query,
   dateFrom,
   dateTo,
   detectType,
+  maxPages,
+  filteredCategories,
 };
 
 export default getters;

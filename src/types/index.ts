@@ -10,6 +10,7 @@ export interface SearchFilter {
   dateFrom: string;
   dateTo: string;
   detectType: DetectTypeEnum;
+  maxPages: number;
 }
 
 export interface SearchState {

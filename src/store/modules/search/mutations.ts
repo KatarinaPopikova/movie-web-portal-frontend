@@ -49,3 +49,7 @@ export const REMOVE_FROM_CATEGORIES = (state, category: string) => {
 export const SET_DETECT_TYPE = (state, detectType: DetectTypeEnum) => {
   state.searchFilter.detectType = detectType;
 };
+
+export const SET_MAX_PAGES = (state, maxPages: number) => {
+  state.searchFilter.maxPages = maxPages;
+};

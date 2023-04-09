@@ -12,6 +12,7 @@ const state: SearchState = {
     dateFrom: "",
     dateTo: "",
     detectType: DetectTypeEnum.Poster,
+    maxPages: 10,
   } as SearchFilter,
   allCategories: [],
   allGenres: [],

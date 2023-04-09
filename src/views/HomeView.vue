@@ -12,6 +12,7 @@
     </div>
     <div class="flex justify-evenly">
       <ConfidenceSlider />
+      <PagesSlider />
       <ToggleDatabase />
     </div>
     <div class="flex justify-evenly pt-4 items-center">
@@ -34,11 +35,13 @@ import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
 import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
 import DateFromToPickers from "@/components/home-view/search/multi-search-input/DateFromToPickers.vue";
-import ConfidenceSlider from "@/components/home-view/search/ConfidenceSlider.vue";
+import ConfidenceSlider from "@/components/home-view/search/sliders/ConfidenceSlider.vue";
+import PagesSlider from "@/components/home-view/search/sliders/PagesSlider.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    PagesSlider,
     ConfidenceSlider,
     DateFromToPickers,
     ToggleDatabase,
