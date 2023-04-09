@@ -1,4 +1,4 @@
-import { SearchState, SearchFilter } from "@/types";
+import { DetectTypeEnum, SearchFilter, SearchState } from "@/types";
 
 const state: SearchState = {
   searchFilter: {
@@ -11,6 +11,7 @@ const state: SearchState = {
     query: "",
     dateFrom: "",
     dateTo: "",
+    detectType: DetectTypeEnum.Poster,
   } as SearchFilter,
   allCategories: [],
   allGenres: [],

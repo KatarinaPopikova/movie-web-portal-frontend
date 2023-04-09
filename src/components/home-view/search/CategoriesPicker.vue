@@ -10,7 +10,7 @@
     <div class="relative">
       <div class="flex rounded-lg bg-white border border-vtd-secondary-300">
         <div class="flex">
-          <drop-down @update-search-type="updateSearchType" />
+          <drop-down />
         </div>
         <ListboxButton
           class="text-sm relative w-80 bg-white py-2 pr-10 rounded-r-lg hover:cursor-pointer focus:outline-none"
@@ -148,10 +148,6 @@ export default defineComponent({
     ...mapActions("search", ["getAllCategories"]),
     removeFromSelectedCategories(category: string) {
       this.REMOVE_FROM_CATEGORIES(category);
-    },
-
-    updateSearchType(searchType: string) {
-      this.searchType = searchType;
     },
     cleanQuery() {
       this.query = "";

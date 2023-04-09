@@ -1,8 +1,11 @@
 import { GetterTree } from "vuex";
-import { RootState, SearchState } from "@/types";
+import { DetectTypeEnum, RootState, SearchState } from "@/types";
 
 export const categories = (state: SearchState): string[] =>
   state.searchFilter.categories;
+
+export const detectType = (state: SearchState): DetectTypeEnum =>
+  state.searchFilter.detectType;
 
 export const filteredCategories =
   (state: SearchState): ((query: string) => string[]) =>
@@ -13,6 +16,7 @@ export const filteredCategories =
 
 const getters: GetterTree<SearchState, RootState> = {
   categories,
+  detectType,
   filteredCategories,
 };
 

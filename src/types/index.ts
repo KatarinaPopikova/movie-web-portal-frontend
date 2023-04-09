@@ -1,3 +1,4 @@
+//INTERFACE
 export interface SearchFilter {
   categories: string[];
   database: boolean;
@@ -8,6 +9,7 @@ export interface SearchFilter {
   query: string;
   dateFrom: string;
   dateTo: string;
+  detectType: DetectTypeEnum;
 }
 
 export interface SearchState {
@@ -19,4 +21,11 @@ export interface SearchState {
 export interface RootState {
   loading: boolean;
   error: string | null;
+}
+
+// ENUM
+
+export enum DetectTypeEnum {
+  Trailer = "Trailer",
+  Poster = "Poster",
 }

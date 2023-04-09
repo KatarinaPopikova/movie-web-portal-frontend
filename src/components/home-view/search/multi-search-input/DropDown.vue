@@ -1,16 +1,13 @@
 <template>
-  <Listbox
-    as="div"
-    class="flex"
-    v-model="selected"
-    @update:modelValue="selectSearchType"
-  >
+  <Listbox as="div" class="flex" v-model="selectedDetectType">
     <div class="flex">
       <ListboxButton
         class="relative bg-white py-2 pl-3 pr-10 hover:cursor-pointer focus:outline-none ml-3 border-r-2"
       >
         <span class="flex items-center">
-          <span class="ml-3 block truncate font-semibold">{{ selected }}</span>
+          <span class="ml-3 block truncate font-semibold">{{
+            selectedDetectType
+          }}</span>
         </span>
         <span class="absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
           <font-awesome-icon icon="fa-solid fa-chevron-down" />
@@ -27,9 +24,9 @@
         >
           <ListboxOption
             as="template"
-            v-for="(searchType, index) in searchTypes"
+            v-for="(detectType, index) in detectTypeValues"
             :key="index"
-            :value="searchType"
+            :value="(detectType as any)"
             v-slot="{ active, selected }"
           >
             <li
@@ -40,7 +37,7 @@
             >
               <div class="flex items-center">
                 <span :class="[selected ? 'font-semibold' : 'font-normal']">
-                  {{ searchType }}
+                  {{ detectType }}
                 </span>
               </div>
 
@@ -61,7 +58,7 @@
   </Listbox>
 </template>
 
-<script>
+<script lang="ts">
 import {
   Listbox,
   ListboxButton,
@@ -69,6 +66,8 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 import { defineComponent } from "vue";
+import { mapGetters, mapMutations } from "vuex";
+import { DetectTypeEnum } from "@/types";
 
 export default defineComponent({
   name: "DropDown",
@@ -78,16 +77,25 @@ export default defineComponent({
     ListboxOption,
     ListboxOptions,
   },
-  data() {
-    return {
-      searchTypes: ["Poster", "Trailer"],
-      selected: "Poster",
-    };
-  },
-  methods: {
-    selectSearchType() {
-      this.$emit("update-search-type", this.selected);
+
+  computed: {
+    ...mapGetters("search", ["detectType"]),
+    detectTypeValues(): string[] {
+      return Object.values(DetectTypeEnum);
     },
+
+    selectedDetectType: {
+      get() {
+        return this.detectType;
+      },
+      set(value) {
+        this.SET_DETECT_TYPE(value);
+      },
+    },
+  },
+
+  methods: {
+    ...mapMutations("search", ["SET_DETECT_TYPE"]),
   },
 });
 </script>
