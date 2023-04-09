@@ -3,7 +3,7 @@ import { DetectTypeEnum, YoloEnum, SearchFilter, SearchState } from "@/types";
 const state: SearchState = {
   searchFilter: {
     categories: [],
-    database: false,
+    database: true,
     yolo: YoloEnum.v7,
     conf: 23,
     movieDatabase: "tmdb",

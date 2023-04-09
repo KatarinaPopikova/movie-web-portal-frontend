@@ -1,5 +1,11 @@
 import { GetterTree } from "vuex";
-import { DetectTypeEnum, RootState, SearchState, YoloEnum } from "@/types";
+import {
+  DatabaseEnum,
+  DetectTypeEnum,
+  RootState,
+  SearchState,
+  YoloEnum,
+} from "@/types";
 
 export const categories = (state: SearchState): string[] =>
   state.searchFilter.categories;
@@ -10,6 +16,9 @@ export const dateTo = (state: SearchState): string => state.searchFilter.dateTo;
 
 export const detectType = (state: SearchState): DetectTypeEnum =>
   state.searchFilter.detectType;
+
+export const database = (state: SearchState): DatabaseEnum =>
+  state.searchFilter.database ? DatabaseEnum.online : DatabaseEnum.db;
 
 export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
 
@@ -25,6 +34,7 @@ const getters: GetterTree<SearchState, RootState> = {
   dateFrom,
   dateTo,
   detectType,
+  database,
   yolo,
   filteredCategories,
 };

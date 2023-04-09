@@ -34,3 +34,8 @@ export enum YoloEnum {
   v7 = "YOLOv7",
   v8 = "YOLOv8",
 }
+
+export enum DatabaseEnum {
+  db = "Database",
+  online = "Online",
+}
