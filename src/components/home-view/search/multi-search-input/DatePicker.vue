@@ -12,15 +12,21 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "DatePicker",
+  props: {
+    date: {
+      type: String,
+    },
+  },
   data() {
     return {
-      dateValue: "" as string,
+      dateValue: this.date as string,
       formatter: {
         date: "YYYY-MM-DD",
         month: "MMM",
       },
     };
   },
+
   methods: {
     changedDate() {
       this.$emit("update-date", this.dateValue);
