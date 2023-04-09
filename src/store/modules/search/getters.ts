@@ -18,6 +18,9 @@ export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
 export const confidence = (state: SearchState): number =>
   state.searchFilter.confidence;
 
+export const movieDatabase = (state: SearchState): string =>
+  state.searchFilter.movieDatabase;
+
 export const genres = (state: SearchState): string[] =>
   state.searchFilter.genres;
 
@@ -45,6 +48,7 @@ const getters: GetterTree<SearchState, RootState> = {
   database,
   yolo,
   confidence,
+  movieDatabase,
   genres,
   query,
   dateFrom,

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <div class="flex items-center w-[500px] justify-between m-auto">
+    <div class="flex items-center w-[1200px] justify-between m-auto">
+      <MovieDatabasePicker />
       <CategoriesPicker @selected-categories="saveSelectedCategories" />
 
       <div @click="searchMovies" class="hover:cursor-pointer">
@@ -28,19 +29,21 @@
 import { defineComponent } from "vue";
 import SearchInput from "@/components/home-view/search/multi-search-input/SearchInput.vue";
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
-import GenresPicker from "@/components/home-view/search/GenresPicker.vue";
+import GenresPicker from "@/components/home-view/search/pickers/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
-import CategoriesPicker from "@/components/home-view/search/CategoriesPicker.vue";
+import CategoriesPicker from "@/components/home-view/search/pickers/CategoriesPicker.vue";
 import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
 import DateFromToPickers from "@/components/home-view/search/multi-search-input/DateFromToPickers.vue";
 import ConfidenceSlider from "@/components/home-view/search/sliders/ConfidenceSlider.vue";
 import PagesSlider from "@/components/home-view/search/sliders/PagesSlider.vue";
+import MovieDatabasePicker from "@/components/home-view/search/pickers/MovieDatabasePicker.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    MovieDatabasePicker,
     PagesSlider,
     ConfidenceSlider,
     DateFromToPickers,

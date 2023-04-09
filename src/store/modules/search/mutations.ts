@@ -24,6 +24,10 @@ export const SET_CONFIDENCE = (state, confidence: number) => {
   state.searchFilter.confidence = confidence;
 };
 
+export const SET_MOVIE_DATABASE = (state, movieDatabase: number) => {
+  state.searchFilter.movieDatabase = movieDatabase;
+};
+
 export const SET_GENRES = (state, genres: string[]) => {
   state.searchFilter.genres = genres;
 };

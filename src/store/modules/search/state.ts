@@ -1,4 +1,10 @@
-import { DetectTypeEnum, YoloEnum, SearchFilter, SearchState } from "@/types";
+import {
+  DetectTypeEnum,
+  YoloEnum,
+  SearchFilter,
+  SearchState,
+  MovieDatabaseEnum,
+} from "@/types";
 
 const state: SearchState = {
   searchFilter: {
@@ -6,7 +12,7 @@ const state: SearchState = {
     database: true,
     yolo: YoloEnum.v7,
     confidence: 23,
-    movieDatabase: "tmdb",
+    movieDatabase: MovieDatabaseEnum.tmdb,
     genres: [],
     query: "",
     dateFrom: "",

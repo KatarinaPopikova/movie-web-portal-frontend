@@ -1,32 +1,40 @@
 <template>
-  <Listbox as="div" class="flex" v-model="selectedDetectType">
-    <div class="flex">
+  <Listbox as="div" v-model="selectedGenres" multiple>
+    <div class="relative">
       <ListboxButton
-        class="relative bg-white py-2 pl-3 pr-10 hover:cursor-pointer focus:outline-none ml-3 border-r-2"
+        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white h-11 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
       >
-        <span class="flex items-center">
-          <span class="ml-3 block truncate font-semibold">{{
-            selectedDetectType
-          }}</span>
+        <span
+          class="absolute left-3 top-0 h-11 border-r-2 pr-2 font-semibold text-[15.5px] flex items-center"
+          ><span>Genre</span></span
+        >
+        <span class="ml-14 flex items-center">
+          <span
+            v-if="selectedGenres.length === 0"
+            class="text-gray-400 ml-5 text-[15.5px]"
+            >Choose</span
+          >
+          <span class="block truncate font-semibold ml-1">
+            {{ selectedGenres.map((genre) => genre).join(", ") }}
+          </span>
         </span>
         <span class="absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
           <font-awesome-icon icon="fa-solid fa-chevron-down" />
         </span>
       </ListboxButton>
-
       <transition
         leave-active-class="transition ease-in duration-100"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="absolute z-20 mt-[90px] w-32 rounded-md bg-white overflow-auto py-1 shadow-lg ring-1 ring-black ring-opacity-5"
+          class="absolute z-20 mt-1 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 ml-2 overflow-y-scroll max-h-96"
         >
           <ListboxOption
             as="template"
-            v-for="(detectType, index) in detectTypeValues"
+            v-for="(genre, index) in allGenres"
             :key="index"
-            :value="(detectType as any)"
+            :value="genre"
             v-slot="{ active, selected }"
           >
             <li
@@ -37,7 +45,7 @@
             >
               <div class="flex items-center">
                 <span :class="[selected ? 'font-semibold' : 'font-normal']">
-                  {{ detectType }}
+                  {{ genre }}
                 </span>
               </div>
 
@@ -59,44 +67,43 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import {
   Listbox,
   ListboxButton,
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/vue";
-import { defineComponent } from "vue";
-import { mapGetters, mapMutations } from "vuex";
-import { DetectTypeEnum } from "@/types";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 export default defineComponent({
-  name: "DropDown",
+  name: "GenresPicker",
   components: {
     Listbox,
     ListboxButton,
     ListboxOption,
     ListboxOptions,
   },
-
   computed: {
-    ...mapGetters("search", ["detectType"]),
+    ...mapState("search", ["allGenres"]),
+    ...mapGetters("search", ["genres"]),
 
-    detectTypeValues(): string[] {
-      return Object.values(DetectTypeEnum);
-    },
-
-    selectedDetectType: {
+    selectedGenres: {
       get() {
-        return this.detectType;
+        return this.genres;
       },
       set(value) {
-        this.SET_DETECT_TYPE(value);
+        this.SET_GENRES(value);
       },
     },
   },
 
+  mounted() {
+    this.getAllGenres();
+  },
   methods: {
-    ...mapMutations("search", ["SET_DETECT_TYPE"]),
+    ...mapMutations("search", ["SET_GENRES"]),
+    ...mapActions("search", ["getAllGenres"]),
   },
 });
 </script>
