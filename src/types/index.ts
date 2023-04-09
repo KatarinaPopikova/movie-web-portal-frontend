@@ -2,7 +2,7 @@
 export interface SearchFilter {
   categories: string[];
   database: boolean;
-  yolo: string;
+  yolo: YoloEnum;
   conf: number;
   movieDatabase: string;
   genres: string[];
@@ -28,4 +28,9 @@ export interface RootState {
 export enum DetectTypeEnum {
   Trailer = "Trailer",
   Poster = "Poster",
+}
+
+export enum YoloEnum {
+  v7 = "YOLOv7",
+  v8 = "YOLOv8",
 }

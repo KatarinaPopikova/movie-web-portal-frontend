@@ -1,4 +1,4 @@
-import { DetectTypeEnum } from "@/types";
+import { DetectTypeEnum, YoloEnum } from "@/types";
 
 export const SET_ALL_CATEGORIES = (state, allCategories) => {
   state.allCategories = allCategories;
@@ -13,6 +13,9 @@ export const SET_DATE_FROM = (state, dateFrom: string) => {
 };
 export const SET_DATE_TO = (state, dateTo: string) => {
   state.searchFilter.dateTo = dateTo;
+};
+export const SET_YOLO = (state, yolo: boolean) => {
+  state.searchFilter.yolo = yolo ? YoloEnum.v8 : YoloEnum.v7;
 };
 export const REMOVE_FROM_CATEGORIES = (state, category: string) => {
   state.searchFilter.categories = state.searchFilter.categories.filter(
