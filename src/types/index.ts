@@ -39,3 +39,8 @@ export enum DatabaseEnum {
   db = "Database",
   online = "Online",
 }
+
+export enum MovieDatabase {
+  csfd = "ČSFD",
+  tmdb = "TMDB",
+}

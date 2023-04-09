@@ -28,6 +28,10 @@ export const SET_GENRES = (state, genres: string[]) => {
   state.searchFilter.genres = genres;
 };
 
+export const SET_QUERY = (state, query: string) => {
+  state.searchFilter.query = query;
+};
+
 export const SET_DATE_FROM = (state, dateFrom: string) => {
   state.searchFilter.dateFrom = dateFrom;
 };

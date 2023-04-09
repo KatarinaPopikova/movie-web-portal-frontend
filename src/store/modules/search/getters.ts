@@ -21,6 +21,8 @@ export const confidence = (state: SearchState): number =>
 export const genres = (state: SearchState): string[] =>
   state.searchFilter.genres;
 
+export const query = (state: SearchState): string => state.searchFilter.query;
+
 export const dateFrom = (state: SearchState): string =>
   state.searchFilter.dateFrom;
 export const dateTo = (state: SearchState): string => state.searchFilter.dateTo;
@@ -37,14 +39,15 @@ export const filteredCategories =
 
 const getters: GetterTree<SearchState, RootState> = {
   categories,
-  genres,
-  dateFrom,
-  dateTo,
-  detectType,
   database,
   yolo,
   filteredCategories,
   confidence,
+  genres,
+  query,
+  dateFrom,
+  dateTo,
+  detectType,
 };
 
 export default getters;

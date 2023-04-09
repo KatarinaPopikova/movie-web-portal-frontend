@@ -6,8 +6,7 @@
       <div class="p-3 border-r-2 font-semibold text-md">Title</div>
       <input
         type="text"
-        v-model="query"
-        @change="search"
+        v-model="queryValue"
         placeholder="Search..."
         class="w-full box-border m-3 my-1 p-3 outline-none placeholder-gray-400 h-9 sm:w-72"
       />
@@ -17,23 +16,24 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default defineComponent({
   name: "SearchInput",
-  components: {},
-  data() {
-    return {
-      query: "" as string,
-      searchType: "title" as string,
-    };
+  computed: {
+    ...mapGetters("search", ["query"]),
+
+    queryValue: {
+      get() {
+        return this.query;
+      },
+      set(value) {
+        this.SET_QUERY(value);
+      },
+    },
   },
   methods: {
-    search() {
-      this.$emit("search-movies", this.searchType.toLowerCase(), this.query);
-    },
-    updateSearchType(searchType: string) {
-      this.searchType = searchType;
-    },
+    ...mapMutations("search", ["SET_QUERY"]),
   },
 });
 </script>
