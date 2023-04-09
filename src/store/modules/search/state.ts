@@ -1,6 +1,6 @@
-import { SearchFilter } from "@/types";
+import { SearchState, SearchFilter } from "@/types";
 
-export default {
+const state: SearchState = {
   searchFilter: {
     categories: [],
     database: false,
@@ -9,9 +9,11 @@ export default {
     movieDatabase: "tmdb",
     genres: [],
     query: "",
-    from: "",
-    to: "",
+    dateFrom: "",
+    dateTo: "",
   } as SearchFilter,
-  allCategories: [] as string[],
-  allGenres: [] as string[],
+  allCategories: [],
+  allGenres: [],
 };
+
+export default state;

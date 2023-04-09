@@ -6,6 +6,17 @@ export interface SearchFilter {
   movieDatabase: string;
   genres: string[];
   query: string;
-  from: string;
-  to: string;
+  dateFrom: string;
+  dateTo: string;
+}
+
+export interface SearchState {
+  searchFilter: SearchFilter;
+  allCategories: string[];
+  allGenres: string[];
+}
+
+export interface RootState {
+  loading: boolean;
+  error: string | null;
 }

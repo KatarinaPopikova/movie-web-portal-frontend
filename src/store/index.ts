@@ -1,8 +1,9 @@
 import { createStore } from "vuex";
 import movie from "./modules/movie";
 import search from "./modules/search";
+import { RootState } from "@/types";
 
-export default createStore({
+export default createStore<RootState>({
   state: {
     loading: false,
     error: null,
@@ -16,7 +17,6 @@ export default createStore({
       state.loading = loading;
     },
   },
-
   modules: {
     movie,
     search,

@@ -2,9 +2,9 @@
   <Listbox
     as="div"
     v-model="selectedCategories"
+    @update:model-value="cleanQuery"
     class="w-96"
     multiple
-    @update:modelValue="updateCategories"
     v-slot="{ open }"
   >
     <div class="relative">
@@ -62,7 +62,7 @@
         >
           <ListboxOption
             as="template"
-            v-for="(category, index) in filteredCategories"
+            v-for="(category, index) in filteredCategoriesList"
             :key="index"
             :value="category"
             v-slot="{ active, selected }"
@@ -98,13 +98,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import {
   Listbox,
   ListboxButton,
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import DropDown from "@/components/home-view/search/multi-search-input/DropDown.vue";
 
 export default defineComponent({
@@ -119,36 +120,41 @@ export default defineComponent({
   data() {
     return {
       query: "" as string,
-      selectedCategories: [],
-      searchType: "title" as string,
+      searchType: "Poster" as string,
     };
   },
   computed: {
     ...mapState("search", ["allCategories"]),
-    filteredCategories() {
-      return this.allCategories.filter((category) => {
-        return category.toLowerCase().includes(this.query.toLowerCase());
-      });
+    ...mapGetters("search", ["filteredCategories", "categories"]),
+
+    selectedCategories: {
+      get() {
+        return this.categories;
+      },
+      set(value) {
+        this.SET_CATEGORIES(value);
+      },
+    },
+
+    filteredCategoriesList() {
+      return this.filteredCategories(this.query);
     },
   },
   mounted() {
-    this.getCategories();
+    this.getAllCategories();
   },
   methods: {
-    ...mapActions("search", ["getCategories"]),
-    updateCategories() {
-      this.selectedCategories.reverse();
-      this.$emit("selected-search", this.selectedCategories);
-    },
+    ...mapMutations("search", ["SET_CATEGORIES", "REMOVE_FROM_CATEGORIES"]),
+    ...mapActions("search", ["getAllCategories"]),
     removeFromSelectedCategories(category: string) {
-      this.selectedCategories = this.selectedCategories.filter(
-        (value) => value !== category
-      );
-      this.updateCategories();
+      this.REMOVE_FROM_CATEGORIES(category);
     },
 
     updateSearchType(searchType: string) {
       this.searchType = searchType;
+    },
+    cleanQuery() {
+      this.query = "";
     },
   },
 });

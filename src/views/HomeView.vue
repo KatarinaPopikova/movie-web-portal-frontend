@@ -72,8 +72,8 @@ export default defineComponent({
     return {
       shownMovies: [] as unknown,
       genres: [],
-      date_from: "" as string,
-      date_to: "" as string,
+      dateFrom: "" as string,
+      dateTo: "" as string,
       selectedCategories: [],
       query: "" as string,
       confidence: 23,

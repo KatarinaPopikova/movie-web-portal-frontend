@@ -1,6 +1,6 @@
 import Categories from "../../../api/categories";
 
-export const getCategories = async ({ commit }) => {
+export const getAllCategories = async ({ commit }) => {
   try {
     //commit("SET_LOADING", true);
     const { data } = await Categories.all();
