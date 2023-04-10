@@ -53,18 +53,18 @@ export default defineComponent({
     SearchInput,
     MoviePosterList,
   },
+  computed: {
+    ...mapState("movie", ["movies"]),
+  },
   data() {
     return {
-      shownMovies: [] as unknown,
+      shownMovies: this.movies,
       genres: [],
       selectedCategories: [],
       query: "" as string,
     };
   },
-  computed: {
-    ...mapState("movie", ["movies"]),
-    ...mapState("search", ["searchFilter"]),
-  },
+
   mounted() {
     // Movie.searchTrailer("", "", "", "", "").then((response) => {
     //   console.log(response);
@@ -89,20 +89,10 @@ export default defineComponent({
     saveSelectedCategories(selectedCategories: []) {
       this.selectedCategories = selectedCategories;
     },
-    searchMovies(query: string) {
+    async searchMovies(query: string) {
       if (query !== "" || this.categories.length > 0) {
-        Movie.search(
-          this.query,
-          this.genres.join(","),
-          this.selectedCategories.join(","),
-          this.confidence.toString(),
-          this.date_from,
-          this.date_to
-        ).then((response) => {
-          console.log(response);
-          this.shownMovies = response.data.credentials.results;
-          this.getMovies(this.shownMovies);
-        });
+        await this.getMovies();
+        this.shownMovies = this.movies;
 
         // csfd.search(query).then((search) => {
         //   console.log("CSFD");

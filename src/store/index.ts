@@ -7,6 +7,8 @@ export default createStore<RootState>({
   state: {
     loading: false,
     error: null,
+    movieModule: movie.state,
+    searchModule: search.state,
   },
   getters: {
     loading: (state) => state.loading,

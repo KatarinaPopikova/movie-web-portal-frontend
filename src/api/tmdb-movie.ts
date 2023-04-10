@@ -3,8 +3,19 @@ import { Api } from "./axios";
 const END_POINT = "tmdb/movies";
 
 export default {
-  all() {
-    return Api.get(END_POINT);
+  async filteredMovies(searchFilter) {
+    const genresString = searchFilter.genres.join(",");
+    const categoriesString = searchFilter.categories.join(",");
+
+    try {
+      const response = await Api.get(
+        `${END_POINT}?categories=${categoriesString}&database=${searchFilter.database}&yolo=${searchFilter.yolo}&confidence=${searchFilter.confidence}&movieDatabase=${searchFilter.movieDatabase}&genres=${genresString}&query=${searchFilter.query}&dateFrom=${searchFilter.dateFrom}&dateTo=${searchFilter.dateTo}&detectType=${searchFilter.detectType}&maxPages=${searchFilter.maxPages}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   },
 
   detail(id: number) {

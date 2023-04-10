@@ -11,7 +11,7 @@ export const categories = (state: SearchState): string[] =>
   state.searchFilter.categories;
 
 export const database = (state: SearchState): DatabaseEnum =>
-  state.searchFilter.database ? DatabaseEnum.online : DatabaseEnum.db;
+  state.searchFilter.database ? DatabaseEnum.db : DatabaseEnum.online;
 
 export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
 

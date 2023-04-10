@@ -9,7 +9,7 @@ import {
 const state: SearchState = {
   searchFilter: {
     categories: [],
-    database: true,
+    database: false,
     yolo: YoloEnum.v7,
     confidence: 23,
     movieDatabase: MovieDatabaseEnum.tmdb,

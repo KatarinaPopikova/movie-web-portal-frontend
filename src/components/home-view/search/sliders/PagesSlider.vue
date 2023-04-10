@@ -9,8 +9,9 @@
       :alwaysShowHandle="true"
       :height="12"
       aria-valuemax="500"
-      max="500"
-      step="5"
+      :min="5"
+      :max="500"
+      :step="5"
     />
 
     <span class="pt-2 font-bold">

@@ -8,6 +8,8 @@
       :tooltip="true"
       :alwaysShowHandle="true"
       :height="12"
+      :min="10"
+      :max="100"
     />
 
     <span class="pt-2 font-bold">

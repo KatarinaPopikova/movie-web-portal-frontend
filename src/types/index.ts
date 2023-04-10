@@ -1,4 +1,12 @@
 //INTERFACE
+
+export interface RootState {
+  loading: boolean;
+  error: string | null;
+  movieModule: MovieState;
+  searchModule: SearchState;
+}
+
 export interface SearchFilter {
   categories: string[];
   database: boolean;
@@ -13,15 +21,19 @@ export interface SearchFilter {
   maxPages: number;
 }
 
+export interface MovieState {
+  movies: any;
+  movie: {
+    detection: any;
+    yolov8: any;
+    info: any;
+  };
+}
+
 export interface SearchState {
   searchFilter: SearchFilter;
   allCategories: string[];
   allGenres: string[];
-}
-
-export interface RootState {
-  loading: boolean;
-  error: string | null;
 }
 
 // ENUM
@@ -37,8 +49,8 @@ export enum YoloEnum {
 }
 
 export enum DatabaseEnum {
-  db = "Database",
   online = "Online",
+  db = "Database",
 }
 
 export enum MovieDatabaseEnum {
