@@ -75,7 +75,7 @@ export default defineComponent({
     MovieTmdb.images(this.movieId).then((responseTmdb) => {
       // console.log("TMDB images:");
       // console.log(responseTmdb.data.credentials);
-      this.imagesTmbd = responseTmdb.data.credentials.posters;
+      this.imagesTmbd = responseTmdb.data.results.posters;
     });
     window.eventBus.on("load-imdb-images", (imdb_id) => {
       if (imdb_id !== "") {

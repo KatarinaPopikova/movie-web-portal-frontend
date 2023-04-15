@@ -4,7 +4,7 @@ export const getAllCategories = async ({ commit }) => {
   try {
     //commit("SET_LOADING", true);
     const { data } = await Categories.all();
-    commit("SET_ALL_CATEGORIES", data.credentials);
+    commit("SET_ALL_CATEGORIES", data);
   } catch (error) {
     //commit("SET_ERROR", error);
     console.log(error);

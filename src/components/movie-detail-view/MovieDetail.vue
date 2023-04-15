@@ -70,14 +70,15 @@ export default defineComponent({
   },
   mounted() {
     MovieTmdb.detail(this.movieId).then((response) => {
-      this.movieInfo = response.data.credentials;
+      console.log(response);
+      this.movieInfo = response.data;
       this.cast = this.movieInfo.credits.cast.slice(0, 5);
       // console.log("TMBD detail:");
-      // console.log(response.data.credentials);
-      // const imdb_id = response.data.credentials.imdb_id;
+      // console.log(response.data);
+      // const imdb_id = response.data.imdb_id;
       // MovieImdb.detail(imdb_id).then((responseImdb) => {
       //   console.log("IMBD detail:");
-      //   console.log(responseImdb.data.credentials);
+      //   console.log(responseImdb.data);
       //
       //   window.eventBus.emit("load-imdb-images", imdb_id); //this.query
       // });

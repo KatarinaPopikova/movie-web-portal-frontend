@@ -7,15 +7,8 @@ export default {
     const genresString = searchFilter.genres.join(",");
     const categoriesString = searchFilter.categories.join(",");
 
-    try {
-      const response = await Api.get(
-        `${END_POINT}?categories=${categoriesString}&database=${searchFilter.database}&yolo=${searchFilter.yolo}&confidence=${searchFilter.confidence}&movieDatabase=${searchFilter.movieDatabase}&genres=${genresString}&query=${searchFilter.query}&dateFrom=${searchFilter.dateFrom}&dateTo=${searchFilter.dateTo}&detectType=${searchFilter.detectType}&maxPages=${searchFilter.maxPages}`
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
+    const request = `${END_POINT}?categories=${categoriesString}&database=${searchFilter.database}&yolo=${searchFilter.yolo}&confidence=${searchFilter.confidence}&movieDatabase=${searchFilter.movieDatabase}&genres=${genresString}&query=${searchFilter.query}&dateFrom=${searchFilter.dateFrom}&dateTo=${searchFilter.dateTo}&detectType=${searchFilter.detectType}&maxPages=${searchFilter.maxPages}`;
+    return await this.callRequest(request);
   },
 
   detail(id: number) {
@@ -94,7 +87,19 @@ export default {
     return Api.get(`${END_POINT}/images/${movie_id}`);
   },
 
-  reviews(movie_id: number, page: number) {
-    return Api.get(`${END_POINT}/reviews/${movie_id}?page=${page}`);
+  async reviews(movie_id: number, page: number) {
+    const request = `${END_POINT}/reviews/${movie_id}?page=${page}`;
+    return await this.callRequest(request);
+  },
+
+  async callRequest(request) {
+    try {
+      const response = await Api.get(request);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   },
 };

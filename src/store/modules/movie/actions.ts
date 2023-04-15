@@ -8,8 +8,7 @@ export const getMovies = async ({
 }: ActionContext<any, RootState>) => {
   const searchFilter: SearchFilter = rootState.searchModule.searchFilter;
   const movies = await Movie.filteredMovies(searchFilter);
-  console.log(movies);
-  commit("SET_MOVIES", movies.credentials.results);
+  commit("SET_MOVIES", movies);
   // Movie.searchAll().then((response) => {
   //   commit("SET_MOVIES", response.data);
   // });

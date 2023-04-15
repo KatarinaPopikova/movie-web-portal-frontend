@@ -11,7 +11,7 @@ const state: SearchState = {
     categories: [],
     database: false,
     yolo: YoloEnum.v7,
-    confidence: 23,
+    confidence: 25,
     movieDatabase: MovieDatabaseEnum.tmdb,
     genres: [],
     query: "",

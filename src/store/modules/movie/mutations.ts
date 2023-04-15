@@ -1,6 +1,5 @@
 export const SET_MOVIES = (state, movies) => {
   state.movies = movies;
-  console.log(state.movies);
 };
 
 export const SET_MOVIE_DETECTION = (state, movie_det) => {

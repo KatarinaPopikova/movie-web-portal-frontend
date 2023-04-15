@@ -8,7 +8,7 @@
       :tooltip="true"
       :alwaysShowHandle="true"
       :height="12"
-      :min="10"
+      :min="25"
       :max="100"
     />
 

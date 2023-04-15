@@ -73,7 +73,7 @@ export default defineComponent({
       this.shownMovies = this.movies;
     } else {
       Movie.popular().then((response) => {
-        this.shownMovies = response.data.credentials.results;
+        this.shownMovies = response.data;
       });
     }
   },
@@ -100,7 +100,7 @@ export default defineComponent({
         // });
       } else {
         Movie.popular().then((response) => {
-          this.shownMovies = response.data.credentials.results;
+          this.shownMovies = response.data;
         });
       }
     },

@@ -26,7 +26,8 @@ export default defineComponent({
 
   mounted() {
     MovieTmdb.reviews(this.movieId, 1).then((response) => {
-      this.reviews = response.data.credentials["results"];
+      console.log(response);
+      this.reviews = response.results;
     });
   },
 });
