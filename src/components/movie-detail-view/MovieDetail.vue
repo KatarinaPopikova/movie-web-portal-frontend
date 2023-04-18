@@ -88,6 +88,10 @@ export default defineComponent({
         //   window.eventBus.emit("load-imdb-images", imdb_id); //this.query
         // });
       });
+    } else if (this.apiDb === "IMDB") {
+      MovieImdb.detail(this.movieId).then((response) => {
+        console.log(response);
+      });
     }
   },
 });

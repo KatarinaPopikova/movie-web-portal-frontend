@@ -11,8 +11,6 @@
 import { defineComponent } from "vue";
 import MovieDetail from "@/components/movie-detail-view/MovieDetail.vue";
 import PosterDetection from "@/components/movie-detail-view/PosterDetection.vue";
-import { mapActions } from "vuex";
-import MovieTmdb from "@/api/tmdb-movie";
 import MovieReviews from "@/components/movie-detail-view/MovieReviews.vue";
 
 export default defineComponent({
@@ -24,9 +22,6 @@ export default defineComponent({
       movieId: Number(this.$route.params.id),
       apiDb: String(this.$route.params.apiDb),
     };
-  },
-  methods: {
-    ...mapActions("movie", ["getMovieInfo"]),
   },
 });
 </script>
