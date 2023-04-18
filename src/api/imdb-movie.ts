@@ -13,4 +13,8 @@ export default {
   posters(id: number) {
     return Api.get(`${END_POINT}/posters/${id}`);
   },
+
+  fillDatabase() {
+    return Api.get(`fill_database`);
+  },
 };

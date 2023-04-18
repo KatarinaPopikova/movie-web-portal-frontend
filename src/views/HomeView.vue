@@ -1,5 +1,14 @@
 <template>
+  <div>
+    <LoadingLottie />
+  </div>
   <div class="home">
+    <div @click="fillDatabase" class="hover:cursor-pointer">
+      <font-awesome-icon
+        icon="fa-solid fa-magnifying-glass"
+        class="pr-4 h-8 w-8 text-sky-500"
+      />
+    </div>
     <div class="flex items-center w-[1200px] justify-between m-auto">
       <MovieDatabasePicker />
       <CategoriesPicker @selected-categories="saveSelectedCategories" />
@@ -31,6 +40,7 @@ import SearchInput from "@/components/home-view/search/multi-search-input/Search
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
 import GenresPicker from "@/components/home-view/search/pickers/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
+import IMovie from "@/api/imdb-movie";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/pickers/CategoriesPicker.vue";
@@ -39,10 +49,12 @@ import DateFromToPickers from "@/components/home-view/search/multi-search-input/
 import ConfidenceSlider from "@/components/home-view/search/sliders/ConfidenceSlider.vue";
 import PagesSlider from "@/components/home-view/search/sliders/PagesSlider.vue";
 import MovieDatabasePicker from "@/components/home-view/search/pickers/MovieDatabasePicker.vue";
+import LoadingLottie from "@/components/LoadingLottie.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    LoadingLottie,
     MovieDatabasePicker,
     PagesSlider,
     ConfidenceSlider,
@@ -103,6 +115,9 @@ export default defineComponent({
           this.shownMovies = response.data;
         });
       }
+    },
+    fillDatabase() {
+      IMovie.fillDatabase();
     },
   },
 });

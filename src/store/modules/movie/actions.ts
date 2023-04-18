@@ -6,12 +6,16 @@ export const getMovies = async ({
   rootState,
   commit,
 }: ActionContext<any, RootState>) => {
+  commit("SET_LOADING", true, { root: true });
   const searchFilter: SearchFilter = rootState.searchModule.searchFilter;
-  const movies = await Movie.filteredMovies(searchFilter);
-  commit("SET_MOVIES", movies);
-  // Movie.searchAll().then((response) => {
-  //   commit("SET_MOVIES", response.data);
-  // });
+  try {
+    const movies = await Movie.filteredMovies(searchFilter);
+    commit("SET_MOVIES", movies);
+  } catch (error) {
+    console.log("Error in fetching movies.");
+  } finally {
+    commit("SET_LOADING", false, { root: true });
+  }
 };
 
 export const getMovie = ({ commit }, movieDetection) => {

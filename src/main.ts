@@ -4,6 +4,8 @@ import store from "./store";
 import router from "./router";
 import "./index.scss";
 import mitt, { Emitter } from "mitt";
+import Vue3Lottie from "vue3-lottie";
+import "vue3-lottie/dist/style.css";
 
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
@@ -25,7 +27,7 @@ library.add(faMagnifyingGlass, faChevronDown, faCheck);
 declare global {
   interface Window {
     // eslint-disable-next-line
-    eventBus: Emitter<any>;
+        eventBus: Emitter<any>;
   }
 }
 
@@ -35,5 +37,6 @@ createApp(App)
   .use(store)
   .use(router)
   .use(VueTailwindDatepicker as never)
+  .use(Vue3Lottie)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
