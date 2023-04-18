@@ -1,8 +1,8 @@
 <template>
   <div>
-    <movie-detail :movie-id="this.movieId" />
+    <movie-detail :api-db="this.apiDb" :movie-id="this.movieId" />
     <poster-detection />
-    <movie-reviews :movie-id="this.movieId" />
+    <movie-reviews :api-db="this.apiDb" :movie-id="this.movieId" />
     <!--    <movie-images :movie-id="this.movieId" />-->
   </div>
 </template>
@@ -22,15 +22,11 @@ export default defineComponent({
   data() {
     return {
       movieId: Number(this.$route.params.id),
+      apiDb: String(this.$route.params.apiDb),
     };
   },
   methods: {
     ...mapActions("movie", ["getMovieInfo"]),
-  },
-  mounted() {
-    MovieTmdb.detail(this.movieId).then((response) => {
-      this.getMovieInfo(response.data);
-    });
   },
 });
 </script>

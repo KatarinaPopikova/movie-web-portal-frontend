@@ -5,6 +5,7 @@
     <div v-for="movie in movies" :key="movie.id">
       <movie-poster
         :movie-id="movie.id"
+        :api-db="movie?.apiDb"
         :image-url="`${imageUrl}${movie.poster_path}`"
         :detection="movie.det"
         :yolov8="movie.yolov8"

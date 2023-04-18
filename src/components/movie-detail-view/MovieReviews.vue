@@ -16,6 +16,10 @@ export default defineComponent({
     movieId: {
       type: Number,
     },
+    apiDb: {
+      type: String,
+      default: "TMDB",
+    },
   },
 
   data() {
@@ -25,10 +29,12 @@ export default defineComponent({
   },
 
   mounted() {
-    MovieTmdb.reviews(this.movieId, 1).then((response) => {
-      console.log(response);
-      this.reviews = response.results;
-    });
+    if (this.apiDb === "TMDB") {
+      MovieTmdb.reviews(this.movieId, 1).then((response) => {
+        console.log(response);
+        this.reviews = response.results;
+      });
+    }
   },
 });
 </script>

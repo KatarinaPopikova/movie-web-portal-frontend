@@ -2,7 +2,7 @@
   <div
     class="mx-auto mt-6 w-52 hover:scale-110 transition duration-300 ease-in-out"
   >
-    <router-link :to="`/movie/${movieId}`" @click="save_movie_det">
+    <router-link :to="`/movie/${apiDb}/${movieId}`" @click="save_movie_det">
       <img
         class="rounded-lg shadow-lg"
         :src="`${imageUrl}`"
@@ -23,6 +23,10 @@ export default defineComponent({
   props: {
     movieId: {
       type: Number,
+    },
+    apiDb: {
+      type: String,
+      default: "TMDB",
     },
     imageUrl: {
       type: String,

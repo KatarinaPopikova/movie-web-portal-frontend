@@ -51,6 +51,10 @@ export default defineComponent({
     movieId: {
       type: Number,
     },
+    apiDb: {
+      type: String,
+      default: "TMDB",
+    },
   },
 
   data() {
@@ -69,20 +73,22 @@ export default defineComponent({
     ...mapActions("movie", ["getMovieInfo"]),
   },
   mounted() {
-    MovieTmdb.detail(this.movieId).then((response) => {
-      console.log(response);
-      this.movieInfo = response.data;
-      this.cast = this.movieInfo.credits.cast.slice(0, 5);
-      // console.log("TMBD detail:");
-      // console.log(response.data);
-      // const imdb_id = response.data.imdb_id;
-      // MovieImdb.detail(imdb_id).then((responseImdb) => {
-      //   console.log("IMBD detail:");
-      //   console.log(responseImdb.data);
-      //
-      //   window.eventBus.emit("load-imdb-images", imdb_id); //this.query
-      // });
-    });
+    if (this.apiDb === "TMDB") {
+      MovieTmdb.detail(this.movieId).then((response) => {
+        console.log(response);
+        this.movieInfo = response.data;
+        this.cast = this.movieInfo.credits.cast.slice(0, 5);
+        // console.log("TMBD detail:");
+        // console.log(response.data);
+        // const imdb_id = response.data.imdb_id;
+        // MovieImdb.detail(imdb_id).then((responseImdb) => {
+        //   console.log("IMBD detail:");
+        //   console.log(responseImdb.data);
+        //
+        //   window.eventBus.emit("load-imdb-images", imdb_id); //this.query
+        // });
+      });
+    }
   },
 });
 </script>
