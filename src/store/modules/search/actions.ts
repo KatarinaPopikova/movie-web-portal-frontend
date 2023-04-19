@@ -1,29 +1,11 @@
-import Categories from "../../../api/categories";
+import General from "@/api/general";
 
 export const getAllCategories = async ({ commit }) => {
-  try {
-    //commit("SET_LOADING", true);
-    const { data } = await Categories.all();
-    commit("SET_ALL_CATEGORIES", data);
-  } catch (error) {
-    //commit("SET_ERROR", error);
-    console.log(error);
-    throw error;
-  } finally {
-    // commit("setLoading", false);
-  }
+  const data = await General.all();
+  commit("SET_ALL_CATEGORIES", data);
 };
 
 export const getAllGenres = async ({ commit }) => {
-  try {
-    //commit("SET_LOADING", true);
-    const { data } = await Categories.allGenres();
-    commit("SET_ALL_GENRES", data);
-  } catch (error) {
-    //commit("SET_ERROR", error);
-    console.log(error);
-    throw error;
-  } finally {
-    // commit("setLoading", false);
-  }
+  const data = await General.allGenres();
+  commit("SET_ALL_GENRES", data);
 };

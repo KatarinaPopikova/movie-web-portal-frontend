@@ -1,12 +1,9 @@
-import { Api } from "./axios";
+import { callRequest } from "./axios";
 
 const END_POINT = "imdb/movies";
 
 export default {
-  detail(id: number) {
-    return Api.get(`${END_POINT}/${id}`);
-  },
-  fillDatabase() {
-    return Api.get(`fill_database`);
+  async detail(id: number) {
+    return await callRequest(`${END_POINT}/${id}`);
   },
 };

@@ -1,4 +1,4 @@
-import { Api } from "./axios";
+import { callRequest } from "./axios";
 
 const END_POINT = "tmdb/movies";
 
@@ -8,95 +8,20 @@ export default {
     const categoriesString = searchFilter.categories.join(",");
 
     const request = `${END_POINT}?categories=${categoriesString}&database=${searchFilter.database}&yolo=${searchFilter.yolo}&confidence=${searchFilter.confidence}&movieDatabase=${searchFilter.movieDatabase}&genres=${genresString}&query=${searchFilter.query}&dateFrom=${searchFilter.dateFrom}&dateTo=${searchFilter.dateTo}&detectType=${searchFilter.detectType}&maxPages=${searchFilter.maxPages}`;
-    return await this.callRequest(request);
+    return await callRequest(request);
   },
 
   async detail(id: number) {
     const request = `${END_POINT}/${id}`;
-    return await this.callRequest(request);
+    return await callRequest(request);
   },
 
-  popular() {
-    return Api.get(`${END_POINT}/popular`);
-  },
-
-  search(
-    query: string,
-    genres: string,
-    categories: string,
-    confidence: string,
-    date_from: string,
-    date_to: string
-  ) {
-    if (categories === "") {
-      if (date_to === "" && date_from === "" && genres === "")
-        return this.searchMoviesWithTitle(query);
-      else return this.searchMovies(query, genres, date_from, date_to);
-    } else {
-      return this.searchPoster(
-        query,
-        genres,
-        categories,
-        confidence,
-        date_from,
-        date_to
-      );
-    }
-  },
-
-  searchMovies(
-    query: string,
-    genres: string,
-    date_from: string,
-    date_to: string
-  ) {
-    return Api.get(
-      `${END_POINT}/searchMovies?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}`
-    );
-  },
-
-  searchPoster(
-    query: string,
-    genres: string,
-    categories: string,
-    confidence: string,
-    date_from: string,
-    date_to: string
-  ) {
-    return Api.get(
-      `${END_POINT}/searchPoster?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}&confidence=${confidence}`
-    );
-  },
-
-  searchTrailer(
-    query: string,
-    genres: string,
-    categories: string,
-    date_from: string,
-    date_to: string
-  ) {
-    return Api.get(
-      `${END_POINT}/searchTrailer?query=${query}&genres=${genres}&date_from=${date_from}&date_to=${date_to}&categories=${categories}`
-    );
-  },
-
-  images(movie_id: number) {
-    return Api.get(`${END_POINT}/images/${movie_id}`);
+  async popular() {
+    return await callRequest(`${END_POINT}/popular`);
   },
 
   async reviews(movie_id: number, page: number) {
     const request = `${END_POINT}/reviews/${movie_id}?page=${page}`;
-    return await this.callRequest(request);
-  },
-
-  async callRequest(request) {
-    try {
-      const response = await Api.get(request);
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
+    return await callRequest(request);
   },
 };

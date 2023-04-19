@@ -40,7 +40,7 @@ import SearchInput from "@/components/home-view/search/multi-search-input/Search
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
 import GenresPicker from "@/components/home-view/search/pickers/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
-import IMovie from "@/api/imdb-movie";
+import General from "@/api/general";
 import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
 import CategoriesPicker from "@/components/home-view/search/pickers/CategoriesPicker.vue";
@@ -77,16 +77,11 @@ export default defineComponent({
     };
   },
 
-  mounted() {
-    // Movie.searchTrailer("", "", "", "", "").then((response) => {
-    //   console.log(response);
-    // });
+  async mounted() {
     if (this.movies.length > 0) {
       this.shownMovies = this.movies;
     } else {
-      Movie.popular().then((response) => {
-        this.shownMovies = response.data;
-      });
+      this.shownMovies = await Movie.popular();
     }
   },
 
@@ -110,14 +105,10 @@ export default defineComponent({
         //   console.log("CSFD");
         //   console.log(search);
         // });
-      } else {
-        Movie.popular().then((response) => {
-          this.shownMovies = response.data;
-        });
       }
     },
-    fillDatabase() {
-      IMovie.fillDatabase();
+    async fillDatabase() {
+      await General.fillDatabase();
     },
   },
 });
