@@ -2,7 +2,10 @@
   <div
     class="mx-auto mt-6 w-52 hover:scale-110 transition duration-300 ease-in-out"
   >
-    <router-link :to="`/movie/${apiDb}/${movieId}`" @click="save_movie_det">
+    <router-link
+      :to="`/movie/${apiDb}/${movieId}`"
+      @click="saveMovieDetAndFetchDetail"
+    >
       <img
         class="rounded-lg shadow-lg"
         :src="`${imageUrl}`"
@@ -15,8 +18,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
-import { getMovieV8 } from "@/store/modules/movie/actions";
+import { mapMutations } from "vuex";
 
 export default defineComponent({
   name: "MoviePoster",
@@ -34,16 +36,12 @@ export default defineComponent({
     detection: {
       type: Array,
     },
-    yolov8: {
-      type: Array,
-    },
   },
 
   methods: {
-    ...mapActions("movie", ["getMovie", "getMovieV8"]),
-    save_movie_det() {
-      this.getMovie(this.detection);
-      this.getMovieV8(this.yolov8);
+    ...mapMutations("movie", ["SET_MOVIE_DETECTION"]),
+    saveMovieDetAndFetchDetail() {
+      this.SET_MOVIE_DETECTION(this.detection);
     },
   },
 });

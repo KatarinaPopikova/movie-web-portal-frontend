@@ -1,8 +1,7 @@
 export default {
   movies: [],
   movie: {
-    detection: {},
-    yolov8: {},
+    detections: [],
     info: {},
   },
 };

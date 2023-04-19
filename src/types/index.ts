@@ -24,8 +24,7 @@ export interface SearchFilter {
 export interface MovieState {
   movies: any;
   movie: {
-    detection: any;
-    yolov8: any;
+    detections: any;
     info: any;
   };
 }

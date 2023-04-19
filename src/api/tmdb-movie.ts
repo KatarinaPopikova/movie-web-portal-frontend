@@ -11,8 +11,9 @@ export default {
     return await this.callRequest(request);
   },
 
-  detail(id: number) {
-    return Api.get(`${END_POINT}/${id}`);
+  async detail(id: number) {
+    const request = `${END_POINT}/${id}`;
+    return await this.callRequest(request);
   },
 
   popular() {
@@ -41,10 +42,6 @@ export default {
         date_to
       );
     }
-  },
-
-  searchMoviesWithTitle(query: string) {
-    return Api.get(`${END_POINT}/searchMoviesWithTitle?query=${query}`);
   },
 
   searchMovies(
