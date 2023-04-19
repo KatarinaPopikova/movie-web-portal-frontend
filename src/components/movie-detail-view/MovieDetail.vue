@@ -41,6 +41,7 @@
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
 import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
+import { ImageMovieUrl } from "@/types";
 
 export default defineComponent({
   name: "MovieDetail",
@@ -57,7 +58,8 @@ export default defineComponent({
 
   data() {
     return {
-      imageUrl: "https://image.tmdb.org/t/p/original",
+      imageUrl: `${ImageMovieUrl[this.apiDb].original}`,
+
       imdbUrl: "https://www.imdb.com/title",
       cast: Object,
     };

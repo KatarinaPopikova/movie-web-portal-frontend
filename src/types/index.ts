@@ -32,7 +32,7 @@ export interface MovieState {
 export interface SearchState {
   searchFilter: SearchFilter;
   allCategories: string[];
-  allGenres: string[];
+  allGenres: Partial<{ TMDB: any[]; IMDB: typeof ImdbGenres }>;
 }
 
 // ENUM
@@ -57,10 +57,40 @@ export enum MovieDatabaseEnum {
   tmdb = "TMDB",
 }
 
-// export const ImageMovieUrl = {
-//   IMDB: "",
-//   TMDB: {
-//     small: "https://image.tmdb.org/t/p/w300",
-//     original: "https://image.tmdb.org/t/p/original",
-//   },
-// } as const;
+export const ImageMovieUrl = {
+  IMDB: {
+    small: "",
+    original: "",
+  },
+  TMDB: {
+    small: "https://image.tmdb.org/t/p/w300",
+    original: "https://image.tmdb.org/t/p/original",
+  },
+} as const;
+
+export const ImdbGenres = [
+  "Action",
+  "Adventure",
+  "Animation",
+  "Biography",
+  "Comedy",
+  "Crime",
+  "Documentary",
+  "Drama",
+  "Family",
+  "Fantasy",
+  "Film-Noir",
+  "Game-Show",
+  "History",
+  "Horror",
+  "Music",
+  "Musical",
+  "Mystery",
+  "News",
+  "Romance",
+  "Sport",
+  "Talk-Show",
+  "Thriller",
+  "War",
+  "Western",
+] as const;

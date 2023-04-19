@@ -8,7 +8,7 @@
     >
       <img
         class="rounded-lg shadow-lg"
-        :src="`${imageUrl}`"
+        :src="`${imageUrlFull}`"
         height="150px"
         :alt="`poster_${movieId}`"
       />
@@ -19,6 +19,7 @@
 <script>
 import { defineComponent } from "vue";
 import { mapMutations } from "vuex";
+import { ImageMovieUrl } from "@/types";
 
 export default defineComponent({
   name: "MoviePoster",
@@ -35,6 +36,11 @@ export default defineComponent({
     },
     detection: {
       type: Array,
+    },
+  },
+  computed: {
+    imageUrlFull() {
+      return `${ImageMovieUrl[this.apiDb].small}${this.imageUrl}`;
     },
   },
 

@@ -4,6 +4,7 @@ import {
   SearchFilter,
   SearchState,
   MovieDatabaseEnum,
+  ImdbGenres,
 } from "@/types";
 
 const state: SearchState = {
@@ -21,7 +22,10 @@ const state: SearchState = {
     maxPages: 5,
   } as SearchFilter,
   allCategories: [],
-  allGenres: [],
+  allGenres: { TMDB: [], IMDB: ImdbGenres } as Partial<{
+    TMDB: any[];
+    IMDB: typeof ImdbGenres;
+  }>,
 };
 
 export default state;

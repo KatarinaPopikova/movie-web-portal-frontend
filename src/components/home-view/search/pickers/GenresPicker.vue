@@ -85,8 +85,7 @@ export default defineComponent({
     ListboxOptions,
   },
   computed: {
-    ...mapState("search", ["allGenres"]),
-    ...mapGetters("search", ["genres"]),
+    ...mapGetters("search", ["genres", "allGenres"]),
 
     selectedGenres: {
       get() {

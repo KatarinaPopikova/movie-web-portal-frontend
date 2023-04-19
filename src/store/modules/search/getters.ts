@@ -7,6 +7,9 @@ import {
   YoloEnum,
 } from "@/types";
 
+export const allGenres = (state: SearchState): string[] =>
+  state.allGenres[state.searchFilter.movieDatabase];
+
 export const categories = (state: SearchState): string[] =>
   state.searchFilter.categories;
 
@@ -44,6 +47,7 @@ export const filteredCategories =
     );
 
 const getters: GetterTree<SearchState, RootState> = {
+  allGenres,
   categories,
   database,
   yolo,

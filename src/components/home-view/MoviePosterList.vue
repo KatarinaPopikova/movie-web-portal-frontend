@@ -6,7 +6,7 @@
       <movie-poster
         :movie-id="String(movie.id)"
         :api-db="movie?.apiDb"
-        :image-url="`${imageUrl}${movie.poster_path}`"
+        :image-url="`${movie.poster_path}`"
         :detection="movie.det"
       />
     </div>
@@ -24,11 +24,6 @@ export default defineComponent({
     movies: {
       type: Array,
     },
-  },
-  data() {
-    return {
-      imageUrl: "https://image.tmdb.org/t/p/w300",
-    };
   },
 });
 </script>

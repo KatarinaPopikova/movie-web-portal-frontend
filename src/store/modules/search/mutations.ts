@@ -5,7 +5,10 @@ export const SET_ALL_CATEGORIES = (state, allCategories) => {
 };
 
 export const SET_ALL_GENRES = (state, allGenres) => {
-  state.allGenres = allGenres;
+  state.allGenres = {
+    ...state.allGenres,
+    TMDB: allGenres,
+  };
 };
 
 export const SET_CATEGORIES = (state, categories: string[]) => {
@@ -25,6 +28,7 @@ export const SET_CONFIDENCE = (state, confidence: number) => {
 };
 
 export const SET_MOVIE_DATABASE = (state, movieDatabase: number) => {
+  SET_GENRES(state, []);
   state.searchFilter.movieDatabase = movieDatabase;
 };
 
