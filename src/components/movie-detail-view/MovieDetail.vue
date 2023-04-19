@@ -39,8 +39,6 @@
 
 <script>
 import { defineComponent } from "vue";
-import MovieTmdb from "@/api/tmdb-movie";
-import MovieImdb from "@/api/imdb-movie";
 import { mapActions, mapState } from "vuex";
 import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
 
@@ -49,7 +47,7 @@ export default defineComponent({
   components: { MovieCast },
   props: {
     movieId: {
-      type: Number,
+      type: String,
     },
     apiDb: {
       type: String,
@@ -59,7 +57,6 @@ export default defineComponent({
 
   data() {
     return {
-      movieInfo: Object,
       imageUrl: "https://image.tmdb.org/t/p/original",
       imdbUrl: "https://www.imdb.com/title",
       cast: Object,
@@ -68,14 +65,16 @@ export default defineComponent({
 
   computed: {
     ...mapState("movie", ["movie"]),
+    movieInfo() {
+      return this.movie.info ? this.movie.info : {};
+    },
   },
   methods: {
     ...mapActions("movie", ["getMovieInfo"]),
   },
-  mounted() {
-    let movieInfo = this.getMovieInfo(this.apiDb, this.movieId);
-    this.movieInfo = movieInfo;
-    this.cast = this.movieInfo.credits.cast.slice(0, 5);
+  async mounted() {
+    await this.getMovieInfo([this.apiDb, this.movieId]);
+    this.cast = this.movie.info.credits.cast.slice(0, 5);
   },
 });
 </script>

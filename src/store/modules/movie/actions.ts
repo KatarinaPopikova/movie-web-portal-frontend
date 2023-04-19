@@ -2,6 +2,7 @@ import { ActionContext } from "vuex";
 import { RootState, SearchFilter } from "@/types";
 import MovieTmdb from "@/api/tmdb-movie";
 import MovieImdb from "@/api/imdb-movie";
+import Movie from "@/api/general";
 
 export const getMovies = async ({
   rootState,
@@ -10,14 +11,17 @@ export const getMovies = async ({
   commit("SET_LOADING", true, { root: true });
 
   const searchFilter: SearchFilter = rootState.searchModule.searchFilter;
-  const movies = await MovieTmdb.filteredMovies(searchFilter);
+
+  const movies = await Movie.filteredMovies(searchFilter);
   commit("SET_MOVIES", movies);
 
   commit("SET_LOADING", false, { root: true });
 };
 
 export const getMovieInfo = async ({ commit }, payload) => {
-  const { apiDb, movieId } = payload;
+  const apiDb = payload[0];
+  const movieId = payload[1];
+
   let movieDetail;
   if (apiDb === "TMDB") {
     movieDetail = await MovieTmdb.detail(movieId);

@@ -3,8 +3,12 @@ export const SET_MOVIES = (state, movies) => {
 };
 
 export const SET_MOVIE_DETECTION = (state, movieDet) => {
-  const model = movieDet[0]["model"];
-  state.movie.detections.push({ [model]: movieDet });
+  if (movieDet && movieDet.length > 0) {
+    const model = movieDet[0]["model"];
+    state.movie.detections.push({ [model]: movieDet });
+  } else {
+    state.movie.detections = [];
+  }
 };
 
 export const SET_MOVIE_INFO = (state, movie_info) => {

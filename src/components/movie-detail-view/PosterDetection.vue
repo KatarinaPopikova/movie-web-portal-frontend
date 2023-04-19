@@ -13,19 +13,19 @@
         />
         <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
       </div>
-      <div class="canvas-wrapper w-96">
-        <img
-          id="scream"
-          ref="myScream2"
-          class="m-auto"
-          :src="imageUrl + this.movie.info.poster_path"
-          alt="The Scream"
-          height="150px"
-        />
-        <canvas ref="myCanvas2" class="canvas-overlay m-auto"></canvas>
-      </div>
+      <!--      <div class="canvas-wrapper w-96">-->
+      <!--        <img-->
+      <!--          id="scream"-->
+      <!--          ref="myScream2"-->
+      <!--          class="m-auto"-->
+      <!--          :src="imageUrl + this.movie.info.poster_path"-->
+      <!--          alt="The Scream"-->
+      <!--          height="150px"-->
+      <!--        />-->
+      <!--        <canvas ref="myCanvas2" class="canvas-overlay m-auto"></canvas>-->
+      <!--      </div>-->
     </div>
-    <div v-if="this.movie.detection.length > 0" class="flex justify-center">
+    <div v-if="this.movie.detections.length > 0" class="flex justify-center">
       <div
         @click="detectAll"
         class="font-semibold bg-green-600 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-green-700"
@@ -53,20 +53,21 @@ export default defineComponent({
   },
   methods: {
     detectAll() {
+      const mainDetModel = Object.keys(this.movie.detections[0])[0];
+
       this.detect(
         this.$refs["myCanvas"] as HTMLCanvasElement,
         this.$refs["myScream"] as HTMLImageElement,
-        this.movie.detection
+        this.movie.detections[0][mainDetModel]
       );
-      console.log(this.movie.detection);
-      this.detect(
-        this.$refs["myCanvas2"] as HTMLCanvasElement,
-        this.$refs["myScream2"] as HTMLImageElement,
-        this.movie.yolov8
-      );
-      console.log(this.movie.yolov8);
+      // this.detect(
+      //   this.$refs["myCanvas2"] as HTMLCanvasElement,
+      //   this.$refs["myScream2"] as HTMLImageElement,
+      //   this.movie.yolov8
+      // );
     },
-    detect(canvas, img, detections) {
+
+    detect(canvas, img, detection) {
       const ctx = canvas.getContext("2d");
       canvas.width = img.width;
       canvas.height = img.height;
@@ -81,7 +82,7 @@ export default defineComponent({
       let y = canvas.height / 2 - (img.height / 2) * scale;
 
       ctx?.drawImage(img, x, y, img.width * scale, img.height * scale);
-      for (let det of detections) {
+      for (let det of detection) {
         let label_conf =
           det["label"] + "(" + (det["conf"] * 100).toFixed(2) + ")";
         this.bboxRatioDraw(label_conf, det["box"], canvas);

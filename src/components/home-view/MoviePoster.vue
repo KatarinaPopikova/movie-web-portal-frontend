@@ -24,7 +24,7 @@ export default defineComponent({
   name: "MoviePoster",
   props: {
     movieId: {
-      type: Number,
+      type: String,
     },
     apiDb: {
       type: String,

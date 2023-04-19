@@ -53,6 +53,14 @@ export enum DatabaseEnum {
 }
 
 export enum MovieDatabaseEnum {
-  csfd = "ČSFD",
+  imdb = "IMDB",
   tmdb = "TMDB",
 }
+
+// export const ImageMovieUrl = {
+//   IMDB: "",
+//   TMDB: {
+//     small: "https://image.tmdb.org/t/p/w300",
+//     original: "https://image.tmdb.org/t/p/original",
+//   },
+// } as const;

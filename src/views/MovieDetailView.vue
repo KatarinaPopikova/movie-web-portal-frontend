@@ -19,7 +19,7 @@ export default defineComponent({
 
   data() {
     return {
-      movieId: Number(this.$route.params.id),
+      movieId: String(this.$route.params.id),
       apiDb: String(this.$route.params.apiDb),
     };
   },

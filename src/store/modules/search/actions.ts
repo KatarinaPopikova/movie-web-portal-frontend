@@ -1,7 +1,7 @@
 import General from "@/api/general";
 
 export const getAllCategories = async ({ commit }) => {
-  const data = await General.all();
+  const data = await General.allCategories();
   commit("SET_ALL_CATEGORIES", data);
 };
 

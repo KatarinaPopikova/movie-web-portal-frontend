@@ -14,7 +14,7 @@ export default defineComponent({
   components: { TheReview },
   props: {
     movieId: {
-      type: Number,
+      type: String,
     },
     apiDb: {
       type: String,
