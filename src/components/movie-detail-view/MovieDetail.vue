@@ -19,16 +19,16 @@
 
       <div>
         <p>
-          {{ movieInfo.overview }}
+          {{ movieInfo.plot }}
         </p>
         <div class="flex py-3 flex-wrap">
           <h4 class="font-semibold pr-2">Genres:</h4>
           <p
-            v-for="genre in movieInfo.genres"
-            :key="genre.id"
+            v-for="(genre, index) in movieInfo.genres"
+            :key="index"
             class="pr-2 whitespace-nowrap"
           >
-            | {{ genre.name }}
+            | {{ genre }}
           </p>
         </div>
         <movieCast v-if="cast" :poster-path="imageUrl" :cast="cast" />
@@ -76,7 +76,7 @@ export default defineComponent({
   },
   async mounted() {
     await this.getMovieInfo([this.apiDb, this.movieId]);
-    this.cast = this.movie.info.credits.cast.slice(0, 5);
+    this.cast = this.movie.info.cast.slice(0, 5);
   },
 });
 </script>

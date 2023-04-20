@@ -7,7 +7,7 @@
         class="rounded-lg shadow-lg"
         :src="`${posterPath}${image.profile_path}`"
         height="150px"
-        :alt="`imdb_image_${index}`"
+        :alt="`cast_image_${index}`"
       />
     </div>
   </div>
