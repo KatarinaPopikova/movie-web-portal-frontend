@@ -1,7 +1,7 @@
 <template>
   <div>
     <movie-detail :api-db="this.apiDb" :movie-id="this.movieId" />
-    <poster-detection />
+    <poster-detection :api-db="this.apiDb" />
     <movie-reviews :api-db="this.apiDb" :movie-id="this.movieId" />
     <!--    <movie-images :movie-id="this.movieId" />-->
   </div>

@@ -5,7 +5,7 @@
     <div v-for="movie in movies" :key="movie.id">
       <movie-poster
         :movie-id="String(movie.id)"
-        :api-db="movie?.apiDb"
+        :api-db="movie.apiDb"
         :image-url="`${movie.poster_path}`"
         :detection="movie.det"
       />

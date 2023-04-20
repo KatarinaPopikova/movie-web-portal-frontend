@@ -6,12 +6,12 @@
         <img
           id="scream"
           ref="myScream"
-          class="m-auto"
+          class="m-auto pl-8"
           :src="imageUrl + this.movie.info.poster_path"
           alt="The Scream"
           height="150px"
         />
-        <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
+        <canvas ref="myCanvas" class="canvas-overlay m-auto pl-8"></canvas>
       </div>
       <!--      <div class="canvas-wrapper w-96">-->
       <!--        <img-->
@@ -38,13 +38,20 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
+import { ImageMovieUrl } from "@/types";
 
 export default defineComponent({
   name: "PosterDetection",
+  props: {
+    apiDb: {
+      type: String,
+      default: "TMDB",
+    },
+  },
 
   data() {
     return {
-      imageUrl: "https://image.tmdb.org/t/p/w300",
+      imageUrl: `${ImageMovieUrl[this.apiDb].original}`,
     };
   },
 
