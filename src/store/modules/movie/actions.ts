@@ -18,10 +18,11 @@ export const getMovies = async ({
   commit("SET_LOADING", false, { root: true });
 };
 
-export const getMovieInfo = async ({ commit }, payload) => {
+export const getMovieInfo = async ({ commit, state }, payload) => {
   const apiDb = payload[0];
   const movieId = payload[1];
 
+  if (state.movie.info.id === movieId) return;
   let movieDetail;
   if (apiDb === "TMDB") {
     movieDetail = await MovieTmdb.detail(movieId);

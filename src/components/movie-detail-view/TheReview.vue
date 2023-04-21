@@ -1,6 +1,10 @@
 <template>
   <div class="bg-gray-100 p-4 rounded-lg shadow-md m-3">
-    <h3 class="text-2xl font-bold mb-2">{{ review.author }}</h3>
+    <h3 class="text-2xl font-bold mb-1">{{ review.username }}</h3>
+    <div class="flex justify-between">
+      <h5 class="text-xl mb-2">{{ review.title }}</h5>
+      <h5 class="text-2xl">{{ review.rate }}</h5>
+    </div>
     <div
       id="content"
       class="overflow-hidden"
@@ -14,7 +18,7 @@
     >
       {{ toggle }}
     </button>
-    <footer id="footer" class="text-sm text-gray-600">{{ review.id }}</footer>
+    <footer id="footer" class="text-sm text-gray-600">{{ review.date }}</footer>
   </div>
 </template>
 

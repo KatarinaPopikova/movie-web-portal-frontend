@@ -31,7 +31,10 @@
             | {{ genre }}
           </p>
         </div>
-        <movieCast v-if="cast" :poster-path="imageUrl" :cast="cast" />
+        <movieCast
+          :poster-path="imageUrl"
+          :cast="this.movieInfo.cast.slice(0, 5)"
+        />
       </div>
     </div>
   </div>
@@ -39,7 +42,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
 import { ImageMovieUrl } from "@/types";
 
@@ -62,6 +65,7 @@ export default defineComponent({
 
       imdbUrl: "https://www.imdb.com/title",
       cast: Object,
+      reviews: Object,
     };
   },
 
@@ -70,13 +74,6 @@ export default defineComponent({
     movieInfo() {
       return this.movie.info ? this.movie.info : {};
     },
-  },
-  methods: {
-    ...mapActions("movie", ["getMovieInfo"]),
-  },
-  async mounted() {
-    await this.getMovieInfo([this.apiDb, this.movieId]);
-    this.cast = this.movie.info.cast.slice(0, 5);
   },
 });
 </script>

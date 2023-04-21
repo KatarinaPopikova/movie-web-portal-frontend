@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import MovieTmdb from "@/api/tmdb-movie";
 import { defineComponent } from "vue";
 import TheReview from "@/components/movie-detail-view/TheReview.vue";
 
@@ -13,28 +12,9 @@ export default defineComponent({
   name: "MovieReviews",
   components: { TheReview },
   props: {
-    movieId: {
-      type: String,
+    reviews: {
+      type: Object,
     },
-    apiDb: {
-      type: String,
-      default: "TMDB",
-    },
-  },
-
-  data() {
-    return {
-      reviews: Object,
-    };
-  },
-
-  mounted() {
-    if (this.apiDb === "TMDB") {
-      MovieTmdb.reviews(this.movieId, 1).then((response) => {
-        console.log(response);
-        this.reviews = response.results;
-      });
-    }
   },
 });
 </script>
