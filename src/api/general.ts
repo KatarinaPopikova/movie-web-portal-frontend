@@ -1,8 +1,8 @@
 import { callRequest } from "./axios";
 
 export default {
-  async allCategories() {
-    return await callRequest(`categories_to_detect`);
+  async allCategories(cancelToken) {
+    return await callRequest(`categories_to_detect`, cancelToken);
   },
   async allGenres() {
     return await callRequest(`genres`);
