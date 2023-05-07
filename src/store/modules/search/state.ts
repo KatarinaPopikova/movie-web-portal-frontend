@@ -5,6 +5,7 @@ import {
   SearchState,
   MovieDatabaseEnum,
   ImdbGenres,
+  Modelv8Enum,
 } from "@/types";
 
 const state: SearchState = {
@@ -12,6 +13,7 @@ const state: SearchState = {
     categories: [],
     database: true,
     yolo: YoloEnum.v7,
+    model: Modelv8Enum.nano,
     confidence: 25,
     movieDatabase: MovieDatabaseEnum.tmdb,
     genres: [],

@@ -3,6 +3,7 @@
     <movie-detail :api-db="this.apiDb" :movie-id="this.movieId" />
     <poster-detection :api-db="this.apiDb" />
     <movie-reviews :reviews="reviews" />
+    <movie-trailer />
     <!--    <movie-images :movie-id="this.movieId" />-->
   </div>
 </template>
@@ -13,10 +14,11 @@ import MovieDetail from "@/components/movie-detail-view/MovieDetail.vue";
 import MovieReviews from "@/components/movie-detail-view/MovieReviews.vue";
 import PosterDetection from "@/components/movie-detail-view/PosterDetection.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
+import MovieTrailer from "@/components/movie-detail-view/MovieTrailer.vue";
 
 export default defineComponent({
   name: "MovieDetailView",
-  components: { PosterDetection, MovieReviews, MovieDetail },
+  components: { MovieTrailer, PosterDetection, MovieReviews, MovieDetail },
 
   data() {
     return {

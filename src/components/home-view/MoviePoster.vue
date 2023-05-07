@@ -34,6 +34,9 @@ export default defineComponent({
     imageUrl: {
       type: String,
     },
+    youtubeUrl: {
+      type: String,
+    },
     detection: {
       type: Array,
     },
@@ -45,9 +48,10 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapMutations("movie", ["SET_MOVIE_DETECTION"]),
+    ...mapMutations("movie", ["SET_MOVIE_DETECTION", "SET_MOVIE_TRAILER"]),
     saveMovieDetAndFetchDetail() {
       this.SET_MOVIE_DETECTION(this.detection);
+      this.SET_MOVIE_TRAILER(this.youtubeUrl);
     },
   },
 });

@@ -13,7 +13,8 @@ export const getMovies = async ({
   const searchFilter: SearchFilter = rootState.searchModule.searchFilter;
 
   const movies = await Movie.filteredMovies(searchFilter);
-  commit("SET_MOVIES", movies);
+  commit("SET_MOVIES", movies["results"]);
+  commit("SET_DET_INFO", movies["det_info"]);
 
   commit("SET_LOADING", false, { root: true });
 };

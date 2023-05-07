@@ -11,7 +11,11 @@
 </template>
 
 <script>
-export default {
+import { mapState } from "vuex";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "MovieTrailer",
   data() {
     return {
       message: "",
@@ -20,7 +24,9 @@ export default {
       imageName: "example.jpg",
     };
   },
-
+  computed: {
+    ...mapState("movie", ["movie", "detInfo"]),
+  },
   methods: {
     connectToWebSocket() {
       this.ws = new WebSocket(
@@ -47,8 +53,15 @@ export default {
       };
     },
     sendMessage() {
-      const message = "https://www.youtube.com/watch?v=SXr8Rb97nIk";
-      this.ws.send(JSON.stringify({ message: message }));
+      const message = this.movie.trailer;
+      this.ws.send(
+        JSON.stringify({
+          youtube_url: message,
+          categories: this.detInfo.categories,
+          yolo: this.detInfo.yolo,
+          conf: this.detInfo.conf,
+        })
+      );
     },
     disconnect() {
       if (this.ws) {
@@ -60,5 +73,7 @@ export default {
   beforeUnmount() {
     this.disconnect();
   },
-};
+});
 </script>
+
+<style scoped></style>

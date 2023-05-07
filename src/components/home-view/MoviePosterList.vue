@@ -7,6 +7,7 @@
         :movie-id="String(movie.id)"
         :api-db="movie.apiDb"
         :image-url="`${movie.poster_path}`"
+        :youtube-url="`${movie.trailer_link}`"
         :detection="movie.det"
       />
     </div>

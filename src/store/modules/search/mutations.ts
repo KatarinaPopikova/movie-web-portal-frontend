@@ -1,4 +1,4 @@
-import { DetectTypeEnum, YoloEnum } from "@/types";
+import { DetectTypeEnum, Modelv8Enum, YoloEnum } from "@/types";
 
 export const SET_ALL_CATEGORIES = (state, allCategories) => {
   state.allCategories = allCategories;
@@ -17,6 +17,16 @@ export const SET_CATEGORIES = (state, categories: string[]) => {
 
 export const SET_YOLO = (state, yolo: boolean) => {
   state.searchFilter.yolo = yolo ? YoloEnum.v8 : YoloEnum.v7;
+};
+
+export const SET_MODEL = (state, model: boolean) => {
+  state.searchFilter.model = model ? Modelv8Enum.large : Modelv8Enum.nano;
+  const yolo =
+    state.searchFilter.yolo === YoloEnum.v7
+      ? YoloEnum.v7
+      : YoloEnum.v8 +
+        (state.searchFilter.model === Modelv8Enum.nano ? "n" : "l");
+  console.log(yolo);
 };
 
 export const SET_DATABASE = (state, database: boolean) => {

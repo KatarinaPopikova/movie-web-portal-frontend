@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import MovieDetailView from "../views/MovieDetailView.vue";
-import TrailerView from "../views/TrailerView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,11 +12,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/movie/:apiDb/:id",
     name: "movie",
     component: MovieDetailView,
-  },
-  {
-    path: "/trailer",
-    name: "trailer",
-    component: TrailerView,
   },
 ];
 

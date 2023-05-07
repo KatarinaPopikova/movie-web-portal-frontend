@@ -11,6 +11,7 @@ export interface SearchFilter {
   categories: string[];
   database: boolean;
   yolo: YoloEnum;
+  model: Modelv8Enum;
   confidence: number;
   movieDatabase: string;
   genres: string[];
@@ -45,6 +46,11 @@ export enum DetectTypeEnum {
 export enum YoloEnum {
   v7 = "YOLOv7",
   v8 = "YOLOv8",
+}
+
+export enum Modelv8Enum {
+  nano = "Nano",
+  large = "Large",
 }
 
 export enum DatabaseEnum {
