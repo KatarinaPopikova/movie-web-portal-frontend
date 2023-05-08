@@ -1,11 +1,13 @@
 <template>
-  <div class="w-80 flex items-center">
-    <div class="pr-3 font-semibold">From:</div>
-    <DatePicker :date="dateFrom" @update-date="updateDateFrom" />
-  </div>
-  <div class="w-80 flex items-center">
-    <div class="pr-3 font-semibold">To:</div>
-    <DatePicker :date="dateTo" @update-date="updateDateTo" />
+  <div class="flex flex-wrap md:flex-nowrap lg:justify-evenly justify-center">
+    <div class="w-80 flex items-center py-1.5">
+      <div class="pr-3 font-semibold">From:</div>
+      <DatePicker :date="dateFrom" @update-date="updateDateFrom" />
+    </div>
+    <div class="w-80 flex items-center py-1.5 ml-0 md:ml-5">
+      <div class="pr-3 font-semibold">To:</div>
+      <DatePicker :date="dateTo" @update-date="updateDateTo" />
+    </div>
   </div>
 </template>
 

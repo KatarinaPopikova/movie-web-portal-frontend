@@ -1,4 +1,9 @@
-import { DetectTypeEnum, Modelv8Enum, YoloEnum } from "@/types";
+import {
+  DetectTypeEnum,
+  Modelv8Enum,
+  MovieDatabaseEnum,
+  YoloEnum,
+} from "@/types";
 
 export const SET_ALL_CATEGORIES = (state, allCategories) => {
   state.allCategories = allCategories;
@@ -16,17 +21,15 @@ export const SET_CATEGORIES = (state, categories: string[]) => {
 };
 
 export const SET_YOLO = (state, yolo: boolean) => {
-  state.searchFilter.yolo = yolo ? YoloEnum.v8 : YoloEnum.v7;
+  if (yolo) {
+    state.searchFilter.yolo = YoloEnum.v8;
+  } else {
+    state.searchFilter.yolo = YoloEnum.v7;
+  }
 };
 
 export const SET_MODEL = (state, model: boolean) => {
   state.searchFilter.model = model ? Modelv8Enum.large : Modelv8Enum.nano;
-  const yolo =
-    state.searchFilter.yolo === YoloEnum.v7
-      ? YoloEnum.v7
-      : YoloEnum.v8 +
-        (state.searchFilter.model === Modelv8Enum.nano ? "n" : "l");
-  console.log(yolo);
 };
 
 export const SET_DATABASE = (state, database: boolean) => {
@@ -40,6 +43,12 @@ export const SET_CONFIDENCE = (state, confidence: number) => {
 export const SET_MOVIE_DATABASE = (state, movieDatabase: number) => {
   SET_GENRES(state, []);
   state.searchFilter.movieDatabase = movieDatabase;
+  if (state.searchFilter.detectType !== DetectTypeEnum.Trailer) {
+    state.searchFilter.maxPages = 2;
+  }
+  if (state.searchFilter.movieDatabase === MovieDatabaseEnum.imdb) {
+    SET_DATABASE(state, false);
+  }
 };
 
 export const SET_GENRES = (state, genres: string[]) => {
@@ -66,6 +75,10 @@ export const REMOVE_FROM_CATEGORIES = (state, category: string) => {
 
 export const SET_DETECT_TYPE = (state, detectType: DetectTypeEnum) => {
   state.searchFilter.detectType = detectType;
+  state.searchFilter.maxPages = 2;
+  if (state.searchFilter.detectType === DetectTypeEnum.Trailer) {
+    SET_YOLO(state, true);
+  }
 };
 
 export const SET_MAX_PAGES = (state, maxPages: number) => {

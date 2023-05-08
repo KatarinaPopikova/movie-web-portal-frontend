@@ -1,8 +1,8 @@
 <template>
   <Listbox as="div" v-model="selectedMovieDb">
-    <div class="relative">
+    <div class="relative py-1.5">
       <ListboxButton
-        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white h-11 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
+        class="pl-3 pr-12 py-2.5 text-sm relative w-72 bg-white h-11 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
       >
         <span
           class="absolute left-3 top-0 h-11 border-r-2 pr-2 font-semibold text-[15.5px] flex items-center"

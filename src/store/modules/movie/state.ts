@@ -3,6 +3,7 @@ export default {
   movie: {
     detections: [],
     trailer: null,
+    poster: null,
     info: {},
   },
   detInfo: {

@@ -1,8 +1,8 @@
 <template>
   <Listbox as="div" v-model="selectedGenres" multiple>
-    <div class="relative">
+    <div class="relative py-1.5">
       <ListboxButton
-        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white h-11 hover:cursor-pointer focus:outline-none ml-3 rounded-lg border border-vtd-secondary-300"
+        class="pl-3 pr-12 py-2.5 text-sm relative w-80 bg-white h-11 hover:cursor-pointer focus:outline-none rounded-lg border border-vtd-secondary-300"
       >
         <span
           class="absolute left-3 top-0 h-11 border-r-2 pr-2 font-semibold text-[15.5px] flex items-center"
@@ -74,7 +74,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/vue";
-import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default defineComponent({
   name: "GenresPicker",

@@ -3,32 +3,21 @@
     <LoadingLottie />
   </div>
   <div class="home">
-    <div @click="fillDatabase" class="hover:cursor-pointer">
-      <font-awesome-icon
-        icon="fa-solid fa-magnifying-glass"
-        class="pr-4 h-8 w-8 text-sky-500"
-      />
-    </div>
-    <div class="flex items-center w-[1200px] justify-between m-auto">
-      <MovieDatabasePicker />
-      <CategoriesPicker @selected-categories="saveSelectedCategories" />
-
-      <div @click="searchMovies" class="hover:cursor-pointer">
+    <FirstLine />
+    <SecondLine />
+    <ThirdLine />
+    <FourthLine />
+    <div class="flex justify-center content-center pt-4">
+      <button
+        @click="searchMovies"
+        class="flex items-center justify-center w-80 bg-sky-500 hover:bg-sky-600 text-white py-4 px-4 rounded"
+      >
+        <span class="mr-2 text-xl">SEARCH</span>
         <font-awesome-icon
           icon="fa-solid fa-magnifying-glass"
-          class="pr-4 h-8 w-8 text-sky-500"
+          class="ml-2 h-7 w-7"
         />
-      </div>
-    </div>
-    <div class="flex justify-evenly">
-      <ConfidenceSlider />
-      <PagesSlider />
-      <ToggleDatabase />
-    </div>
-    <div class="flex justify-evenly pt-4 items-center">
-      <GenresPicker @update-genres="selectedGenres" />
-      <search-input @search-movies="saveQuery" />
-      <DateFromToPickers />
+      </button>
     </div>
     <movie-poster-list :movies="shownMovies" />
   </div>
@@ -36,33 +25,23 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SearchInput from "@/components/home-view/search/multi-search-input/SearchInput.vue";
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
-import GenresPicker from "@/components/home-view/search/pickers/GenresPicker.vue";
 import Movie from "@/api/tmdb-movie";
-import General from "@/api/general";
-import { csfd } from "node-csfd-api";
 import { mapActions, mapState } from "vuex";
-import CategoriesPicker from "@/components/home-view/search/pickers/CategoriesPicker.vue";
-import ToggleDatabase from "@/components/home-view/search/ToggleDatabase.vue";
-import DateFromToPickers from "@/components/home-view/search/multi-search-input/DateFromToPickers.vue";
-import ConfidenceSlider from "@/components/home-view/search/sliders/ConfidenceSlider.vue";
-import PagesSlider from "@/components/home-view/search/sliders/PagesSlider.vue";
-import MovieDatabasePicker from "@/components/home-view/search/pickers/MovieDatabasePicker.vue";
 import LoadingLottie from "@/components/LoadingLottie.vue";
+import FirstLine from "@/components/home-view/search/FirstLine.vue";
+import SecondLine from "@/components/home-view/search/SecondLine.vue";
+import ThirdLine from "@/components/home-view/search/ThirdLine.vue";
+import FourthLine from "@/components/home-view/search/FourthLine.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
+    FourthLine,
+    ThirdLine,
+    SecondLine,
+    FirstLine,
     LoadingLottie,
-    MovieDatabasePicker,
-    PagesSlider,
-    ConfidenceSlider,
-    DateFromToPickers,
-    ToggleDatabase,
-    CategoriesPicker,
-    GenresPicker,
-    SearchInput,
     MoviePosterList,
   },
   computed: {
@@ -71,9 +50,6 @@ export default defineComponent({
   data() {
     return {
       shownMovies: this.movies,
-      genres: [],
-      selectedCategories: [],
-      query: "" as string,
     };
   },
 
@@ -87,15 +63,7 @@ export default defineComponent({
 
   methods: {
     ...mapActions("movie", ["getMovies"]),
-    selectedGenres(genres: []) {
-      this.genres = genres;
-    },
-    saveQuery(searchType, query) {
-      this.query = query;
-    },
-    saveSelectedCategories(selectedCategories: []) {
-      this.selectedCategories = selectedCategories;
-    },
+
     async searchMovies(query: string) {
       if (query !== "" || this.categories.length > 0) {
         await this.getMovies();
@@ -106,9 +74,6 @@ export default defineComponent({
         //   console.log(search);
         // });
       }
-    },
-    async fillDatabase() {
-      await General.fillDatabase();
     },
   },
 });

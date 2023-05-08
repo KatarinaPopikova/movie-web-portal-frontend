@@ -18,6 +18,9 @@ export const SET_MOVIE_DETECTION = (state, movieDet) => {
 export const SET_MOVIE_TRAILER = (state, trailer) => {
   state.movie.trailer = trailer;
 };
+export const SET_MOVIE_POSTER = (state, poster) => {
+  state.movie.poster = poster;
+};
 
 export const SET_MOVIE_INFO = (state, movie_info) => {
   state.movie.info = movie_info;

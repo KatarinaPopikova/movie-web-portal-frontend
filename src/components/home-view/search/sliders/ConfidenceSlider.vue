@@ -1,15 +1,17 @@
 <template>
-  <div class="p-2 w-80 mt-4 flex flex-col items-center">
+  <div
+    v-if="categories.length > 0"
+    class="p-2 mx-3 w-80 mt-4 flex flex-col items-center"
+  >
     <vue3-slider
       v-model="confidenceValue"
       color="rgb(14 165 233)"
       track-color="#FEFEFE"
-      tooltipText="%v%"
-      :tooltip="true"
+      :tooltip="false"
       :alwaysShowHandle="true"
       :height="12"
       :min="25"
-      :max="100"
+      :max="95"
     />
 
     <span class="pt-2 font-bold">
@@ -29,7 +31,7 @@ export default defineComponent({
   components: { "vue3-slider": slider },
 
   computed: {
-    ...mapGetters("search", ["confidence"]),
+    ...mapGetters("search", ["confidence", "categories"]),
 
     confidenceValue: {
       get() {

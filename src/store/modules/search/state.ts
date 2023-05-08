@@ -21,7 +21,7 @@ const state: SearchState = {
     dateFrom: "",
     dateTo: "",
     detectType: DetectTypeEnum.Poster,
-    maxPages: 5,
+    maxPages: 2,
   } as SearchFilter,
   allCategories: [],
   allGenres: { TMDB: [], IMDB: ImdbGenres } as Partial<{

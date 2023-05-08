@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center py-1.5 ml-0 md:ml-5">
     <div
-      class="max-w-lg bg-white rounded-lg h-11 relative flex items-center mx-8 border border-vtd-secondary-300"
+      class="w-80 bg-white rounded-lg h-11 relative flex items-center border border-vtd-secondary-300"
     >
       <div class="p-3 border-r-2 font-semibold text-md">Title</div>
       <input

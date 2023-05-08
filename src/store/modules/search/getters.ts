@@ -2,6 +2,7 @@ import { GetterTree } from "vuex";
 import {
   DatabaseEnum,
   DetectTypeEnum,
+  MovieDatabaseEnum,
   RootState,
   SearchState,
   YoloEnum,
@@ -46,6 +47,20 @@ export const filteredCategories =
       category.toLowerCase().includes(query.toLowerCase())
     );
 
+export const disabledDb = (state: SearchState): boolean => {
+  return state.searchFilter.movieDatabase === MovieDatabaseEnum.imdb;
+};
+
+export const disabledYolo = (state: SearchState): boolean => {
+  return state.searchFilter.detectType === DetectTypeEnum.Trailer;
+};
+export const disabledModel = (state: SearchState): boolean => {
+  return (
+    state.searchFilter.detectType === DetectTypeEnum.Trailer &&
+    state.searchFilter.database
+  );
+};
+
 const getters: GetterTree<SearchState, RootState> = {
   allGenres,
   categories,
@@ -60,6 +75,9 @@ const getters: GetterTree<SearchState, RootState> = {
   detectType,
   maxPages,
   filteredCategories,
+  disabledDb,
+  disabledYolo,
+  disabledModel,
 };
 
 export default getters;

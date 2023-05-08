@@ -12,6 +12,11 @@
         height="150px"
         :alt="`poster_${movieId}`"
       />
+      <div class="relative">
+        <h2 class="text-xl font-bold mb-2">
+          {{ movie.title }}
+        </h2>
+      </div>
     </router-link>
   </div>
 </template>
@@ -24,6 +29,9 @@ import { ImageMovieUrl } from "@/types";
 export default defineComponent({
   name: "MoviePoster",
   props: {
+    movie: {
+      type: Object,
+    },
     movieId: {
       type: String,
     },
@@ -48,10 +56,15 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapMutations("movie", ["SET_MOVIE_DETECTION", "SET_MOVIE_TRAILER"]),
+    ...mapMutations("movie", [
+      "SET_MOVIE_DETECTION",
+      "SET_MOVIE_TRAILER",
+      "SET_MOVIE_POSTER",
+    ]),
     saveMovieDetAndFetchDetail() {
       this.SET_MOVIE_DETECTION(this.detection);
       this.SET_MOVIE_TRAILER(this.youtubeUrl);
+      this.SET_MOVIE_POSTER(this.imageUrl);
     },
   },
 });

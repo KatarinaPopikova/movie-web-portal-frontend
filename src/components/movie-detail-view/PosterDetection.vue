@@ -7,7 +7,7 @@
           id="scream"
           ref="myScream"
           class="m-auto pl-8"
-          :src="imageUrl + this.movie.info.poster_path"
+          :src="imageUrl + movie.poster"
           alt="The Scream"
           height="150px"
         />
@@ -56,16 +56,20 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapState("movie", ["movie"]),
+    ...mapState("movie", ["movie", "detInfo"]),
   },
   methods: {
     detectAll() {
       const mainDetModel = Object.keys(this.movie.detections[0])[0];
+      const colors = this.getRandomColors(
+        this.movie.detections[0][mainDetModel].length
+      );
 
       this.detect(
         this.$refs["myCanvas"] as HTMLCanvasElement,
         this.$refs["myScream"] as HTMLImageElement,
-        this.movie.detections[0][mainDetModel]
+        this.movie.detections[0][mainDetModel],
+        colors
       );
       // this.detect(
       //   this.$refs["myCanvas2"] as HTMLCanvasElement,
@@ -74,7 +78,7 @@ export default defineComponent({
       // );
     },
 
-    detect(canvas, img, detection) {
+    detect(canvas, img, detection, colors) {
       const ctx = canvas.getContext("2d");
       canvas.width = img.width;
       canvas.height = img.height;
@@ -92,10 +96,11 @@ export default defineComponent({
       for (let det of detection) {
         let label_conf =
           det["label"] + "(" + (det["conf"] * 100).toFixed(2) + ")";
-        this.bboxRatioDraw(label_conf, det["box"], canvas);
+        let color = colors[this.detInfo.categories.indexOf(det["label"])];
+        this.bboxRatioDraw(label_conf, det["box"], canvas, color);
       }
     },
-    bboxRatioDraw(label, box, canvas) {
+    bboxRatioDraw(label, box, canvas, color) {
       const ctx = canvas.getContext("2d");
 
       // Use percent to correctly adapt the coordinate to the scaled image
@@ -112,18 +117,26 @@ export default defineComponent({
         finalBy = (percentBy * canvas.height) / 100 - finalBh / 2; // y en pixel
 
       // Draw the bounding box.
-      ctx!.strokeStyle = "green";
+      ctx!.strokeStyle = color;
       ctx!.lineWidth = 2;
       ctx?.strokeRect(finalBx, finalBy, finalBw, finalBh);
       // Draw the label background.
       let label_width = ctx!.measureText(label).width;
       let i = label.length;
       label_width = i * 20 * 0.52 - 10;
-      ctx!.fillStyle = "green";
+      ctx!.fillStyle = color;
       ctx!.fillRect(finalBx, finalBy, label_width, 20);
       ctx!.fillStyle = "white";
       ctx!.font = "20px serif";
       ctx!.fillText(label, finalBx, finalBy + 13);
+    },
+    getRandomColors(numColors) {
+      let colors: string[] = [];
+      colors = ["#1d6594", "#484290"];
+      // for (let i = 0; i < numColors; i++) {
+      //   colors.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
+      // }
+      return colors;
     },
   },
 });
