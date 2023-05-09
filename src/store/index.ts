@@ -18,6 +18,9 @@ export default createStore<RootState>({
     ["SET_LOADING"](state, loading) {
       state.loading = loading;
     },
+    ["SET_ERROR"](state, loading) {
+      state.error = loading;
+    },
   },
   modules: {
     movie,

@@ -2,6 +2,7 @@
   <div>
     <movie-detail :api-db="this.apiDb" :movie-id="this.movieId" />
 
+    <movieCast :poster-path="imageUrl" />
     <div class="mx-auto max-w-xl">
       <div class="flex justify-around">
         <poster-modal
@@ -29,10 +30,13 @@ import { mapActions, mapMutations, mapState } from "vuex";
 import PosterModal from "@/components/movie-detail-view/modal/PosterModal.vue";
 import TrailerModal from "@/components/movie-detail-view/modal/TrailerModal.vue";
 import ReviewsModal from "@/components/movie-detail-view/modal/ReviewsModal.vue";
+import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
+import { ImageMovieUrl } from "@/types";
 
 export default defineComponent({
   name: "MovieDetailView",
   components: {
+    MovieCast,
     ReviewsModal,
     TrailerModal,
     PosterModal,
@@ -43,7 +47,9 @@ export default defineComponent({
     return {
       movieId: String(this.$route.params.id),
       apiDb: String(this.$route.params.apiDb),
-      reviews: Object,
+      imageUrl: `${ImageMovieUrl[String(this.$route.params.apiDb)].original}`,
+
+      imdbUrl: "https://www.imdb.com/title",
     };
   },
   computed: {
@@ -51,11 +57,9 @@ export default defineComponent({
   },
   async beforeMount() {
     await this.getMovieInfo([this.apiDb, this.movieId]);
-    this.reviews = this.movie.info.reviews;
   },
   beforeUnmount() {
     this.removeData();
-    console.log(this.movie.trailer);
   },
   methods: {
     ...mapActions("movie", ["getMovieInfo"]),

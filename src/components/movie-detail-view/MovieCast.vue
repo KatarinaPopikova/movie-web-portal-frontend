@@ -1,24 +1,24 @@
 <template>
-  <div
-    class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
-  >
+  <div class="flex flex-wrap justify-center my-10">
     <div
-      v-for="(image, index) in cast?.slice(0, 5)"
+      v-for="(cast, index) in this.movieInfo.cast?.slice(0, 5)"
       :key="index"
-      class="px-4 w-48"
+      class="px-4 w-52 justify-centers items-center flex flex-col"
     >
       <img
-        class="rounded-lg shadow-lg"
-        :src="`${posterPath}${image.profile_path}`"
-        height="150px"
+        class="w-48 h-48 rounded-full object-cover"
+        :src="`${posterPath}${cast.profile_path}`"
         :alt="`cast_image_${index}`"
       />
+
+      <p class="font-bold">{{ cast.name }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import { mapState } from "vuex";
 
 export default defineComponent({
   name: "MovieCast",
@@ -26,12 +26,12 @@ export default defineComponent({
     posterPath: {
       type: String,
     },
-    cast: {
-      type: Object,
-    },
   },
-  mounted() {
-    console.log(this.cast);
+  computed: {
+    ...mapState("movie", ["movie"]),
+    movieInfo() {
+      return this.movie.info ? this.movie.info : {};
+    },
   },
 });
 </script>

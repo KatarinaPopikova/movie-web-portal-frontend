@@ -31,7 +31,6 @@
             | {{ genre }}
           </p>
         </div>
-        <movieCast :poster-path="imageUrl" :cast="this.movieInfo.cast" />
       </div>
     </div>
   </div>
@@ -40,12 +39,11 @@
 <script>
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
-import MovieCast from "@/components/movie-detail-view/MovieCast.vue";
 import { ImageMovieUrl } from "@/types";
 
 export default defineComponent({
   name: "MovieDetail",
-  components: { MovieCast },
+  components: {},
   props: {
     movieId: {
       type: String,
@@ -61,8 +59,6 @@ export default defineComponent({
       imageUrl: `${ImageMovieUrl[this.apiDb].original}`,
 
       imdbUrl: "https://www.imdb.com/title",
-      cast: Object,
-      reviews: Object,
     };
   },
 

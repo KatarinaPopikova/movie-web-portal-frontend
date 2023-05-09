@@ -1,5 +1,11 @@
 <template>
-  <nav><router-link to="/">Home</router-link></nav>
+  <nav>
+    <router-link to="/">
+      <font-awesome-icon
+        icon="fa-solid fa-house"
+        class="text-sky-400 p-4 h-7 w-7"
+    /></router-link>
+  </nav>
   <router-view />
 </template>
 
