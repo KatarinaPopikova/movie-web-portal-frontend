@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto mt-6 w-52 hover:scale-110 transition duration-300 ease-in-out"
+    class="mx-auto lg:mt-4 lg:w-52 md:w-40 sm:w-32 w-28 hover:scale-110 transition duration-300 ease-in-out"
   >
     <router-link
       :to="`/movie/${apiDb}/${movieId}`"
@@ -13,7 +13,7 @@
         :alt="`poster_${movieId}`"
       />
       <div class="relative">
-        <h2 class="text-xl font-bold mb-2">
+        <h2 class="md:text-xl sm:text-sm font-bold mb-2">
           {{ movie.title }}
         </h2>
       </div>
@@ -41,9 +41,11 @@ export default defineComponent({
     },
     imageUrl: {
       type: String,
+      default: null,
     },
     youtubeUrl: {
       type: String,
+      default: null,
     },
     detection: {
       type: Array,

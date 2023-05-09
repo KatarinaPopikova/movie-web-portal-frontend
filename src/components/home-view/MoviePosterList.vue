@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container ml-14 mr-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 p-2 gap-x-14"
+    class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
   >
     <div v-for="movie in movies" :key="movie.id">
       <movie-poster

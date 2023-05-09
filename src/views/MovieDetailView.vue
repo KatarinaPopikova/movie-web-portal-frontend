@@ -1,9 +1,24 @@
 <template>
   <div>
     <movie-detail :api-db="this.apiDb" :movie-id="this.movieId" />
-    <poster-detection :api-db="this.apiDb" />
+
+    <div class="mx-auto max-w-xl">
+      <div class="flex justify-around">
+        <poster-modal
+          :api-db="this.apiDb"
+          v-if="detInfo.detType === 'Poster' && movie.detections.length > 0"
+        />
+        <trailer-modal
+          v-if="
+            movie.trailer &&
+            detInfo.detType === 'Trailer' &&
+            movie.detections.length > 0
+          "
+        />
+        <reviews-modal />
+      </div>
+    </div>
     <movie-reviews :reviews="reviews" />
-    <movie-trailer />
     <!--    <movie-images :movie-id="this.movieId" />-->
   </div>
 </template>
@@ -12,13 +27,20 @@
 import { defineComponent } from "vue";
 import MovieDetail from "@/components/movie-detail-view/MovieDetail.vue";
 import MovieReviews from "@/components/movie-detail-view/MovieReviews.vue";
-import PosterDetection from "@/components/movie-detail-view/PosterDetection.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
-import MovieTrailer from "@/components/movie-detail-view/MovieTrailer.vue";
+import PosterModal from "@/components/movie-detail-view/modal/PosterModal.vue";
+import TrailerModal from "@/components/movie-detail-view/modal/TrailerModal.vue";
+import ReviewsModal from "@/components/movie-detail-view/modal/ReviewsModal.vue";
 
 export default defineComponent({
   name: "MovieDetailView",
-  components: { MovieTrailer, PosterDetection, MovieReviews, MovieDetail },
+  components: {
+    ReviewsModal,
+    TrailerModal,
+    PosterModal,
+    MovieReviews,
+    MovieDetail,
+  },
 
   data() {
     return {
@@ -28,7 +50,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState("movie", ["movie"]),
+    ...mapState("movie", ["movie", "detInfo"]),
   },
   async beforeMount() {
     await this.getMovieInfo([this.apiDb, this.movieId]);
@@ -36,6 +58,7 @@ export default defineComponent({
   },
   beforeUnmount() {
     this.removeData();
+    console.log(this.movie.trailer);
   },
   methods: {
     ...mapActions("movie", ["getMovieInfo"]),

@@ -2,6 +2,7 @@ import { GetterTree } from "vuex";
 import {
   DatabaseEnum,
   DetectTypeEnum,
+  Modelv8Enum,
   MovieDatabaseEnum,
   RootState,
   SearchState,
@@ -18,6 +19,8 @@ export const database = (state: SearchState): DatabaseEnum =>
   state.searchFilter.database ? DatabaseEnum.db : DatabaseEnum.online;
 
 export const yolo = (state: SearchState): YoloEnum => state.searchFilter.yolo;
+export const model = (state: SearchState): Modelv8Enum =>
+  state.searchFilter.model;
 
 export const confidence = (state: SearchState): number =>
   state.searchFilter.confidence;
@@ -65,6 +68,7 @@ const getters: GetterTree<SearchState, RootState> = {
   allGenres,
   categories,
   database,
+  model,
   yolo,
   confidence,
   movieDatabase,

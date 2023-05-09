@@ -10,6 +10,7 @@
     <TheToggle
       v-if="categories.length > 0 && yolo === yoloValues[1]"
       :labels="modelV8Values"
+      :selected-label="model"
       :disabled="disabledModel"
       :small="true"
       @change-toggle="changeModel"
@@ -35,8 +36,8 @@ export default defineComponent({
 
   computed: {
     ...mapGetters("search", [
-      "database",
       "yolo",
+      "model",
       "disabledDb",
       "disabledYolo",
       "disabledModel",

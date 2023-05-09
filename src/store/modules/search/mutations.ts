@@ -34,6 +34,9 @@ export const SET_MODEL = (state, model: boolean) => {
 
 export const SET_DATABASE = (state, database: boolean) => {
   state.searchFilter.database = database;
+  if (database && state.searchFilter.detectType === DetectTypeEnum.Trailer) {
+    SET_MODEL(state, false);
+  }
 };
 
 export const SET_CONFIDENCE = (state, confidence: number) => {
@@ -78,6 +81,9 @@ export const SET_DETECT_TYPE = (state, detectType: DetectTypeEnum) => {
   state.searchFilter.maxPages = 2;
   if (state.searchFilter.detectType === DetectTypeEnum.Trailer) {
     SET_YOLO(state, true);
+    if (state.searchFilter.database) {
+      SET_MODEL(state, false);
+    }
   }
 };
 

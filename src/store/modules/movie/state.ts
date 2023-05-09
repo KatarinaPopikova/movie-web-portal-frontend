@@ -10,5 +10,6 @@ export default {
     yolo: "",
     categories: [],
     conf: 0.0,
+    detType: null,
   },
 };

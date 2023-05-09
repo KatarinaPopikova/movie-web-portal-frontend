@@ -19,10 +19,11 @@ import {
   faMagnifyingGlass,
   faChevronDown,
   faCheck,
+  faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faMagnifyingGlass, faChevronDown, faCheck);
+library.add(faMagnifyingGlass, faChevronDown, faCheck, faCirclePlay);
 
 declare global {
   interface Window {

@@ -1,5 +1,5 @@
 <template>
-  <div @click="cancel">aaaaaaa</div>
+  <!--  <div @click="cancel">aaaaaaa</div>-->
   <Listbox
     as="div"
     v-model="selectedCategories"
