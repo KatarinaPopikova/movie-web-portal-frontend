@@ -2,6 +2,13 @@
   <div v-for="(review, index) in reviews" :key="index">
     <TheReview :review="review" />
   </div>
+
+  <div
+    v-if="reviews.length === 0"
+    class="h-20 flex justify-center font-bold p-6"
+  >
+    <p>No reviews</p>
+  </div>
 </template>
 
 <script>

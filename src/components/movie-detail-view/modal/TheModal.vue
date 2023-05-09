@@ -1,10 +1,13 @@
 <template>
   <div
-    class="fixed inset-0 bg-cover bg-center bg-blur backdrop-blur-sm z-10 overflow-scroll"
+    class="fixed inset-0 bg-cover bg-center bg-blur backdrop-blur-sm z-10 flex items-center justify-center"
     v-if="showModal"
     @click.self="closeModal"
   >
-    <div class="bg-white rounded-lg mx-3 md:mx-14 my-2">
+    <div
+      class="bg-white rounded-lg mx-3 md:mx-14 my-2"
+      style="max-height: calc(100vh - 4rem); overflow-y: auto"
+    >
       <div class="flex justify-between items-center px-4 py-2 bg-gray-100">
         <h3 class="text-lg font-bold">{{ movie.info.original_title }}</h3>
         <button
