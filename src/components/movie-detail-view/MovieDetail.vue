@@ -31,10 +31,7 @@
             | {{ genre }}
           </p>
         </div>
-        <movieCast
-          :poster-path="imageUrl"
-          :cast="this.movieInfo.cast.slice(0, 5)"
-        />
+        <movieCast :poster-path="imageUrl" :cast="this.movieInfo.cast" />
       </div>
     </div>
   </div>

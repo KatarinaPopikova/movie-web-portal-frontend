@@ -18,7 +18,6 @@
         <reviews-modal />
       </div>
     </div>
-    <movie-reviews :reviews="reviews" />
     <!--    <movie-images :movie-id="this.movieId" />-->
   </div>
 </template>
@@ -26,7 +25,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MovieDetail from "@/components/movie-detail-view/MovieDetail.vue";
-import MovieReviews from "@/components/movie-detail-view/MovieReviews.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
 import PosterModal from "@/components/movie-detail-view/modal/PosterModal.vue";
 import TrailerModal from "@/components/movie-detail-view/modal/TrailerModal.vue";
@@ -38,7 +36,6 @@ export default defineComponent({
     ReviewsModal,
     TrailerModal,
     PosterModal,
-    MovieReviews,
     MovieDetail,
   },
 

@@ -4,17 +4,11 @@
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       @click="showModal = true"
     >
-      Open Modal
+      Show poster detection
     </button>
-    <the-modal :show-modal="showModal" title="sssss" @close="showModal = false">
-      <div>
+    <the-modal :show-modal="showModal" @close="showModal = false">
+      <div class="max-h-screen">
         <poster-detection :api-db="this.apiDb" />
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="onClick"
-        >
-          OK
-        </button>
       </div>
     </the-modal>
   </div>

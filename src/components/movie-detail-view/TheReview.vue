@@ -3,7 +3,7 @@
     <h3 class="text-2xl font-bold mb-1">{{ review.username }}</h3>
     <div class="flex justify-between">
       <h5 class="text-xl mb-2">{{ review.title }}</h5>
-      <h5 class="text-2xl">{{ review.rate }}</h5>
+      <h5 class="text-2xl">Rate: {{ review.rate || "-" }}</h5>
     </div>
     <div
       id="content"
@@ -13,7 +13,7 @@
       {{ review.content }}
     </div>
     <button
-      class="text-blue-500 hover:text-blue-700 font-bold mt-2 focus:outline-none"
+      class="text-sky-500 hover:text-sky-700 font-bold mt-2 focus:outline-none"
       @click="toggleContent"
     >
       {{ toggle }}
@@ -35,7 +35,7 @@ export default defineComponent({
   data() {
     return {
       toggle: "Read more",
-      maxHeight: "50px",
+      maxHeight: "100px",
     };
   },
   methods: {
@@ -44,7 +44,7 @@ export default defineComponent({
         this.maxHeight = null;
         this.toggle = "Show less";
       } else {
-        this.maxHeight = "50px";
+        this.maxHeight = "100px";
         this.toggle = "Read more";
       }
     },

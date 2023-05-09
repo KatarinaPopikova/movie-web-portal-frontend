@@ -2,7 +2,11 @@
   <div
     class="posters container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
   >
-    <div v-for="(image, index) in cast" :key="index" class="px-4 w-48">
+    <div
+      v-for="(image, index) in cast?.slice(0, 5)"
+      :key="index"
+      class="px-4 w-48"
+    >
       <img
         class="rounded-lg shadow-lg"
         :src="`${posterPath}${image.profile_path}`"

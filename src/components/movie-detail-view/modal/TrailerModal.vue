@@ -6,11 +6,7 @@
     >
       Show trailer detection
     </button>
-    <the-modal
-      :show-modal="showModal"
-      :title="movie.info.original_title"
-      @close="closeTrailerDet"
-    >
+    <the-modal :show-modal="showModal" @close="closeTrailerDet">
       <div class="relative">
         <movie-trailer />
       </div>
@@ -21,7 +17,6 @@
 <script>
 import TheModal from "@/components/movie-detail-view/modal/TheModal.vue";
 import MovieTrailer from "@/components/movie-detail-view/MovieTrailer.vue";
-import { mapState } from "vuex";
 
 export default {
   name: "TrailerModal",
@@ -33,9 +28,6 @@ export default {
     return {
       showModal: false,
     };
-  },
-  computed: {
-    ...mapState("movie", ["movie"]),
   },
   methods: {
     closeTrailerDet() {

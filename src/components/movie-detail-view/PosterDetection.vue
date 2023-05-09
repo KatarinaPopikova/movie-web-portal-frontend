@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div class="text-3xl font-bold mb-10 ml-10">Poster</div>
     <div class="flex">
-      <div class="canvas-wrapper w-96">
+      <div class="canvas-wrapper w-[600px]">
         <img
           id="scream"
           ref="myScream"
-          class="m-auto pl-8"
+          class="m-auto"
           :src="imageUrl + movie.poster"
           alt="The Scream"
-          height="150px"
+          height="350px"
         />
-        <canvas ref="myCanvas" class="canvas-overlay m-auto pl-8"></canvas>
+        <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
       </div>
       <!--      <div class="canvas-wrapper w-96">-->
       <!--        <img-->
@@ -25,12 +24,18 @@
       <!--        <canvas ref="myCanvas2" class="canvas-overlay m-auto"></canvas>-->
       <!--      </div>-->
     </div>
-    <div v-if="this.movie.detections.length > 0" class="flex justify-center">
+    <div class="flex justify-evenly">
       <div
         @click="detectAll"
-        class="font-semibold bg-green-600 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-green-700"
+        class="font-semibold bg-sky-500 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-sky-700"
       >
-        Show detection
+        Show
+      </div>
+      <div
+        @click="clearDetection"
+        class="font-semibold bg-sky-500 text-white rounded-lg p-3 mt-4 hover:cursor-pointer active:bg-sky-700"
+      >
+        Hide
       </div>
     </div>
   </div>
@@ -52,7 +57,12 @@ export default defineComponent({
   data() {
     return {
       imageUrl: `${ImageMovieUrl[this.apiDb].original}`,
+      showCanvas: true,
     };
+  },
+
+  mounted() {
+    this.detectAll();
   },
 
   computed: {
@@ -60,6 +70,7 @@ export default defineComponent({
   },
   methods: {
     detectAll() {
+      this.showCanvas = true;
       const mainDetModel = Object.keys(this.movie.detections[0])[0];
       const colors = this.getRandomColors(
         this.movie.detections[0][mainDetModel].length
@@ -101,42 +112,51 @@ export default defineComponent({
       }
     },
     bboxRatioDraw(label, box, canvas, color) {
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d") || null;
+      if (ctx) {
+        // Use percent to correctly adapt the coordinate to the scaled image
+        let percentBx = 100 * box[0], // x %
+          percentBy = 100 * box[1], // y %
+          percentBw = box[2] * 100, // width%
+          percentBh = box[3] * 100; // height%
 
-      // Use percent to correctly adapt the coordinate to the scaled image
-      let percentBx = 100 * box[0], // x %
-        percentBy = 100 * box[1], // y %
-        percentBw = box[2] * 100, // width%
-        percentBh = box[3] * 100; // height%
+        // then map the values to the current canvas
 
-      // then map the values to the current canvas
+        let finalBw = (percentBw * canvas.width) / 100, // width en pixel
+          finalBh = (percentBh * canvas.height) / 100, // height en pixel
+          finalBx = (percentBx * canvas.width) / 100 - finalBw / 2, // x en pixel
+          finalBy = (percentBy * canvas.height) / 100 - finalBh / 2; // y en pixel
 
-      let finalBw = (percentBw * canvas.width) / 100, // width en pixel
-        finalBh = (percentBh * canvas.height) / 100, // height en pixel
-        finalBx = (percentBx * canvas.width) / 100 - finalBw / 2, // x en pixel
-        finalBy = (percentBy * canvas.height) / 100 - finalBh / 2; // y en pixel
-
-      // Draw the bounding box.
-      ctx!.strokeStyle = color;
-      ctx!.lineWidth = 2;
-      ctx?.strokeRect(finalBx, finalBy, finalBw, finalBh);
-      // Draw the label background.
-      let label_width = ctx!.measureText(label).width;
-      let i = label.length;
-      label_width = i * 20 * 0.52 - 10;
-      ctx!.fillStyle = color;
-      ctx!.fillRect(finalBx, finalBy, label_width, 20);
-      ctx!.fillStyle = "white";
-      ctx!.font = "20px serif";
-      ctx!.fillText(label, finalBx, finalBy + 13);
+        // Draw the bounding box.
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(finalBx, finalBy, finalBw, finalBh);
+        // Draw the label background.
+        let label_width = ctx.measureText(label).width;
+        let i = label.length;
+        label_width = i * 20 * 0.52 - 10;
+        ctx.fillStyle = color;
+        ctx.fillRect(finalBx, finalBy, label_width, 20);
+        ctx.fillStyle = "white";
+        ctx.font = "20px serif";
+        ctx.fillText(label, finalBx, finalBy + 13);
+      }
     },
     getRandomColors(numColors) {
       let colors: string[] = [];
-      colors = ["#1d6594", "#484290"];
-      // for (let i = 0; i < numColors; i++) {
-      //   colors.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
-      // }
+      for (let i = 0; i < numColors; i++) {
+        colors.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
+      }
       return colors;
+    },
+
+    clearDetection() {
+      this.showCanvas = false;
+      const canvas = this.$refs["myCanvas"] as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d") || null;
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
     },
   },
 });
