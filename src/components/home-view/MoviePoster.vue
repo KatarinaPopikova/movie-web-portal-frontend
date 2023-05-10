@@ -58,6 +58,14 @@ export default defineComponent({
   },
   computed: {
     imageUrlFull() {
+      if (
+        this.imageUrl === "null" ||
+        this.imageUrl === "undefined" ||
+        this.imageUrl === null ||
+        this.imageUrl === undefined
+      ) {
+        return "https://imdb-api.com/images/original/nopicture.jpg";
+      }
       return `${ImageMovieUrl[this.apiDb].small}${this.imageUrl}`;
     },
   },

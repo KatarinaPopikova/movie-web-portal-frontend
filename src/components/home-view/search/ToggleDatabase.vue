@@ -38,7 +38,6 @@ export default defineComponent({
     ...mapGetters("search", [
       "yolo",
       "model",
-      "disabledDb",
       "disabledYolo",
       "disabledModel",
       "categories",

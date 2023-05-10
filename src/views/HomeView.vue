@@ -19,7 +19,7 @@
         />
       </button>
     </div>
-    <movie-poster-list :movies="shownMovies" />
+    <movie-poster-list v-if="shownMovies" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@
 import { defineComponent } from "vue";
 import MoviePosterList from "@/components/home-view/MoviePosterList.vue";
 import Movie from "@/api/tmdb-movie";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import LoadingLottie from "@/components/LoadingLottie.vue";
 import FirstLine from "@/components/home-view/search/FirstLine.vue";
 import SecondLine from "@/components/home-view/search/SecondLine.vue";
@@ -58,11 +58,13 @@ export default defineComponent({
       this.shownMovies = this.movies;
     } else {
       this.shownMovies = await Movie.popular();
+      this.SET_MOVIES(this.shownMovies);
     }
   },
 
   methods: {
     ...mapActions("movie", ["getMovies"]),
+    ...mapMutations("movie", ["SET_MOVIES"]),
     async searchMovies(query: string) {
       if (query !== "" || this.categories.length > 0) {
         await this.getMovies();

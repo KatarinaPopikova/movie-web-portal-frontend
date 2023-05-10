@@ -2,8 +2,7 @@
   <div
     class="flex items-center justify-center py-1.5 px-3"
     :class="{
-      'opacity-50': disabled,
-      'cursor-not-allowed': disabled,
+      'opacity-50 cursor-not-allowed': disabled,
     }"
   >
     <span
