@@ -4,8 +4,9 @@ import store from "./store";
 import router from "./router";
 import "./index.scss";
 import mitt, { Emitter } from "mitt";
-import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
+import ToastPlugin from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
 
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
@@ -26,6 +27,7 @@ import {
   faAngleRight,
   faStar,
   faSquare,
+  faHouseLaptop,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -39,7 +41,8 @@ library.add(
   faAngleLeft,
   faAngleRight,
   faStar,
-  faSquare
+  faSquare,
+  faHouseLaptop
 );
 
 declare global {
@@ -55,6 +58,8 @@ createApp(App)
   .use(store)
   .use(router)
   .use(VueTailwindDatepicker as never)
-  .use(Vue3Lottie)
+  .use(ToastPlugin, {
+    position: "top-right",
+  })
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

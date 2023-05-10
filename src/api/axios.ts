@@ -15,11 +15,8 @@ export const callRequest = async (
         ? await Api.get(request, { cancelToken: cancelToken.token })
         : await Api.get(request);
 
-    console.log(response);
-
     return response.data;
   } catch (error) {
-    console.log("sdsd");
     store.commit("SET_ERROR", error);
 
     return null;

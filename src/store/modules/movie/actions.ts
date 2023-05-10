@@ -19,7 +19,7 @@ export const getMovies = async ({
     commit("SET_MOVIES", []);
     commit("HANDLE_ERROR", null, { root: true });
   } else if (movies["results"].length === 0) {
-    commit("SET_ERROR", "No film was found.", { root: true });
+    commit("SET_ERROR_LOG", "No film was found.", { root: true });
     commit("SET_MOVIES", []);
   } else {
     commit("SET_MOVIES", movies["results"]);

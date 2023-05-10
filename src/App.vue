@@ -19,8 +19,22 @@
 </style>
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapMutations, mapState } from "vuex";
 
 export default defineComponent({
   components: {},
+  computed: {
+    ...mapState(["errorLog"]),
+  },
+
+  watch: {
+    errorLog(value) {
+      if (value !== "") this.$toast.info(value);
+      this.SET_ERROR_LOG("");
+    },
+  },
+  methods: {
+    ...mapMutations(["SET_ERROR_LOG"]),
+  },
 });
 </script>

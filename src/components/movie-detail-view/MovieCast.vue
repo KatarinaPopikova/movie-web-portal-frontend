@@ -3,15 +3,15 @@
     <div
       v-for="(cast, index) in this.movieInfo.cast?.slice(0, 5)"
       :key="index"
-      class="px-4 w-52 justify-centers items-center flex flex-col"
+      class="sm:px-4 px-0.5 sm:w-56 w-36 py-0.5 justify-centers items-center flex flex-col"
     >
       <img
-        class="w-48 h-48 rounded-full object-cover"
+        class="sm:w-48 sm:h-48 w-24 h-24 rounded-full object-cover"
         :src="imageUrlFull(cast.profile_path)"
         :alt="`cast_image_${index}`"
       />
 
-      <p class="font-bold text-white text-xl">{{ cast.name }}</p>
+      <p class="font-bold text-white text-xl text-center">{{ cast.name }}</p>
     </div>
   </div>
 </template>

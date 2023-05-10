@@ -34,7 +34,6 @@ export default createStore<RootState>({
         return;
       } else if (state.error?.response?.status === 503) {
         state.errorLog = "Maximum usage IMDb API.";
-        console.log(state.errorLog);
       }
     },
     ["SET_SOURCE"](state, source) {

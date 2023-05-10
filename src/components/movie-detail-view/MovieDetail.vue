@@ -5,40 +5,63 @@
       :style="`background-image: url(${backdropUrlFull})`"
     ></div>
     <div class="fixed top-0 w-screen h-screen -z-30 bg-gray-400"></div>
-    <div class="pt-[40vh]">
+    <div class="sm:pt-[40vh] pt-[25vh]">
       <div class="bg-blur relative">
         <div class="mt-20 flex justify-center">
           <div
             class="max-w-screen-xl flex lg:flex-row flex-col lg:w-fit justify-between items-center"
           >
             <img
-              class="rounded-lg shadow-lg w-96"
+              class="rounded-lg shadow-lg sm:w-96 w-80 pb-10"
               :src="posterUrlFull"
               alt="backdrop_path"
             />
-            <div class="text-white pl-10">
-              <a :href="`${imdbUrl}/${movieInfo.imdb_id}`">
-                <header>
-                  <h1 class="pb-5 text-4xl font-bold opacity-100">
-                    {{ movieInfo.original_title }}
-                  </h1>
-                </header>
-              </a>
-
-              <div>
-                <p class="max-w-screen-sm text-xl pl-14">
-                  {{ movieInfo.plot }}
-                </p>
-                <div class="flex p-3 flex-wrap">
-                  <h4 class="font-semibold text-xl pr-2">Genres:</h4>
-                  <p
-                    v-for="(genre, index) in movieInfo.genres"
-                    :key="index"
-                    class="pr-2 whitespace-nowrap"
+            <div class="flex flex-col justify-evenly h-full">
+              <div></div>
+              <div class="text-white pl-10">
+                <a :href="`${imdbUrl}/${movieInfo.imdb_id}`">
+                  <header
+                    class="pb-5 flex justify-between items-center content-center"
                   >
-                    | {{ genre }}
+                    <h1 class="text-4xl font-bold opacity-100">
+                      {{ movieInfo.original_title }}
+                    </h1>
+                    <a v-if="movieInfo.homepage" :href="movieInfo.homepage">
+                      <font-awesome-icon
+                        icon="fa-solid fa-house-laptop"
+                        class="w-16 h-16 pl-2"
+                      />
+                    </a>
+                  </header>
+                </a>
+
+                <div>
+                  <p class="max-w-screen-sm text-xl px-3 sm:pl-14 pb-4">
+                    {{ movieInfo.plot }}
                   </p>
+                  <div class="flex justify-between text-lg">
+                    <span>Time: {{ movieInfo.runTimeStr }}</span>
+                    <span>{{ movieInfo.release_date }}</span>
+                  </div>
+                  <div class="flex p-3 flex-wrap">
+                    <h4 class="font-semibold text-xl pr-2">Genres:</h4>
+                    <p
+                      v-for="(genre, index) in movieInfo.genres"
+                      :key="index"
+                      class="pr-2 whitespace-nowrap"
+                    >
+                      | {{ genre }}
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div class="text-5xl text-white text-right">
+                <span class="text-3xl">SCORE:</span>
+                {{
+                  movieInfo.rating
+                    ? parseFloat(movieInfo.rating).toFixed(1)
+                    : "- "
+                }}/10
               </div>
             </div>
           </div>
