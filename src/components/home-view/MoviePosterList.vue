@@ -2,7 +2,7 @@
   <div
     class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
   >
-    <div v-for="movie in movies" :key="movie.id">
+    <div v-for="movie in movies" :key="movie.id" class="h-full">
       <movie-poster
         :movie="movie"
         :movie-id="String(movie.id)"

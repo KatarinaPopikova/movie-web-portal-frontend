@@ -1,21 +1,23 @@
 <template>
   <div
-    class="mx-auto lg:mt-4 lg:w-52 md:w-40 sm:w-32 w-28 hover:scale-110 transition duration-300 ease-in-out"
+    class="mx-auto lg:mt-4 lg:w-52 md:w-40 sm:w-32 w-28 hover:scale-110 transition duration-300 ease-in-out h-full"
   >
     <router-link
       :to="`/movie/${apiDb}/${movieId}`"
       @click="saveMovieDetAndFetchDetail"
     >
-      <img
-        class="rounded-lg shadow-lg"
-        :src="`${imageUrlFull}`"
-        height="150px"
-        :alt="`poster_${movieId}`"
-      />
-      <div class="relative">
-        <h2 class="md:text-xl sm:text-sm font-bold mb-2">
-          {{ movie.title }}
-        </h2>
+      <div class="flex flex-col justify-between h-full">
+        <img
+          class="rounded-lg shadow-lg"
+          :src="`${imageUrlFull}`"
+          height="150px"
+          :alt="`poster_${movieId}`"
+        />
+        <div class="relative">
+          <h2 class="md:text-xl sm:text-sm font-bold mb-2">
+            {{ movie.title }}
+          </h2>
+        </div>
       </div>
     </router-link>
   </div>
