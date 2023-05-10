@@ -21,7 +21,7 @@
       />
     </div>
   </div>
-  <div class="block w-screen">
+  <div class="block w-full">
     <ListPagination
       :current="current"
       :total="total"

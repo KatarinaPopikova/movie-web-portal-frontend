@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed inset-0 bg-cover bg-center bg-blur backdrop-blur-sm z-10 flex items-center justify-center w-screen"
+    class="fixed inset-0 backdrop-blur-sm z-10 flex items-center justify-center w-screen"
     v-if="showModal"
     @click.self="closeModal"
   >

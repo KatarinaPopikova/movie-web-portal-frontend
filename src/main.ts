@@ -24,6 +24,8 @@ import {
   faXmark,
   faAngleLeft,
   faAngleRight,
+  faStar,
+  faSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -35,7 +37,9 @@ library.add(
   faHouse,
   faXmark,
   faAngleLeft,
-  faAngleRight
+  faAngleRight,
+  faStar,
+  faSquare
 );
 
 declare global {

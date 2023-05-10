@@ -1,10 +1,14 @@
 <template>
   <div>
     <button
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      class="w-40 h-28 bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded flex flex-col justify-evenly items-center"
       @click="showModal = true"
     >
-      Show Reviews
+      <font-awesome-icon
+        icon="fa-solid fa-star"
+        class="h-10 w-10 text-gray-300 hover:cursor-"
+      />
+      <span>Show Reviews</span>
     </button>
     <the-modal :show-modal="showModal" @close="showModal = false">
       <div>
