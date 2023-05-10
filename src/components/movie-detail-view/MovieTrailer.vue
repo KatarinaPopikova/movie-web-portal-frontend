@@ -1,8 +1,8 @@
 <template>
-  <div class="relative">
+  <div class="relative flex justify-center">
     <div
       v-if="imageUrl === ''"
-      class="max-w-screen-lg 2xl:max-w-screen-xl w-screen bg-gray-50 rounded-md relative"
+      class="max-w-screen-lg 2xl:max-w-screen-xl bg-gray-50 rounded-md relative w-full"
       style="height: 200px; padding-bottom: 50%"
     >
       <div

@@ -1,8 +1,12 @@
 //INTERFACE
 
+import { CancelTokenSource } from "axios";
+
 export interface RootState {
   loading: boolean;
-  error: string | null;
+  error: any;
+  errorLog: string | null;
+  source: CancelTokenSource | undefined;
   movieModule: MovieState;
   searchModule: SearchState;
 }

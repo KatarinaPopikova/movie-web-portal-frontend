@@ -1,8 +1,8 @@
 import General from "@/api/general";
 
-export const getAllCategories = async ({ state, commit }, cancelToken) => {
+export const getAllCategories = async ({ state, commit }) => {
   if (state.allCategories.length === 0) {
-    const data = await General.allCategories(cancelToken);
+    const data = await General.allCategories();
     commit("SET_ALL_CATEGORIES", data);
   }
 };

@@ -1,4 +1,5 @@
-import axios, { CancelToken, CancelTokenSource } from "axios";
+import axios, { CancelTokenSource } from "axios";
+import store from "@/store/index";
 
 const Api = axios.create({
   baseURL: "http://localhost:8000",
@@ -17,7 +18,7 @@ export const callRequest = async (
     console.log(response);
     return response.data;
   } catch (error) {
-    console.error(error);
+    store.commit("SET_ERROR", error);
     return null;
   }
 };

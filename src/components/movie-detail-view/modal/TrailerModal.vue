@@ -6,7 +6,11 @@
     >
       Show trailer detection
     </button>
-    <the-modal :show-modal="showModal" @close="closeTrailerDet">
+    <the-modal
+      :show-modal="showModal"
+      :full-width="true"
+      @close="closeTrailerDet"
+    >
       <div class="relative">
         <movie-trailer />
       </div>

@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="flex">
-      <div class="canvas-wrapper w-[600px]">
+      <div class="canvas-wrapper w-[400px]">
         <img
           id="scream"
           ref="myScream"
           class="m-auto"
           :src="imageUrl + movie.poster"
           alt="The Scream"
-          height="350px"
+          height="150px"
         />
         <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
       </div>

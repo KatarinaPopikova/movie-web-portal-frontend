@@ -63,7 +63,6 @@ export default defineComponent({
 
   methods: {
     ...mapActions("movie", ["getMovies"]),
-
     async searchMovies(query: string) {
       if (query !== "" || this.categories.length > 0) {
         await this.getMovies();

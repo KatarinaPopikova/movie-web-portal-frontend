@@ -108,7 +108,6 @@ import {
 } from "@headlessui/vue";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import DropDown from "@/components/home-view/search/multi-search-input/DropDown.vue";
-import axios from "axios";
 
 export default defineComponent({
   name: "CategoriesPicker",
@@ -123,7 +122,6 @@ export default defineComponent({
     return {
       query: "" as string,
       searchType: "Poster" as string,
-      source: undefined,
     };
   },
   computed: {
@@ -144,9 +142,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.source = axios.CancelToken.source();
-
-    this.getAllCategories(this.source);
+    this.getAllCategories();
   },
   methods: {
     ...mapMutations("search", ["SET_CATEGORIES", "REMOVE_FROM_CATEGORIES"]),
@@ -156,9 +152,6 @@ export default defineComponent({
     },
     cleanQuery() {
       this.query = "";
-    },
-    cancel() {
-      this.source.cancel("SOrry");
     },
   },
 });

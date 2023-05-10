@@ -50,6 +50,9 @@ export default defineComponent({
     detection: {
       type: Array,
     },
+    detectionTrailer: {
+      type: Array,
+    },
   },
   computed: {
     imageUrlFull() {
@@ -64,7 +67,11 @@ export default defineComponent({
       "SET_MOVIE_POSTER",
     ]),
     saveMovieDetAndFetchDetail() {
-      this.SET_MOVIE_DETECTION(this.detection);
+      if (this.detectionTrailer) {
+        this.SET_MOVIE_DETECTION(this.detectionTrailer);
+      } else {
+        this.SET_MOVIE_DETECTION(this.detection);
+      }
       this.SET_MOVIE_TRAILER(this.youtubeUrl);
       this.SET_MOVIE_POSTER(this.imageUrl);
     },

@@ -2,13 +2,13 @@ import { callRequest } from "./axios";
 import { Modelv8Enum, YoloEnum } from "@/types";
 
 export default {
-  async allCategories(cancelToken) {
-    return await callRequest(`categories_to_detect`, cancelToken);
+  async allCategories() {
+    return await callRequest(`categories_to_detect`);
   },
   async allGenres() {
     return await callRequest(`genres`);
   },
-  async filteredMovies(searchFilter) {
+  async filteredMovies(searchFilter, cancelToken) {
     const genresString = searchFilter.genres.join(",");
     const categoriesString = searchFilter.categories.join(",");
     const yolo =
@@ -26,7 +26,7 @@ export default {
     }&dateTo=${searchFilter.dateTo}&detectType=${
       searchFilter.detectType
     }&maxPages=${searchFilter.maxPages}`;
-    return await callRequest(request);
+    return await callRequest(request, cancelToken);
   },
   async fillDatabase() {
     return await callRequest(`fill_database`);

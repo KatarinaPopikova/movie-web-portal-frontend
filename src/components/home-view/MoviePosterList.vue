@@ -10,21 +10,37 @@
         :image-url="`${movie.poster_path}`"
         :youtube-url="`${movie.trailer_link}`"
         :detection="movie.det"
+        :detection-trailer="movie.trailer_objects"
       />
     </div>
+  </div>
+  <div class="block w-screen">
+    <ListPagination
+      :current="1"
+      :total="100"
+      :per-page="10"
+      :page-range="2"
+      @page-changed="show"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import MoviePoster from "@/components/home-view/MoviePoster.vue";
+import ListPagination from "@/components/home-view/ListPagination.vue";
 
 export default defineComponent({
   name: "MoviePosterList",
-  components: { MoviePoster },
+  components: { ListPagination, MoviePoster },
   props: {
     movies: {
       type: Array,
+    },
+  },
+  methods: {
+    show() {
+      console.log("no ok");
     },
   },
 });

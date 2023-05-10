@@ -3,18 +3,24 @@ import { RootState, SearchFilter } from "@/types";
 import MovieTmdb from "@/api/tmdb-movie";
 import MovieImdb from "@/api/imdb-movie";
 import Movie from "@/api/general";
+import axios from "axios";
 
 export const getMovies = async ({
   rootState,
   commit,
 }: ActionContext<any, RootState>) => {
   commit("SET_LOADING", true, { root: true });
-
+  const source = axios.CancelToken.source();
+  commit("SET_SOURCE", source, { root: true });
   const searchFilter: SearchFilter = rootState.searchModule.searchFilter;
 
-  const movies = await Movie.filteredMovies(searchFilter);
-  if (!movies) {
-    commit("SET_ERROR", "CUDA out of memory.", { root: true });
+  const movies = await Movie.filteredMovies(searchFilter, source);
+  if (movies === null) {
+    commit("SET_MOVIES", []);
+    commit("HANDLE_ERROR", null, { root: true });
+  } else if (movies["results"].length === 0) {
+    commit("SET_ERROR", "No film was found.", { root: true });
+    commit("SET_MOVIES", []);
   } else {
     commit("SET_MOVIES", movies["results"]);
     commit("SET_DET_INFO", movies["det_info"]);
