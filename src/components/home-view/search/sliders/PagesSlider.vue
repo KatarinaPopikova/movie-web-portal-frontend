@@ -41,10 +41,14 @@ export default defineComponent({
       "movieDatabase",
       "detectType",
       "database",
+      "categories",
     ]),
 
     max() {
-      if (this.detectType === DetectTypeEnum.Trailer) {
+      if (
+        this.detectType === DetectTypeEnum.Trailer &&
+        this.categories.length > 0
+      ) {
         return 20;
       } else if (this.movieDatabase === MovieDatabaseEnum.tmdb) {
         return 15;
@@ -63,7 +67,10 @@ export default defineComponent({
     },
 
     value() {
-      if (this.detectType === DetectTypeEnum.Trailer) {
+      if (
+        this.detectType === DetectTypeEnum.Trailer &&
+        this.categories.length > 0
+      ) {
         return this.maxPagesNumber * 1;
       } else if (this.movieDatabase === MovieDatabaseEnum.tmdb) {
         return this.maxPagesNumber * 20;

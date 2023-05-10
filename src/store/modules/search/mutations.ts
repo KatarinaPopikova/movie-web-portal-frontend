@@ -74,6 +74,12 @@ export const REMOVE_FROM_CATEGORIES = (state, category: string) => {
   state.searchFilter.categories = state.searchFilter.categories.filter(
     (value) => value !== category
   );
+  if (
+    state.searchFilter.categories.length === 0 &&
+    state.searchFilter.detectType === DetectTypeEnum.Trailer
+  ) {
+    state.searchFilter.maxPages = 2;
+  }
 };
 
 export const SET_DETECT_TYPE = (state, detectType: DetectTypeEnum) => {

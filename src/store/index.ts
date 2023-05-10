@@ -22,7 +22,6 @@ export default createStore<RootState>({
       state.loading = loading;
     },
     ["SET_ERROR"](state, error) {
-      console.log(error);
       state.error = error;
     },
     ["SET_ERROR_LOG"](state, error) {
@@ -33,6 +32,9 @@ export default createStore<RootState>({
         state.errorLog = "Cuda out of memory.";
       } else if (state.error?.message === "STOP") {
         return;
+      } else if (state.error?.response?.status === 503) {
+        state.errorLog = "Maximum usage IMDb API.";
+        console.log(state.errorLog);
       }
     },
     ["SET_SOURCE"](state, source) {
