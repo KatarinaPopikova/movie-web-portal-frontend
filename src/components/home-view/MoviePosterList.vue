@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8"
+    class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-8 max-w-screen-2xl mx-auto"
   >
     <div
       v-for="movie in movies?.slice(
