@@ -40,6 +40,7 @@ import { mapState } from "vuex";
 import { defineComponent } from "vue";
 import { Vue3Lottie } from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
+import { websocketStreaming } from "@/api/axios";
 
 import LoadingJSON from "@/lotties/loading_circle.json";
 
@@ -63,9 +64,7 @@ export default defineComponent({
   },
   methods: {
     connectToWebSocket() {
-      this.ws = new WebSocket(
-        "ws://localhost:8000/ws/trailer-streaming/room1/"
-      );
+      this.ws = new WebSocket(websocketStreaming);
 
       this.ws.onopen = () => {
         console.log("WebSocket connection established!");

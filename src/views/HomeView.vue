@@ -69,11 +69,6 @@ export default defineComponent({
       if (query !== "" || this.categories.length > 0) {
         await this.getMovies();
         this.shownMovies = this.movies;
-
-        // csfd.search(query).then((search) => {
-        //   console.log("CSFD");
-        //   console.log(search);
-        // });
       }
     },
   },

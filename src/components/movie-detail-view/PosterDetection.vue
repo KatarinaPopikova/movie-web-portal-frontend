@@ -12,17 +12,6 @@
         />
         <canvas ref="myCanvas" class="canvas-overlay m-auto"></canvas>
       </div>
-      <!--      <div class="canvas-wrapper w-96">-->
-      <!--        <img-->
-      <!--          id="scream"-->
-      <!--          ref="myScream2"-->
-      <!--          class="m-auto"-->
-      <!--          :src="imageUrl + this.movie.info.poster_path"-->
-      <!--          alt="The Scream"-->
-      <!--          height="150px"-->
-      <!--        />-->
-      <!--        <canvas ref="myCanvas2" class="canvas-overlay m-auto"></canvas>-->
-      <!--      </div>-->
     </div>
     <div class="flex justify-evenly">
       <div
@@ -82,11 +71,6 @@ export default defineComponent({
         this.movie.detections[0][mainDetModel],
         colors
       );
-      // this.detect(
-      //   this.$refs["myCanvas2"] as HTMLCanvasElement,
-      //   this.$refs["myScream2"] as HTMLImageElement,
-      //   this.movie.yolov8
-      // );
     },
 
     detect(canvas, img, detection, colors) {

@@ -32,17 +32,12 @@ export default {
   data() {
     return {
       showModal: false,
-      // movieId: String(this.$route.params.id),
-      // apiDb: String(this.$route.params.apiDb),
-      reviews: Object,
     };
   },
   computed: {
-    ...mapState("movie", ["movie", "detInfo"]),
+    ...mapState("movie", ["movie"]),
   },
   methods: {
-    // ...mapActions("movie", ["getMovieInfo"]),
-
     onClick() {
       this.showModal = false;
     },

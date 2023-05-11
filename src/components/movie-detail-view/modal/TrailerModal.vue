@@ -41,9 +41,6 @@ export default {
     closeTrailerDet() {
       this.showModal = false;
     },
-    showTrailerDet() {
-      this.showModal = true;
-    },
   },
 };
 </script>

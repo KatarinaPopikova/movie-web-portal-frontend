@@ -29,6 +29,7 @@ export default createStore<RootState>({
     },
     ["HANDLE_ERROR"](state) {
       if (state.error?.message.includes("code 500")) {
+        console.log(state.error);
         state.errorLog = "Cuda out of memory.";
       } else if (state.error?.message === "STOP") {
         return;

@@ -44,9 +44,6 @@ export default defineComponent({
     changeDb(value) {
       this.SET_DATABASE(value);
     },
-    // saveSelectedCategories(selectedCategories: []) {
-    //     this.selectedCategories = selectedCategories;
-    // },
   },
 });
 </script>

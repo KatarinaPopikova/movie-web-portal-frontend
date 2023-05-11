@@ -46,7 +46,6 @@ export default {
   methods: {
     ...mapMutations(["STOP_SOURCE"]),
     cancel() {
-      console.log("asas");
       this.STOP_SOURCE();
     },
   },
