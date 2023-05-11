@@ -20,6 +20,7 @@ export const callRequest = async (
     return response.data;
   } catch (error) {
     store.commit("SET_ERROR", error);
+    store.commit("HANDLE_ERROR", error);
 
     return null;
   }

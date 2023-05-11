@@ -28,14 +28,13 @@ export default createStore<RootState>({
       state.errorLog = error;
     },
     ["HANDLE_ERROR"](state) {
-      if (state.error?.message.includes("code 500")) {
-        console.log(state.error);
-        state.errorLog = "Cuda out of memory.";
-      } else if (state.error?.message === "STOP") {
+      if (state.error?.message === "STOP") {
         return;
       } else if (state.error?.response?.status === 503) {
         state.errorLog = "Maximum usage IMDb API.";
-      }
+      } else if (state.error?.response?.status === 507) {
+        state.errorLog = "Cuda out of memory.";
+      } else state.errorLog = state.error?.message;
     },
     ["SET_SOURCE"](state, source) {
       state.source = source;

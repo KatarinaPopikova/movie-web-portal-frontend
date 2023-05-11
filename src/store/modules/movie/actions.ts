@@ -17,7 +17,6 @@ export const getMovies = async ({
   const movies = await Movie.filteredMovies(searchFilter, source);
   if (movies === null) {
     commit("SET_MOVIES", []);
-    commit("HANDLE_ERROR", null, { root: true });
   } else if (movies["results"].length === 0) {
     commit("SET_ERROR_LOG", "No film was found.", { root: true });
     commit("SET_MOVIES", []);
