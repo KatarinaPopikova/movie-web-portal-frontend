@@ -2,7 +2,7 @@ import axios, { CancelTokenSource } from "axios";
 import store from "@/store/index";
 
 const Api = axios.create({
-  baseURL: "https://movie-webportal-api.onrender.com",
+  baseURL: "http://localhost:8000",
 });
 
 export const websocketStreaming =
